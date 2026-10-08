@@ -1,0 +1,1806 @@
+{
+  "schema_version": 1,
+  "release": {
+    "id": "R1-trio1-review",
+    "title": "Trio 1 review-bundle release: P04 FlowLedger, P06 DataBridge, P05 EvidenceRAG",
+    "kind": "review-bundle-delivery",
+    "repository_root": "/Volumes/MANU_DISK/google/Google_2027",
+    "path_convention": "every evidence path in this charter is relative to repository_root",
+    "solo": true,
+    "team_size": 1,
+    "cross_functional_team": false,
+    "owner": {
+      "name": "RedHolger",
+      "email": "manuvashisth963@gmail.com",
+      "role": "sole author and sole implementer",
+      "source": "git log --format='%an|%ae' for every commit in scope"
+    },
+    "agent_assistance": {
+      "present": true,
+      "form": "AI coding agent (opencode / Codex) acting as a tool of the owner",
+      "source": "commit trailers 'Co-Authored-By: opencode <noreply@opencode.ai>'",
+      "is_a_collaborator": false,
+      "note": "An AI agent is not a cross-functional teammate. No human reviewer, QA, SRE, PM or designer took part."
+    },
+    "charter_authored_at": "2026-10-08",
+    "charter_authored_by": "RedHolger (solo) via release-plan"
+  },
+  "baseline": {
+    "id": "R1-BASELINE-2026-10-05",
+    "frozen": true,
+    "status": "APPROVED",
+    "immutable": "applying changes MUST NOT mutate this block; releaseplan.apply_changes returns a new effective plan",
+    "approved_at": "2026-10-05",
+    "approved_by": "portfolio owner (the user), recorded in PLAN.md",
+    "authorization_of_record": {
+      "document": "PLAN.md",
+      "section": "User decisions and approvals",
+      "text": "2026-10-05: the user authorized completing the whole triplet (P04, P06, P05) in one continuous batch and then receiving a review ZIP for each of the three projects.",
+      "committed_in": "29908c6",
+      "committed_at": "2026-10-05T06:28:05Z"
+    },
+    "planning_doc_of_record": {
+      "document": "TRIO1_P04-P06_PLAN.md",
+      "committed_in": "b1e974f",
+      "committed_at": "2026-10-03T03:20:24Z",
+      "status_at_approval": "plan review only. No implementation.",
+      "note": "Its section 7 stop rule ('after each project's v1 evidence package, pause for user assessment') was part of this baseline and was removed by CHG-001."
+    },
+    "scope": {
+      "included_projects": [
+        "flow-ledger",
+        "data-bridge",
+        "evidence-rag"
+      ],
+      "delivery_order": [
+        "flow-ledger",
+        "data-bridge",
+        "evidence-rag"
+      ],
+      "deliverables": [
+        "four acceptance cards per project (P0x-01..P0x-04) with immutable evidence",
+        "one implementation-inclusive review ZIP per project"
+      ],
+      "explicitly_out_of_scope": [
+        "P07-P22 (withheld at baseline: PLAN.md 'Not authorized and still withheld: ... starting P07-P22')",
+        "CV work",
+        "marking any project ACCEPTED",
+        "creating or moving tags beyond p04-v1 / p04-v1-complete",
+        "pushing to a remote",
+        "production deployment"
+      ]
+    },
+    "effort_estimate": {
+      "unit": "focused hours",
+      "documented_range_hours": [
+        135,
+        210
+      ],
+      "per_project_documented_range_hours": {
+        "flow-ledger": [
+          45,
+          70
+        ],
+        "data-bridge": [
+          35,
+          55
+        ],
+        "evidence-rag": [
+          55,
+          85
+        ]
+      },
+      "source": "TRIO1_P04-P06_PLAN.md section 1 'Timeline (corrected)'",
+      "calendar_estimate": "12-27 weeks at a self-chosen 8-12 h/week",
+      "disclaimer": "Estimates are planning numbers. They are not measured delivery effort and no timesheet exists."
+    },
+    "milestones": [
+      {
+        "id": "M0-baseline-approved",
+        "title": "Trio 1 baseline approved (batch authorization)",
+        "planned_date": "2026-10-05",
+        "actual_commit": "29908c6",
+        "actual_date": "2026-10-05T06:28:05Z",
+        "status": "ACHIEVED"
+      },
+      {
+        "id": "M1-p04-cards-complete",
+        "title": "P04 cards P04-01..P04-04 delivered with evidence",
+        "planned_date": "2026-10-05",
+        "actual_commit": "9c2903d",
+        "actual_date": "2026-10-05T08:45:24Z",
+        "status": "ACHIEVED"
+      },
+      {
+        "id": "M2-p06-cards-complete",
+        "title": "P06 cards P06-01..P06-04 delivered with evidence",
+        "planned_date": "2026-10-06",
+        "actual_commit": "a60d5eb",
+        "actual_date": "2026-10-06T02:43:46Z",
+        "status": "ACHIEVED"
+      },
+      {
+        "id": "M3-p05-cards-complete",
+        "title": "P05 cards P05-01..P05-04 delivered with evidence",
+        "planned_date": "2026-10-06",
+        "actual_commit": "f4996a8",
+        "actual_date": "2026-10-06T21:34:32Z",
+        "status": "ACHIEVED"
+      },
+      {
+        "id": "M4-review-bundles-delivered",
+        "title": "Three implementation-inclusive review ZIPs committed",
+        "planned_date": "2026-10-06",
+        "actual_commit": "5f5e077",
+        "actual_date": "2026-10-06T22:07:44Z",
+        "status": "ACHIEVED"
+      },
+      {
+        "id": "M5-user-acceptance",
+        "title": "User assesses the delivered ZIPs; projects become ACCEPTED",
+        "planned_date": "after M4",
+        "actual_commit": null,
+        "actual_date": null,
+        "status": "NOT_ACHIEVED",
+        "reason": "No acceptance decision exists. PORTFOLIO_STATUS.md records P04 as CHANGES_REQUESTED and P05/P06 as NOT_EVALUATED; nothing is ACCEPTED."
+      }
+    ],
+    "gates": [
+      {
+        "id": "G-P04-CARDS",
+        "title": "P04-01..P04-04 evidence exists and every recorded run exited 0",
+        "tasks": [
+          "p04-01",
+          "p04-02",
+          "p04-03",
+          "p04-04"
+        ],
+        "requires_human_decision": false,
+        "artifacts": [
+          {
+            "path": "flow-ledger/results/p04-01-reference-test-map/exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "mvn_exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-01-reference-test-map/README.md",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-02-api-contract/exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "mvn_exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-03-live-crash/exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-03-live-crash/assertions.txt",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-04-measurement/exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-04-measurement/summary.json",
+            "kind": "document",
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "G-P06-CARDS",
+        "title": "P06-01..P06-04 evidence exists and every recorded run exited 0",
+        "tasks": [
+          "p06-01",
+          "p06-02",
+          "p06-03",
+          "p06-04"
+        ],
+        "requires_human_decision": false,
+        "artifacts": [
+          {
+            "path": "data-bridge/results/p06-01-http-connector/measurement-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-02-persistent-adapter/measurement-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-02-persistent-adapter/measurement-summary.json",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-03-fault-matrix/fault-matrix-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-04-import-evaluation/import-evaluation-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "G-P05-CARDS",
+        "title": "P05-01..P05-04 evidence exists and every recorded measure exited 0",
+        "tasks": [
+          "p05-01",
+          "p05-02",
+          "p05-03",
+          "p05-04"
+        ],
+        "requires_human_decision": false,
+        "artifacts": [
+          {
+            "path": "evidence-rag/results/p05-01-tenant-isolation/measure-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-02-versioned-retrieval/measure-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-03-model-adapter/measure-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-04-heldout-evaluation/measure-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-04-heldout-evaluation/attempt1-development-notes.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          }
+        ]
+      },
+      {
+        "id": "G-BUNDLES-BUILT",
+        "title": "Three implementation-inclusive review ZIPs exist on disk",
+        "tasks": [
+          "bundle-p04",
+          "bundle-p06",
+          "bundle-p05"
+        ],
+        "requires_human_decision": false,
+        "artifacts": [
+          {
+            "path": "opencode-handoff/bundles/P04-impl-20261006T220728Z-4c4320.zip",
+            "kind": "file",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "opencode-handoff/bundles/P06-impl-20261006T220726Z-7e4451.zip",
+            "kind": "file",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "opencode-handoff/bundles/P05-impl-20261006T220711Z-101aa4.zip",
+            "kind": "file",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "opencode-handoff/export_impl.py",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "opencode-handoff/RESUME.md",
+            "kind": "document",
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "G-USER-REVIEW-TRIO1",
+        "title": "The user assesses the three review ZIPs",
+        "tasks": [
+          "gate-user-review-trio1"
+        ],
+        "requires_human_decision": true,
+        "artifacts": [],
+        "cannot_be_satisfied_by_automation": true,
+        "reason_no_artifact": "Acceptance is a human decision. PLAN.md withholds it explicitly and no acceptance record exists, so this gate has no artifact and is deliberately unmet."
+      }
+    ],
+    "tasks": [
+      {
+        "id": "p04-01",
+        "title": "P04-01 reference reconciliation",
+        "project": "flow-ledger",
+        "card": "P04-01",
+        "depends": [],
+        "hours": 14.375,
+        "hours_basis": "even quarter of the documented P04 range midpoint 57.5 h (TRIO1_P04-P06_PLAN.md); estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "9830718",
+        "evidence": [
+          {
+            "path": "flow-ledger/results/p04-01-reference-test-map/attempt1-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "mvn_exit",
+            "expect": 1,
+            "recorded_exit": 1,
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt: AppleDouble sidecars broke Maven surefire test discovery. Verified to record mvn_exit=1."
+          },
+          {
+            "path": "flow-ledger/results/p04-01-reference-test-map/exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "mvn_exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-01-reference-test-map/README.md",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-01-reference-test-map/attempt1-surefire-appledouble-failure.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          },
+          {
+            "path": "flow-ledger/results/p04-01-reference-test-map/attempt3-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "mvn_exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "supporting",
+            "required": false,
+            "role_note": "Retained passing retry (attempt3) that preceded the final acceptance run."
+          },
+          {
+            "path": "flow-ledger/results/p04-01-reference-test-map/mvn-test-with-appledouble-regression.txt",
+            "kind": "document",
+            "role": "supporting",
+            "required": false,
+            "role_note": "Raw Maven output of the regressed attempt."
+          }
+        ]
+      },
+      {
+        "id": "p04-02",
+        "title": "P04-02 API and database contract",
+        "project": "flow-ledger",
+        "card": "P04-02",
+        "depends": [
+          "p04-01"
+        ],
+        "hours": 14.375,
+        "hours_basis": "even quarter of the documented P04 range midpoint 57.5 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "29908c6",
+        "evidence": [
+          {
+            "path": "flow-ledger/results/p04-02-api-contract/exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "mvn_exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-02-api-contract/test-summary.txt",
+            "kind": "document",
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "p04-03",
+        "title": "P04-03 live crash boundaries",
+        "project": "flow-ledger",
+        "card": "P04-03",
+        "depends": [
+          "p04-02"
+        ],
+        "hours": 14.375,
+        "hours_basis": "even quarter of the documented P04 range midpoint 57.5 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "b7e951f",
+        "evidence": [
+          {
+            "path": "flow-ledger/results/p04-03-live-crash/exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-03-live-crash/assertions.txt",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-03-live-crash/summary.json",
+            "kind": "document",
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "p04-04",
+        "title": "P04-04 comparable measurement",
+        "project": "flow-ledger",
+        "card": "P04-04",
+        "depends": [
+          "p04-03"
+        ],
+        "hours": 14.375,
+        "hours_basis": "even quarter of the documented P04 range midpoint 57.5 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "9c2903d",
+        "evidence": [
+          {
+            "path": "flow-ledger/results/p04-04-measurement/exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": "exit",
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-04-measurement/summary.json",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "flow-ledger/results/p04-04-measurement/manifest.json",
+            "kind": "document",
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "stop-p04",
+        "title": "Stop rule: pause for user assessment of P04 v1 evidence",
+        "project": "flow-ledger",
+        "card": null,
+        "depends": [
+          "p04-04"
+        ],
+        "hours": 0,
+        "hours_basis": "human pause; no author effort estimated",
+        "owner": "portfolio owner (user)",
+        "delivered_commit": null,
+        "evidence": [],
+        "no_artifact_reason": "This pause never produced an acceptance artifact. It was removed by CHG-001 before it could be satisfied; P04 remains CHANGES_REQUESTED."
+      },
+      {
+        "id": "p06-01",
+        "title": "P06-01 HTTP connector contract",
+        "project": "data-bridge",
+        "card": "P06-01",
+        "depends": [
+          "stop-p04"
+        ],
+        "hours": 11.25,
+        "hours_basis": "even quarter of the documented P06 range midpoint 45 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "3a1034d",
+        "evidence": [
+          {
+            "path": "data-bridge/results/p06-01-http-connector/measurement-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-01-http-connector/measurement.json",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-01-http-connector/unittest-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "p06-02",
+        "title": "P06-02 persistent adapter",
+        "project": "data-bridge",
+        "card": "P06-02",
+        "depends": [
+          "p06-01"
+        ],
+        "hours": 11.25,
+        "hours_basis": "even quarter of the documented P06 range midpoint 45 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "1f63677",
+        "evidence": [
+          {
+            "path": "data-bridge/results/p06-02-persistent-adapter/measurement-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-02-persistent-adapter/measurement-summary.json",
+            "kind": "document",
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-02-persistent-adapter/attempt1-development-notes.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          }
+        ]
+      },
+      {
+        "id": "p06-03",
+        "title": "P06-03 fault matrix",
+        "project": "data-bridge",
+        "card": "P06-03",
+        "depends": [
+          "p06-02"
+        ],
+        "hours": 11.25,
+        "hours_basis": "even quarter of the documented P06 range midpoint 45 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "7ebebab",
+        "evidence": [
+          {
+            "path": "data-bridge/results/p06-03-fault-matrix/fault-matrix-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-03-fault-matrix/attempt1-development-notes.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          }
+        ]
+      },
+      {
+        "id": "p06-04",
+        "title": "P06-04 import evaluation",
+        "project": "data-bridge",
+        "card": "P06-04",
+        "depends": [
+          "p06-03"
+        ],
+        "hours": 11.25,
+        "hours_basis": "even quarter of the documented P06 range midpoint 45 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "a60d5eb",
+        "evidence": [
+          {
+            "path": "data-bridge/results/p06-04-import-evaluation/import-evaluation-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-04-import-evaluation/unittest-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "data-bridge/results/p06-04-import-evaluation/attempt1-development-notes.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          }
+        ]
+      },
+      {
+        "id": "stop-p06",
+        "title": "Stop rule: pause for user assessment of P06 v1 evidence",
+        "project": "data-bridge",
+        "card": null,
+        "depends": [
+          "p06-04"
+        ],
+        "hours": 0,
+        "hours_basis": "human pause; no author effort estimated",
+        "owner": "portfolio owner (user)",
+        "delivered_commit": null,
+        "evidence": [],
+        "no_artifact_reason": "Removed by CHG-001 before it could be satisfied. P06 remains NOT_EVALUATED."
+      },
+      {
+        "id": "p05-01",
+        "title": "P05-01 tenant isolation",
+        "project": "evidence-rag",
+        "card": "P05-01",
+        "depends": [
+          "stop-p06"
+        ],
+        "hours": 17.5,
+        "hours_basis": "even quarter of the documented P05 range midpoint 70 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "d80d7c5",
+        "evidence": [
+          {
+            "path": "evidence-rag/results/p05-01-tenant-isolation/measure-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-01-tenant-isolation/reference-tests-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-01-tenant-isolation/attempt1-development-notes.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          }
+        ]
+      },
+      {
+        "id": "p05-02",
+        "title": "P05-02 versioned retrieval",
+        "project": "evidence-rag",
+        "card": "P05-02",
+        "depends": [
+          "p05-01"
+        ],
+        "hours": 17.5,
+        "hours_basis": "even quarter of the documented P05 range midpoint 70 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "69d959d",
+        "evidence": [
+          {
+            "path": "evidence-rag/results/p05-02-versioned-retrieval/measure-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-02-versioned-retrieval/attempt1-development-notes.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          }
+        ]
+      },
+      {
+        "id": "p05-03",
+        "title": "P05-03 model adapter",
+        "project": "evidence-rag",
+        "card": "P05-03",
+        "depends": [
+          "p05-02"
+        ],
+        "hours": 17.5,
+        "hours_basis": "even quarter of the documented P05 range midpoint 70 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "7e8c01d",
+        "evidence": [
+          {
+            "path": "evidence-rag/results/p05-03-model-adapter/measure-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-03-model-adapter/attempt1-development-notes.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          }
+        ]
+      },
+      {
+        "id": "p05-04",
+        "title": "P05-04 held-out evaluation",
+        "project": "evidence-rag",
+        "card": "P05-04",
+        "depends": [
+          "p05-03"
+        ],
+        "hours": 17.5,
+        "hours_basis": "even quarter of the documented P05 range midpoint 70 h; estimate only",
+        "owner": "RedHolger",
+        "delivered_commit": "f4996a8",
+        "evidence": [
+          {
+            "path": "evidence-rag/results/p05-04-heldout-evaluation/measure-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 0,
+            "recorded_exit": 0,
+            "role": "acceptance-run"
+          },
+          {
+            "path": "evidence-rag/results/p05-04-heldout-evaluation/attempt1-unit-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 1,
+            "recorded_exit": 1,
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          },
+          {
+            "path": "evidence-rag/results/p05-04-heldout-evaluation/attempt1-development-notes.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+          },
+          {
+            "path": "evidence-rag/results/p05-04-heldout-evaluation/attempt1-db-exit-status.txt",
+            "kind": "exit-status",
+            "exit_key": null,
+            "expect": 1,
+            "recorded_exit": 1,
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Second retained failing attempt from the same run."
+          },
+          {
+            "path": "evidence-rag/results/p05-04-heldout-evaluation/attempt1-unit-stderr.txt",
+            "kind": "document",
+            "role": "retained-failed-attempt",
+            "required": false,
+            "role_note": "Stderr of the retained failing attempt."
+          }
+        ]
+      },
+      {
+        "id": "bundle-p04",
+        "title": "Build implementation-inclusive P04 review ZIP",
+        "project": "flow-ledger",
+        "card": null,
+        "depends": [
+          "p04-04"
+        ],
+        "hours": 0.5,
+        "hours_basis": "solo author estimate for bundle build + hash manifest; not measured",
+        "owner": "RedHolger",
+        "delivered_commit": "5f5e077",
+        "evidence": [
+          {
+            "path": "opencode-handoff/bundles/P04-impl-20261006T220728Z-4c4320.zip",
+            "kind": "file",
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "bundle-p06",
+        "title": "Build implementation-inclusive P06 review ZIP",
+        "project": "data-bridge",
+        "card": null,
+        "depends": [
+          "p06-04"
+        ],
+        "hours": 0.5,
+        "hours_basis": "solo author estimate for bundle build + hash manifest; not measured",
+        "owner": "RedHolger",
+        "delivered_commit": "5f5e077",
+        "evidence": [
+          {
+            "path": "opencode-handoff/bundles/P06-impl-20261006T220726Z-7e4451.zip",
+            "kind": "file",
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "bundle-p05",
+        "title": "Build implementation-inclusive P05 review ZIP",
+        "project": "evidence-rag",
+        "card": null,
+        "depends": [
+          "p05-04"
+        ],
+        "hours": 0.5,
+        "hours_basis": "solo author estimate for bundle build + hash manifest; not measured",
+        "owner": "RedHolger",
+        "delivered_commit": "5f5e077",
+        "evidence": [
+          {
+            "path": "opencode-handoff/bundles/P05-impl-20261006T220711Z-101aa4.zip",
+            "kind": "file",
+            "role": "acceptance-run"
+          }
+        ]
+      },
+      {
+        "id": "gate-user-review-trio1",
+        "title": "User assesses the three review ZIPs (acceptance decision)",
+        "project": null,
+        "card": null,
+        "depends": [
+          "bundle-p04",
+          "bundle-p06",
+          "bundle-p05"
+        ],
+        "hours": 0,
+        "hours_basis": "reviewer effort; excluded from the author's estimate",
+        "owner": "portfolio owner (user)",
+        "delivered_commit": null,
+        "evidence": [],
+        "no_artifact_reason": "Human acceptance decision. Withheld by PLAN.md; nothing is ACCEPTED. This gate is deliberately and permanently unmet until the user reviews."
+      }
+    ]
+  },
+  "changes": [
+    {
+      "id": "CHG-001",
+      "date": "2026-10-05",
+      "type": "sequencing_cut",
+      "title": "Batch authorization removes the two per-project stop gates",
+      "reason": "The owner authorized completing the whole triplet in one continuous batch and receiving a review ZIP per project, replacing the TRIO1_P04-P06_PLAN.md section 7 rule 'after each project's v1 evidence package, pause for user assessment'. The replacement applies to implementation work only; the final acceptance review gate is unchanged.",
+      "source": {
+        "document": "PLAN.md",
+        "section": "User decisions and approvals",
+        "commit": "29908c6"
+      },
+      "removes_tasks": [
+        "stop-p04",
+        "stop-p06"
+      ],
+      "adds_tasks": [],
+      "rewires": [
+        {
+          "task": "p06-01",
+          "depends": [
+            "p04-04"
+          ]
+        },
+        {
+          "task": "p05-01",
+          "depends": [
+            "p06-04"
+          ]
+        }
+      ],
+      "effort_delta_hours": 0,
+      "effect": "Removes two human-assessment pauses from the implementation path. Reduces wall-clock latency; does not change estimated effort (both gates were 0 h).",
+      "baseline_modified": false
+    },
+    {
+      "id": "CHG-002",
+      "date": "2026-10-06",
+      "type": "scope_add",
+      "title": "Scope extended from the trio to P04-P22; P07-P10 added to this release train",
+      "reason": "PLAN.md scope update: 'the user requested finishing all projects before CV work. Continue through P04-P22, one acceptance card at a time, completing local implementation and evidence without intermediate implementation approval gates. CVs are deferred.'",
+      "source": {
+        "document": "PLAN.md",
+        "section": "Scope",
+        "commit": null,
+        "commit_note": "UNCOMMITTED at charter authoring time - this authorization exists only in the working tree; see P16-04 finding PF-1."
+      },
+      "removes_tasks": [],
+      "adds_tasks": [
+        {
+          "id": "p07-01",
+          "title": "P07-01 metric contract",
+          "project": "experiment-lab",
+          "card": "P07-01",
+          "depends": [
+            "bundle-p04",
+            "bundle-p05",
+            "bundle-p06"
+          ],
+          "hours": 13.125,
+          "hours_basis": "even quarter of the documented P07 range midpoint 52.5 h (kit SPEC.md 'Planning effort: 40-65 hours'); estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "a095dc0",
+          "evidence": [
+            {
+              "path": "experiment-lab/results/p07-01-metric-contract/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "experiment-lab/results/p07-01-metric-contract/metric-contract.json",
+              "kind": "document",
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p07-02",
+          "title": "P07-02 statistical validation",
+          "project": "experiment-lab",
+          "card": "P07-02",
+          "depends": [
+            "p07-01"
+          ],
+          "hours": 13.125,
+          "hours_basis": "even quarter of the documented P07 range midpoint 52.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "2ff5f6e",
+          "evidence": [
+            {
+              "path": "experiment-lab/results/p07-02-statistical-validation/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "experiment-lab/results/p07-02-statistical-validation/attempt1-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 1,
+              "recorded_exit": 1,
+              "role": "retained-failed-attempt",
+              "required": false,
+              "role_note": "Retained failing attempt. It is verified to exist and to record the failure it claims; it does not gate readiness."
+            },
+            {
+              "path": "experiment-lab/results/p07-02-statistical-validation/attempt1-stderr.txt",
+              "kind": "document",
+              "role": "retained-failed-attempt",
+              "required": false,
+              "role_note": "Stderr of the retained failing attempt."
+            }
+          ]
+        },
+        {
+          "id": "p07-03",
+          "title": "P07-03 analysis report",
+          "project": "experiment-lab",
+          "card": "P07-03",
+          "depends": [
+            "p07-02"
+          ],
+          "hours": 13.125,
+          "hours_basis": "even quarter of the documented P07 range midpoint 52.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "48efbaa",
+          "evidence": [
+            {
+              "path": "experiment-lab/results/p07-03-analysis-report/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p07-04",
+          "title": "P07-04 covariate adjustment",
+          "project": "experiment-lab",
+          "card": "P07-04",
+          "depends": [
+            "p07-03"
+          ],
+          "hours": 13.125,
+          "hours_basis": "even quarter of the documented P07 range midpoint 52.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "4953a4c",
+          "evidence": [
+            {
+              "path": "experiment-lab/results/p07-04-covariate-adjustment/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p08-01",
+          "title": "P08-01 data contracts and SQL",
+          "project": "cohort-lens",
+          "card": "P08-01",
+          "depends": [
+            "p07-04"
+          ],
+          "hours": 8.125,
+          "hours_basis": "even quarter of the documented P08 range midpoint 32.5 h (kit SPEC.md 'Planning effort: 25-40 hours'); estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "48b1b5a",
+          "evidence": [
+            {
+              "path": "cohort-lens/results/p08-01-data-contracts/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cohort-lens/results/p08-01-data-contracts/data-contract.json",
+              "kind": "document",
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p08-02",
+          "title": "P08-02 cohort analysis",
+          "project": "cohort-lens",
+          "card": "P08-02",
+          "depends": [
+            "p08-01"
+          ],
+          "hours": 8.125,
+          "hours_basis": "even quarter of the documented P08 range midpoint 32.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "9958e1c",
+          "evidence": [
+            {
+              "path": "cohort-lens/results/p08-02-cohort-analysis/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p08-03",
+          "title": "P08-03 dashboard and decision",
+          "project": "cohort-lens",
+          "card": "P08-03",
+          "depends": [
+            "p08-02"
+          ],
+          "hours": 8.125,
+          "hours_basis": "even quarter of the documented P08 range midpoint 32.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "a00f746",
+          "evidence": [
+            {
+              "path": "cohort-lens/results/p08-03-dashboard/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p08-04",
+          "title": "P08-04 real data option",
+          "project": "cohort-lens",
+          "card": "P08-04",
+          "depends": [
+            "p08-03"
+          ],
+          "hours": 8.125,
+          "hours_basis": "even quarter of the documented P08 range midpoint 32.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "a3fe7a0",
+          "evidence": [
+            {
+              "path": "cohort-lens/results/p08-04-real-data/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p09-01",
+          "title": "P09-01 dataset and split protocol",
+          "project": "shift-bench",
+          "card": "P09-01",
+          "depends": [
+            "p08-04"
+          ],
+          "hours": 16.25,
+          "hours_basis": "even quarter of the documented P09 range midpoint 65 h (kit SPEC.md 'Planning effort: 50-80 hours'); estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "4ffd07e",
+          "evidence": [
+            {
+              "path": "shift-bench/results/p09-01-splits/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "shift-bench/results/p09-01-splits/split-manifest.json",
+              "kind": "document",
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p09-02",
+          "title": "P09-02 CPU baseline",
+          "project": "shift-bench",
+          "card": "P09-02",
+          "depends": [
+            "p09-01"
+          ],
+          "hours": 16.25,
+          "hours_basis": "even quarter of the documented P09 range midpoint 65 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "49f8746",
+          "evidence": [
+            {
+              "path": "shift-bench/results/p09-02-baseline/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p09-03",
+          "title": "P09-03 robustness",
+          "project": "shift-bench",
+          "card": "P09-03",
+          "depends": [
+            "p09-02"
+          ],
+          "hours": 16.25,
+          "hours_basis": "even quarter of the documented P09 range midpoint 65 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "f6d4f6b",
+          "evidence": [
+            {
+              "path": "shift-bench/results/p09-03-robustness/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p09-04",
+          "title": "P09-04 research write-up",
+          "project": "shift-bench",
+          "card": "P09-04",
+          "depends": [
+            "p09-03"
+          ],
+          "hours": 16.25,
+          "hours_basis": "even quarter of the documented P09 range midpoint 65 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "6ebc718",
+          "evidence": [
+            {
+              "path": "shift-bench/results/p09-04-writeup/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p10-01",
+          "title": "P10-01 real dataset adapter",
+          "project": "cura-loop",
+          "card": "P10-01",
+          "depends": [
+            "p09-04"
+          ],
+          "hours": 13.125,
+          "hours_basis": "even quarter of the documented P10 range midpoint 52.5 h (kit SPEC.md 'Planning effort: 40-65 hours'); estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "60e513f",
+          "evidence": [
+            {
+              "path": "cura-loop/results/p10-01-pool/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p10-02",
+          "title": "P10-02 label curation workflow",
+          "project": "cura-loop",
+          "card": "P10-02",
+          "depends": [
+            "p10-01"
+          ],
+          "hours": 13.125,
+          "hours_basis": "even quarter of the documented P10 range midpoint 52.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "a7a1a83",
+          "evidence": [
+            {
+              "path": "cura-loop/results/p10-02-annotation/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cura-loop/results/p10-02-annotation/annotation.json",
+              "kind": "document",
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p10-03",
+          "title": "P10-03 fair experimental comparison",
+          "project": "cura-loop",
+          "card": "P10-03",
+          "depends": [
+            "p10-02"
+          ],
+          "hours": 13.125,
+          "hours_basis": "even quarter of the documented P10 range midpoint 52.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "a7a1a83",
+          "evidence": [
+            {
+              "path": "cura-loop/results/p10-03-comparison/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cura-loop/results/p10-03-comparison/summary.json",
+              "kind": "document",
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "p10-04",
+          "title": "P10-04 human study option (tooling only)",
+          "project": "cura-loop",
+          "card": "P10-04",
+          "depends": [
+            "p10-03"
+          ],
+          "hours": 13.125,
+          "hours_basis": "even quarter of the documented P10 range midpoint 52.5 h; estimate only",
+          "owner": "RedHolger",
+          "delivered_commit": "a7a1a83",
+          "evidence": [
+            {
+              "path": "cura-loop/results/p10-04-human-study/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cura-loop/results/p10-04-human-study/CONSENT_FORM.md",
+              "kind": "document",
+              "role": "acceptance-run"
+            }
+          ],
+          "partially_blocked": "The human study itself is BLOCKED: 0 consenting participants. Only the harness is verified."
+        },
+        {
+          "id": "gate-user-review-p07-p10",
+          "title": "User assesses the P07-P10 quartet",
+          "project": null,
+          "card": null,
+          "depends": [
+            "p07-04",
+            "p08-04",
+            "p09-04",
+            "p10-04"
+          ],
+          "hours": 0,
+          "hours_basis": "reviewer effort; excluded from the author's estimate",
+          "owner": "portfolio owner (user)",
+          "delivered_commit": null,
+          "evidence": [],
+          "no_artifact_reason": "Human acceptance decision; no review bundle was built for P07-P10 and no acceptance record exists."
+        }
+      ],
+      "rewires": [],
+      "adds_documented_effort_range_hours": {
+        "experiment-lab": [
+          40,
+          65
+        ],
+        "cohort-lens": [
+          25,
+          40
+        ],
+        "shift-bench": [
+          50,
+          80
+        ],
+        "cura-loop": [
+          40,
+          65
+        ]
+      },
+      "documented_range_source": "portfolio-source-kit/projects/<P0x>/SPEC.md 'Planning effort' line",
+      "adds_gates": [
+        {
+          "id": "G-P07-CARDS",
+          "title": "P07-01..P07-04 evidence exists and every recorded measure exited 0",
+          "tasks": [
+            "p07-01",
+            "p07-02",
+            "p07-03",
+            "p07-04"
+          ],
+          "requires_human_decision": false,
+          "artifacts": [
+            {
+              "path": "experiment-lab/results/p07-01-metric-contract/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "experiment-lab/results/p07-02-statistical-validation/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "experiment-lab/results/p07-03-analysis-report/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "experiment-lab/results/p07-04-covariate-adjustment/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "G-P08-CARDS",
+          "title": "P08-01..P08-04 evidence exists and every recorded measure exited 0",
+          "tasks": [
+            "p08-01",
+            "p08-02",
+            "p08-03",
+            "p08-04"
+          ],
+          "requires_human_decision": false,
+          "artifacts": [
+            {
+              "path": "cohort-lens/results/p08-01-data-contracts/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cohort-lens/results/p08-02-cohort-analysis/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cohort-lens/results/p08-03-dashboard/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cohort-lens/results/p08-04-real-data/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "G-P09-CARDS",
+          "title": "P09-01..P09-04 evidence exists and every recorded measure exited 0",
+          "tasks": [
+            "p09-01",
+            "p09-02",
+            "p09-03",
+            "p09-04"
+          ],
+          "requires_human_decision": false,
+          "artifacts": [
+            {
+              "path": "shift-bench/results/p09-01-splits/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "shift-bench/results/p09-02-baseline/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "shift-bench/results/p09-03-robustness/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "shift-bench/results/p09-04-writeup/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "G-P10-CARDS",
+          "title": "P10-01..P10-04 evidence exists and every recorded measure exited 0",
+          "tasks": [
+            "p10-01",
+            "p10-02",
+            "p10-03",
+            "p10-04"
+          ],
+          "requires_human_decision": false,
+          "artifacts": [
+            {
+              "path": "cura-loop/results/p10-01-pool/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cura-loop/results/p10-02-annotation/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cura-loop/results/p10-03-comparison/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            },
+            {
+              "path": "cura-loop/results/p10-04-human-study/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        },
+        {
+          "id": "G-USER-REVIEW-P07-P10",
+          "title": "The user assesses the P07-P10 quartet",
+          "tasks": [
+            "gate-user-review-p07-p10"
+          ],
+          "requires_human_decision": true,
+          "artifacts": [],
+          "cannot_be_satisfied_by_automation": true,
+          "reason_no_artifact": "Human decision; no bundle and no acceptance record exist."
+        }
+      ],
+      "effort_delta_hours": 202.5,
+      "effect": "Adds the P07-P10 analytics/ML quartet (16 cards + 1 review gate) behind the trio bundles. Documented planning effort for P07-P10 sums to 202.5 h at range midpoints.",
+      "baseline_modified": false
+    },
+    {
+      "id": "CHG-003",
+      "date": "2026-10-06",
+      "type": "unplanned_corrective_work",
+      "title": "AppleDouble sidecar cleanup after ExFAT metadata was accidentally staged",
+      "reason": "Nine '._*' AppleDouble sidecars were staged with the P07 kit directory and had to be removed in a dedicated commit. The workspace volume is ExFAT, so macOS regenerates these siblings continuously; PORTFOLIO_STATUS.md and DECISIONS.md #10 already record the same class of failure for P04 test discovery.",
+      "source": {
+        "document": "git history",
+        "section": null,
+        "commit": "3be4111"
+      },
+      "removes_tasks": [],
+      "adds_tasks": [
+        {
+          "id": "appledouble-cleanup",
+          "title": "Remove accidentally staged AppleDouble sidecars",
+          "project": "portfolio-source-kit",
+          "card": null,
+          "depends": [
+            "p07-02"
+          ],
+          "hours": 0.25,
+          "hours_basis": "solo author estimate for locating and unstaging nine sidecars; not measured",
+          "owner": "RedHolger",
+          "delivered_commit": "3be4111",
+          "evidence": [
+            {
+              "path": "portfolio-source-kit/projects/experiment-lab/SPEC.md",
+              "kind": "document",
+              "role": "acceptance-run"
+            }
+          ]
+        }
+      ],
+      "rewires": [
+        {
+          "task": "p07-03",
+          "depends": [
+            "p07-02",
+            "appledouble-cleanup"
+          ]
+        }
+      ],
+      "effort_delta_hours": 0.25,
+      "effect": "Inserts 0.25 h of unplanned corrective work between P07-02 and P07-03, matching the real commit order 2ff5f6e -> 3be4111 -> 48efbaa.",
+      "baseline_modified": false
+    },
+    {
+      "id": "CHG-004",
+      "date": "2026-10-06",
+      "type": "tooling_substitution",
+      "title": "New export_impl.py instead of modifying the kit's review_bundle.py",
+      "reason": "The bundles had to be implementation-inclusive. The kit tool portfolio-source-kit/tools/review_bundle.py is covered by the kit SHA256SUMS manifest, so modifying it would break kit integrity verification. A new script opencode-handoff/export_impl.py was written instead.",
+      "source": {
+        "document": "opencode-handoff/RESUME.md",
+        "section": "Review bundles",
+        "commit": "5f5e077"
+      },
+      "removes_tasks": [],
+      "adds_tasks": [
+        {
+          "id": "bundle-export-tool",
+          "title": "Author export_impl.py (implementation-inclusive bundler)",
+          "project": "opencode-handoff",
+          "card": null,
+          "depends": [
+            "p05-04"
+          ],
+          "hours": 1.0,
+          "hours_basis": "solo author estimate for a 124-line bundler plus re-hash verification; not measured",
+          "owner": "RedHolger",
+          "delivered_commit": "5f5e077",
+          "evidence": [
+            {
+              "path": "opencode-handoff/export_impl.py",
+              "kind": "document",
+              "role": "acceptance-run"
+            }
+          ]
+        }
+      ],
+      "rewires": [
+        {
+          "task": "bundle-p04",
+          "depends": [
+            "p04-04",
+            "bundle-export-tool"
+          ]
+        },
+        {
+          "task": "bundle-p06",
+          "depends": [
+            "p06-04",
+            "bundle-export-tool"
+          ]
+        },
+        {
+          "task": "bundle-p05",
+          "depends": [
+            "p05-04",
+            "bundle-export-tool"
+          ]
+        }
+      ],
+      "effort_delta_hours": 1.0,
+      "effect": "Adds a shared tool task in front of all three bundle tasks; preserves kit hash integrity.",
+      "baseline_modified": false
+    },
+    {
+      "id": "CHG-005",
+      "date": "2026-10-06",
+      "type": "scope_cut",
+      "title": "CV work deferred",
+      "reason": "PLAN.md scope update states 'CVs are deferred' so that all projects finish first. output/cv-pack-2026-10-06/ exists from earlier work but is not part of this release and receives no further tasks.",
+      "source": {
+        "document": "PLAN.md",
+        "section": "Scope",
+        "commit": null
+      },
+      "removes_tasks": [],
+      "adds_tasks": [],
+      "rewires": [],
+      "effort_delta_hours": 0,
+      "effect": "No CV task enters the release plan. Recorded so the deferral is visible rather than silent.",
+      "baseline_modified": false
+    },
+    {
+      "id": "CHG-006",
+      "date": "2026-10-08",
+      "type": "process_add",
+      "title": "Pre-bundle preflight gate added (P16-04 process fix)",
+      "reason": "Retrospective finding PF-1: the authorization of record drifted from the delivered work. PLAN.md's P04-P22 authorization was never committed, HEAD's PLAN.md still withholds P07-P22, and PORTFOLIO_STATUS.md / HANDOFF.md were last committed at f4996a8 and mention P07-P10 zero times while 17 commits delivered them. A machine-checkable preflight gate is added so a release cannot be declared ready while its planning record is stale or self-contradictory.",
+      "source": {
+        "document": "release-plan/results/p16-04-retrospective/README.md",
+        "section": "PF-1",
+        "commit": null
+      },
+      "removes_tasks": [],
+      "adds_tasks": [
+        {
+          "id": "preflight-doc-freshness",
+          "title": "Run preflight.py: planning-record freshness and authorization consistency",
+          "project": "release-plan",
+          "card": "P16-04",
+          "depends": [
+            "p10-04"
+          ],
+          "hours": 1.0,
+          "hours_basis": "solo author estimate for writing and running the checker; not measured",
+          "owner": "RedHolger",
+          "delivered_commit": null,
+          "evidence": [
+            {
+              "path": "release-plan/results/p16-04-retrospective/preflight-report.json",
+              "kind": "document",
+              "role": "acceptance-run"
+            },
+            {
+              "path": "release-plan/results/p16-04-retrospective/measure-exit-status.txt",
+              "kind": "exit-status",
+              "exit_key": null,
+              "expect": 0,
+              "recorded_exit": 0,
+              "role": "acceptance-run"
+            }
+          ]
+        }
+      ],
+      "rewires": [
+        {
+          "task": "gate-user-review-p07-p10",
+          "depends": [
+            "p07-04",
+            "p08-04",
+            "p09-04",
+            "p10-04",
+            "preflight-doc-freshness"
+          ]
+        }
+      ],
+      "effort_delta_hours": 1.0,
+      "effect": "Adds one machine-checkable gate in front of the quartet review. Root-level adoption (running preflight.py before each commit at the repository root) is a RECOMMENDATION only; nothing outside release-plan/ was modified.",
+      "baseline_modified": false
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "access": "generated locally by dataset.py; no download required",
+  "bytes": 73367,
+  "file": "synthetic_cc0.npz",
+  "image_shape": [
+    8,
+    8
+  ],
+  "images_per_entity": 10,
+  "license": "CC0-1.0",
+  "n_entities": 30,
+  "n_images": 300,
+  "name": "synthetic-cc0-8x8-patterns",
+  "seed": 7,
+  "sha256": "8d85d259d307f0a6f36f3c5427c22a5dc23c9cfb6da24c0fc67e6cb59bfd4d92"
+}

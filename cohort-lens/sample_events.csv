@@ -1,0 +1,5 @@
+id,user,type,at,ingested_at,segment
+e1,demo-u1,signup,2026-01-05T10:00:00Z,2026-01-05T10:00:00Z,organic
+e2,demo-u1,activate,2026-01-06T10:00:00Z,2026-01-06T10:00:00Z,organic
+e3,demo-u1,active,2026-01-13T10:00:00Z,2026-01-13T10:00:00Z,organic
+e4,demo-u2,signup,2026-01-05T11:00:00Z,2026-01-05T11:00:00Z,paid

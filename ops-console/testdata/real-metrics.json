@@ -1,0 +1,2087 @@
+{
+  "benign_lookalike_false_positives": {
+    "b01-admin-bulk-restore": {
+      "benign_lookalike_of": "bulk exfiltration (volume exceeds every malicious scenario except m02)",
+      "benign_rationale": "The egress volume is larger than any attack in the corpus, so a volume-only detector must flag it. It is legitimate because the source IP is in the asset baseline for svc-backup, the identity is a non-interactive workload, and a change ticket is opened in the same session before any data is read.",
+      "false_positive": false,
+      "false_positive_evidence_ids": {},
+      "flagged_by": []
+    },
+    "b02-password-expiry-retries": {
+      "benign_lookalike_of": "credential guessing followed by a successful login",
+      "benign_rationale": "The failure burst satisfies the reference rule (>=3 failures then success inside 300 s), so that rule must produce a false positive here. It is legitimate because the source IP is baselined for this actor, the successful login presents a second factor, and the egress that follows is 2 MB.",
+      "false_positive": true,
+      "false_positive_evidence_ids": {
+        "failures_then_success": [
+          [
+            "b02-000001",
+            "b02-000002",
+            "b02-000003",
+            "b02-000004",
+            "b02-000005"
+          ]
+        ]
+      },
+      "flagged_by": [
+        "failures_then_success"
+      ]
+    },
+    "b03-helpdesk-unlock-burst": {
+      "benign_lookalike_of": "credential guessing followed by a successful login",
+      "benign_rationale": "Five failures then a success is exactly the reference rule's signature, so it must produce a false positive. It is legitimate because the identity is a baselined non-interactive workload, the session opens a ticket, and zero bytes leave the system.",
+      "false_positive": true,
+      "false_positive_evidence_ids": {
+        "failures_then_success": [
+          [
+            "b03-000001",
+            "b03-000002",
+            "b03-000003",
+            "b03-000004",
+            "b03-000005",
+            "b03-000006"
+          ]
+        ]
+      },
+      "flagged_by": [
+        "failures_then_success"
+      ]
+    },
+    "b04-quarterly-report-export": {
+      "benign_lookalike_of": "staged bulk export",
+      "benign_rationale": "A single large export looks like the first stage of exfiltration. It is legitimate because the source IP is baselined, a ticket precedes the export in the same session, a second factor was presented, and total egress (335 MB) is inside the actor's normal daily volume.",
+      "false_positive": false,
+      "false_positive_evidence_ids": {},
+      "flagged_by": []
+    },
+    "b05-vpn-reconnect-retries": {
+      "benign_lookalike_of": "credential guessing followed by a successful login",
+      "benign_rationale": "The longest failure burst in the corpus, so the reference rule must fire and produce a false positive. It is legitimate because the source IP is baselined, the success presents a second factor, and nothing is read afterwards.",
+      "false_positive": true,
+      "false_positive_evidence_ids": {
+        "failures_then_success": [
+          [
+            "b05-000001",
+            "b05-000002",
+            "b05-000003",
+            "b05-000004",
+            "b05-000005",
+            "b05-000006",
+            "b05-000007"
+          ]
+        ]
+      },
+      "flagged_by": [
+        "failures_then_success"
+      ]
+    }
+  },
+  "corpus": {
+    "events": 141,
+    "fixture_corpus_sha256": "9c1a520cf7f2243785791a91b2cf5e90beb2c3a8f8a2cb057c133196afd98050",
+    "scenarios": [
+      "m01-credstuff-exfil",
+      "m02-validcreds-staged-exfil",
+      "m03-slow-credstuff",
+      "m04-insider-known-ip-bulk",
+      "b01-admin-bulk-restore",
+      "b02-password-expiry-retries",
+      "b03-helpdesk-unlock-burst",
+      "b04-quarterly-report-export",
+      "b05-vpn-reconnect-retries"
+    ],
+    "split": {
+      "dev": [
+        "b05-vpn-reconnect-retries",
+        "m03-slow-credstuff",
+        "m01-credstuff-exfil",
+        "b04-quarterly-report-export",
+        "b01-admin-bulk-restore"
+      ],
+      "held_out": [
+        "m04-insider-known-ip-bulk",
+        "b02-password-expiry-retries",
+        "m02-validcreds-staged-exfil",
+        "b03-helpdesk-unlock-burst"
+      ],
+      "order": [
+        "b05-vpn-reconnect-retries",
+        "m03-slow-credstuff",
+        "m01-credstuff-exfil",
+        "b04-quarterly-report-export",
+        "b01-admin-bulk-restore",
+        "m04-insider-known-ip-bulk",
+        "b02-password-expiry-retries",
+        "m02-validcreds-staged-exfil",
+        "b03-helpdesk-unlock-burst"
+      ],
+      "seed": 7
+    }
+  },
+  "detector_configuration": {
+    "critical_egress_bytes": 1000000000,
+    "data_plane_actions": [
+      "download",
+      "export"
+    ],
+    "detector_kind": {
+      "bulk_egress_from_new_ip": "sequence",
+      "failures_then_success": "indicator"
+    },
+    "detectors": {
+      "bulk_egress_from_new_ip": "sequence detector: an auth success from an IP absent from the asset baseline for that actor, followed inside 3600s by >=5 data-plane reads totalling >=500000000 bytes",
+      "failures_then_success": "reference indicator rule from project.analyze: >=3 auth failures for one (user, ip) inside 300s, followed by a success"
+    },
+    "reference_minimum_failures": 3,
+    "reference_window_seconds": 300,
+    "sequence_egress_threshold_bytes": 500000000,
+    "sequence_min_objects": 5,
+    "sequence_window_seconds": 3600
+  },
+  "findings": {
+    "b01-admin-bulk-restore": {
+      "bulk_egress_from_new_ip": [],
+      "failures_then_success": []
+    },
+    "b02-password-expiry-retries": {
+      "bulk_egress_from_new_ip": [],
+      "failures_then_success": [
+        {
+          "confidence": "pattern only; benign retries possible",
+          "detail": {
+            "burst_span_seconds": 70.0,
+            "bytes_out_total": 0,
+            "excluded_data_plane_events": 2,
+            "failures": 4,
+            "minimum_failures": 3,
+            "reference_input_sha256": "99a48ae4d6ebb3b5be699f35fe48d6625abd382c0521896515aad7282a00770b",
+            "successes": 1,
+            "window_seconds": 300
+          },
+          "detector": "failures_then_success",
+          "evidence_ids": [
+            "b02-000001",
+            "b02-000002",
+            "b02-000003",
+            "b02-000004",
+            "b02-000005"
+          ],
+          "first_event_at": "2026-01-08T08:31:00+00:00",
+          "ip": "198.51.100.44",
+          "last_event_at": "2026-01-08T08:32:10+00:00",
+          "rule": "failures_then_success",
+          "scenario": "b02-password-expiry-retries",
+          "severity": "review",
+          "user": "u-5510"
+        }
+      ]
+    },
+    "b03-helpdesk-unlock-burst": {
+      "bulk_egress_from_new_ip": [],
+      "failures_then_success": [
+        {
+          "confidence": "pattern only; benign retries possible",
+          "detail": {
+            "burst_span_seconds": 30.0,
+            "bytes_out_total": 0,
+            "excluded_data_plane_events": 1,
+            "failures": 5,
+            "minimum_failures": 3,
+            "reference_input_sha256": "5406445aa6b826e06179b65fcbe2d3f1efd41a4d94b84ec97724dd2be23dfb64",
+            "successes": 1,
+            "window_seconds": 300
+          },
+          "detector": "failures_then_success",
+          "evidence_ids": [
+            "b03-000001",
+            "b03-000002",
+            "b03-000003",
+            "b03-000004",
+            "b03-000005",
+            "b03-000006"
+          ],
+          "first_event_at": "2026-01-08T15:02:00+00:00",
+          "ip": "198.51.100.9",
+          "last_event_at": "2026-01-08T15:02:30+00:00",
+          "rule": "failures_then_success",
+          "scenario": "b03-helpdesk-unlock-burst",
+          "severity": "review",
+          "user": "svc-helpdesk"
+        }
+      ]
+    },
+    "b04-quarterly-report-export": {
+      "bulk_egress_from_new_ip": [],
+      "failures_then_success": []
+    },
+    "b05-vpn-reconnect-retries": {
+      "bulk_egress_from_new_ip": [],
+      "failures_then_success": [
+        {
+          "confidence": "pattern only; benign retries possible",
+          "detail": {
+            "burst_span_seconds": 130.0,
+            "bytes_out_total": 0,
+            "excluded_data_plane_events": 0,
+            "failures": 6,
+            "minimum_failures": 3,
+            "reference_input_sha256": "a51ebae340489c73d8bb7dc7761053cea7215339501987a4cdabd27f097a07fe",
+            "successes": 1,
+            "window_seconds": 300
+          },
+          "detector": "failures_then_success",
+          "evidence_ids": [
+            "b05-000001",
+            "b05-000002",
+            "b05-000003",
+            "b05-000004",
+            "b05-000005",
+            "b05-000006",
+            "b05-000007"
+          ],
+          "first_event_at": "2026-01-05T19:40:00+00:00",
+          "ip": "198.51.100.88",
+          "last_event_at": "2026-01-05T19:42:10+00:00",
+          "rule": "failures_then_success",
+          "scenario": "b05-vpn-reconnect-retries",
+          "severity": "review",
+          "user": "u-7731"
+        }
+      ]
+    },
+    "m01-credstuff-exfil": {
+      "bulk_egress_from_new_ip": [
+        {
+          "confidence": "sequence: unbaselined source IP, then 14 bulk reads totalling 840000000 bytes inside 3600s; a legitimate first login from a new device would look identical",
+          "detail": {
+            "auth_factors": [
+              "password"
+            ],
+            "baseline_known_ips": [
+              "198.51.100.23"
+            ],
+            "bytes_out_total": 840000000,
+            "chain_span_seconds": 1415.0,
+            "data_plane_objects": 14,
+            "egress_threshold_bytes": 500000000,
+            "ip_in_baseline": false,
+            "login_event_id": "m01-000011",
+            "min_objects": 5,
+            "ticket_refs": [],
+            "window_seconds": 3600
+          },
+          "detector": "bulk_egress_from_new_ip",
+          "evidence_ids": [
+            "m01-000011",
+            "m01-000012",
+            "m01-000013",
+            "m01-000014",
+            "m01-000015",
+            "m01-000016",
+            "m01-000017",
+            "m01-000018",
+            "m01-000019",
+            "m01-000020",
+            "m01-000021",
+            "m01-000022",
+            "m01-000023",
+            "m01-000024",
+            "m01-000025",
+            "m01-000026",
+            "m01-000031"
+          ],
+          "first_event_at": "2026-01-04T09:01:02+00:00",
+          "ip": "203.0.113.44",
+          "last_event_at": "2026-01-04T09:24:37+00:00",
+          "rule": "bulk_egress_from_new_ip",
+          "scenario": "m01-credstuff-exfil",
+          "severity": "high",
+          "user": "u-1042"
+        }
+      ],
+      "failures_then_success": [
+        {
+          "confidence": "pattern only; benign retries possible",
+          "detail": {
+            "burst_span_seconds": 62.0,
+            "bytes_out_total": 0,
+            "excluded_data_plane_events": 19,
+            "failures": 9,
+            "minimum_failures": 3,
+            "reference_input_sha256": "105a7a780f61effa2219317c3f8198d8a533b11a2c22863572a2e0f0dd437d9c",
+            "successes": 1,
+            "window_seconds": 300
+          },
+          "detector": "failures_then_success",
+          "evidence_ids": [
+            "m01-000002",
+            "m01-000003",
+            "m01-000004",
+            "m01-000005",
+            "m01-000006",
+            "m01-000007",
+            "m01-000008",
+            "m01-000009",
+            "m01-000010",
+            "m01-000011"
+          ],
+          "first_event_at": "2026-01-04T09:00:00+00:00",
+          "ip": "203.0.113.44",
+          "last_event_at": "2026-01-04T09:01:02+00:00",
+          "rule": "failures_then_success",
+          "scenario": "m01-credstuff-exfil",
+          "severity": "review",
+          "user": "u-1042"
+        }
+      ]
+    },
+    "m02-validcreds-staged-exfil": {
+      "bulk_egress_from_new_ip": [
+        {
+          "confidence": "sequence: unbaselined source IP, then 12 bulk reads totalling 4800000000 bytes inside 3600s; a legitimate first login from a new device would look identical",
+          "detail": {
+            "auth_factors": [
+              "password"
+            ],
+            "baseline_known_ips": [
+              "198.51.100.31"
+            ],
+            "bytes_out_total": 4800000000,
+            "chain_span_seconds": 1390.0,
+            "data_plane_objects": 12,
+            "egress_threshold_bytes": 500000000,
+            "ip_in_baseline": false,
+            "login_event_id": "m02-000001",
+            "min_objects": 5,
+            "ticket_refs": [],
+            "window_seconds": 3600
+          },
+          "detector": "bulk_egress_from_new_ip",
+          "evidence_ids": [
+            "m02-000001",
+            "m02-000002",
+            "m02-000003",
+            "m02-000004",
+            "m02-000005",
+            "m02-000006",
+            "m02-000007",
+            "m02-000008",
+            "m02-000009",
+            "m02-000010",
+            "m02-000011",
+            "m02-000012",
+            "m02-000013",
+            "m02-000014",
+            "m02-000015"
+          ],
+          "first_event_at": "2026-01-06T02:14:00+00:00",
+          "ip": "198.18.7.9",
+          "last_event_at": "2026-01-06T02:37:10+00:00",
+          "rule": "bulk_egress_from_new_ip",
+          "scenario": "m02-validcreds-staged-exfil",
+          "severity": "critical",
+          "user": "u-2077"
+        }
+      ],
+      "failures_then_success": []
+    },
+    "m03-slow-credstuff": {
+      "bulk_egress_from_new_ip": [
+        {
+          "confidence": "sequence: unbaselined source IP, then 8 bulk reads totalling 720000000 bytes inside 3600s; a legitimate first login from a new device would look identical",
+          "detail": {
+            "auth_factors": [
+              "password"
+            ],
+            "baseline_known_ips": [
+              "198.51.100.47"
+            ],
+            "bytes_out_total": 720000000,
+            "chain_span_seconds": 1170.0,
+            "data_plane_objects": 8,
+            "egress_threshold_bytes": 500000000,
+            "ip_in_baseline": false,
+            "login_event_id": "m03-000007",
+            "min_objects": 5,
+            "ticket_refs": [],
+            "window_seconds": 3600
+          },
+          "detector": "bulk_egress_from_new_ip",
+          "evidence_ids": [
+            "m03-000007",
+            "m03-000008",
+            "m03-000009",
+            "m03-000010",
+            "m03-000011",
+            "m03-000012",
+            "m03-000013",
+            "m03-000014",
+            "m03-000015",
+            "m03-000016"
+          ],
+          "first_event_at": "2026-01-07T22:10:00+00:00",
+          "ip": "203.0.113.90",
+          "last_event_at": "2026-01-07T22:29:30+00:00",
+          "rule": "bulk_egress_from_new_ip",
+          "scenario": "m03-slow-credstuff",
+          "severity": "high",
+          "user": "u-3311"
+        }
+      ],
+      "failures_then_success": [
+        {
+          "confidence": "pattern only; benign retries possible",
+          "detail": {
+            "burst_span_seconds": 300.0,
+            "bytes_out_total": 0,
+            "excluded_data_plane_events": 9,
+            "failures": 6,
+            "minimum_failures": 3,
+            "reference_input_sha256": "d30b28af5a2af3688b58a15fabca722b0da1f04b4a9a1fd9f6d168bb951e2bbb",
+            "successes": 1,
+            "window_seconds": 300
+          },
+          "detector": "failures_then_success",
+          "evidence_ids": [
+            "m03-000001",
+            "m03-000002",
+            "m03-000003",
+            "m03-000004",
+            "m03-000005",
+            "m03-000006",
+            "m03-000007"
+          ],
+          "first_event_at": "2026-01-07T22:05:00+00:00",
+          "ip": "203.0.113.90",
+          "last_event_at": "2026-01-07T22:10:00+00:00",
+          "rule": "failures_then_success",
+          "scenario": "m03-slow-credstuff",
+          "severity": "review",
+          "user": "u-3311"
+        }
+      ]
+    },
+    "m04-insider-known-ip-bulk": {
+      "bulk_egress_from_new_ip": [],
+      "failures_then_success": []
+    }
+  },
+  "labels": {
+    "b01-admin-bulk-restore": {
+      "attack_events": 0,
+      "attack_kind": null,
+      "benign_lookalike_of": "bulk exfiltration (volume exceeds every malicious scenario except m02)",
+      "malicious": false
+    },
+    "b02-password-expiry-retries": {
+      "attack_events": 0,
+      "attack_kind": null,
+      "benign_lookalike_of": "credential guessing followed by a successful login",
+      "malicious": false
+    },
+    "b03-helpdesk-unlock-burst": {
+      "attack_events": 0,
+      "attack_kind": null,
+      "benign_lookalike_of": "credential guessing followed by a successful login",
+      "malicious": false
+    },
+    "b04-quarterly-report-export": {
+      "attack_events": 0,
+      "attack_kind": null,
+      "benign_lookalike_of": "staged bulk export",
+      "malicious": false
+    },
+    "b05-vpn-reconnect-retries": {
+      "attack_events": 0,
+      "attack_kind": null,
+      "benign_lookalike_of": "credential guessing followed by a successful login",
+      "malicious": false
+    },
+    "m01-credstuff-exfil": {
+      "attack_events": 27,
+      "attack_kind": "credential guessing followed by bulk exfiltration",
+      "benign_lookalike_of": null,
+      "malicious": true
+    },
+    "m02-validcreds-staged-exfil": {
+      "attack_events": 15,
+      "attack_kind": "valid-credential abuse with privilege grant and staged exfiltration",
+      "benign_lookalike_of": null,
+      "malicious": true
+    },
+    "m03-slow-credstuff": {
+      "attack_events": 16,
+      "attack_kind": "low-and-slow credential guessing followed by exfiltration",
+      "benign_lookalike_of": null,
+      "malicious": true
+    },
+    "m04-insider-known-ip-bulk": {
+      "attack_events": 12,
+      "attack_kind": "insider bulk export from a baselined IP with no change ticket",
+      "benign_lookalike_of": null,
+      "malicious": true
+    }
+  },
+  "per_detector": {
+    "ANY": {
+      "description": "flagged by at least one detector",
+      "event_level": {
+        "all": {
+          "attack_coverage": 0.8143,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 70,
+          "attack_events_in_evidence": 70,
+          "attack_events_reached": 57,
+          "evidence_ids_cited": 75,
+          "evidence_ids_not_on_attack": 18,
+          "evidence_ids_on_attack": 57,
+          "evidence_precision": 0.76,
+          "per_scenario": {
+            "b01-admin-bulk-restore": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b02-password-expiry-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b02-000001",
+                "b02-000002",
+                "b02-000003",
+                "b02-000004",
+                "b02-000005"
+              ],
+              "evidence_ids_cited": 5,
+              "evidence_ids_not_on_attack": 5,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b03-helpdesk-unlock-burst": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b03-000001",
+                "b03-000002",
+                "b03-000003",
+                "b03-000004",
+                "b03-000005",
+                "b03-000006"
+              ],
+              "evidence_ids_cited": 6,
+              "evidence_ids_not_on_attack": 6,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b04-quarterly-report-export": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b05-vpn-reconnect-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b05-000001",
+                "b05-000002",
+                "b05-000003",
+                "b05-000004",
+                "b05-000005",
+                "b05-000006",
+                "b05-000007"
+              ],
+              "evidence_ids_cited": 7,
+              "evidence_ids_not_on_attack": 7,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m01-credstuff-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 27,
+              "attack_events_in_evidence": 27,
+              "cited_attack_ids": [
+                "m01-000002",
+                "m01-000003",
+                "m01-000004",
+                "m01-000005",
+                "m01-000006",
+                "m01-000007",
+                "m01-000008",
+                "m01-000009",
+                "m01-000010",
+                "m01-000011",
+                "m01-000012",
+                "m01-000013",
+                "m01-000014",
+                "m01-000015",
+                "m01-000016",
+                "m01-000017",
+                "m01-000018",
+                "m01-000019",
+                "m01-000020",
+                "m01-000021",
+                "m01-000022",
+                "m01-000023",
+                "m01-000024",
+                "m01-000025",
+                "m01-000026",
+                "m01-000031"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 26,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 26,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m01-000001"
+              ]
+            },
+            "m02-validcreds-staged-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 15,
+              "attack_events_in_evidence": 15,
+              "cited_attack_ids": [
+                "m02-000001",
+                "m02-000002",
+                "m02-000003",
+                "m02-000004",
+                "m02-000005",
+                "m02-000006",
+                "m02-000007",
+                "m02-000008",
+                "m02-000009",
+                "m02-000010",
+                "m02-000011",
+                "m02-000012",
+                "m02-000013",
+                "m02-000014",
+                "m02-000015"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 15,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 15,
+              "malicious": true,
+              "missed_attack_ids": []
+            },
+            "m03-slow-credstuff": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 16,
+              "attack_events_in_evidence": 16,
+              "cited_attack_ids": [
+                "m03-000001",
+                "m03-000002",
+                "m03-000003",
+                "m03-000004",
+                "m03-000005",
+                "m03-000006",
+                "m03-000007",
+                "m03-000008",
+                "m03-000009",
+                "m03-000010",
+                "m03-000011",
+                "m03-000012",
+                "m03-000013",
+                "m03-000014",
+                "m03-000015",
+                "m03-000016"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 16,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 16,
+              "malicious": true,
+              "missed_attack_ids": []
+            },
+            "m04-insider-known-ip-bulk": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 12,
+              "attack_events_in_evidence": 12,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m04-000001",
+                "m04-000002",
+                "m04-000003",
+                "m04-000004",
+                "m04-000005",
+                "m04-000006",
+                "m04-000007",
+                "m04-000008",
+                "m04-000009",
+                "m04-000010",
+                "m04-000011",
+                "m04-000012"
+              ]
+            }
+          }
+        },
+        "dev": {
+          "attack_coverage": 0.9767,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 43,
+          "attack_events_in_evidence": 43,
+          "attack_events_reached": 42,
+          "evidence_ids_cited": 49,
+          "evidence_ids_not_on_attack": 7,
+          "evidence_ids_on_attack": 42,
+          "evidence_precision": 0.8571,
+          "per_scenario": {
+            "b01-admin-bulk-restore": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b04-quarterly-report-export": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b05-vpn-reconnect-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b05-000001",
+                "b05-000002",
+                "b05-000003",
+                "b05-000004",
+                "b05-000005",
+                "b05-000006",
+                "b05-000007"
+              ],
+              "evidence_ids_cited": 7,
+              "evidence_ids_not_on_attack": 7,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m01-credstuff-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 27,
+              "attack_events_in_evidence": 27,
+              "cited_attack_ids": [
+                "m01-000002",
+                "m01-000003",
+                "m01-000004",
+                "m01-000005",
+                "m01-000006",
+                "m01-000007",
+                "m01-000008",
+                "m01-000009",
+                "m01-000010",
+                "m01-000011",
+                "m01-000012",
+                "m01-000013",
+                "m01-000014",
+                "m01-000015",
+                "m01-000016",
+                "m01-000017",
+                "m01-000018",
+                "m01-000019",
+                "m01-000020",
+                "m01-000021",
+                "m01-000022",
+                "m01-000023",
+                "m01-000024",
+                "m01-000025",
+                "m01-000026",
+                "m01-000031"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 26,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 26,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m01-000001"
+              ]
+            },
+            "m03-slow-credstuff": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 16,
+              "attack_events_in_evidence": 16,
+              "cited_attack_ids": [
+                "m03-000001",
+                "m03-000002",
+                "m03-000003",
+                "m03-000004",
+                "m03-000005",
+                "m03-000006",
+                "m03-000007",
+                "m03-000008",
+                "m03-000009",
+                "m03-000010",
+                "m03-000011",
+                "m03-000012",
+                "m03-000013",
+                "m03-000014",
+                "m03-000015",
+                "m03-000016"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 16,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 16,
+              "malicious": true,
+              "missed_attack_ids": []
+            }
+          }
+        },
+        "held_out": {
+          "attack_coverage": 0.5556,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 27,
+          "attack_events_in_evidence": 27,
+          "attack_events_reached": 15,
+          "evidence_ids_cited": 26,
+          "evidence_ids_not_on_attack": 11,
+          "evidence_ids_on_attack": 15,
+          "evidence_precision": 0.5769,
+          "per_scenario": {
+            "b02-password-expiry-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b02-000001",
+                "b02-000002",
+                "b02-000003",
+                "b02-000004",
+                "b02-000005"
+              ],
+              "evidence_ids_cited": 5,
+              "evidence_ids_not_on_attack": 5,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b03-helpdesk-unlock-burst": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b03-000001",
+                "b03-000002",
+                "b03-000003",
+                "b03-000004",
+                "b03-000005",
+                "b03-000006"
+              ],
+              "evidence_ids_cited": 6,
+              "evidence_ids_not_on_attack": 6,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m02-validcreds-staged-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 15,
+              "attack_events_in_evidence": 15,
+              "cited_attack_ids": [
+                "m02-000001",
+                "m02-000002",
+                "m02-000003",
+                "m02-000004",
+                "m02-000005",
+                "m02-000006",
+                "m02-000007",
+                "m02-000008",
+                "m02-000009",
+                "m02-000010",
+                "m02-000011",
+                "m02-000012",
+                "m02-000013",
+                "m02-000014",
+                "m02-000015"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 15,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 15,
+              "malicious": true,
+              "missed_attack_ids": []
+            },
+            "m04-insider-known-ip-bulk": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 12,
+              "attack_events_in_evidence": 12,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m04-000001",
+                "m04-000002",
+                "m04-000003",
+                "m04-000004",
+                "m04-000005",
+                "m04-000006",
+                "m04-000007",
+                "m04-000008",
+                "m04-000009",
+                "m04-000010",
+                "m04-000011",
+                "m04-000012"
+              ]
+            }
+          }
+        }
+      },
+      "kind": "combined",
+      "scenario_level": {
+        "all": {
+          "accuracy": 0.5556,
+          "f1": 0.6,
+          "fn": 1,
+          "fn_ids": [
+            "m04-insider-known-ip-bulk"
+          ],
+          "fp": 3,
+          "fp_ids": [
+            "b02-password-expiry-retries",
+            "b03-helpdesk-unlock-burst",
+            "b05-vpn-reconnect-retries"
+          ],
+          "n_benign": 5,
+          "n_malicious": 4,
+          "n_scenarios": 9,
+          "precision": 0.5,
+          "recall": 0.75,
+          "tn": 2,
+          "tn_ids": [
+            "b01-admin-bulk-restore",
+            "b04-quarterly-report-export"
+          ],
+          "tp": 3,
+          "tp_ids": [
+            "m01-credstuff-exfil",
+            "m02-validcreds-staged-exfil",
+            "m03-slow-credstuff"
+          ]
+        },
+        "dev": {
+          "accuracy": 0.8,
+          "f1": 0.8,
+          "fn": 0,
+          "fn_ids": [],
+          "fp": 1,
+          "fp_ids": [
+            "b05-vpn-reconnect-retries"
+          ],
+          "n_benign": 3,
+          "n_malicious": 2,
+          "n_scenarios": 5,
+          "precision": 0.6667,
+          "recall": 1.0,
+          "tn": 2,
+          "tn_ids": [
+            "b01-admin-bulk-restore",
+            "b04-quarterly-report-export"
+          ],
+          "tp": 2,
+          "tp_ids": [
+            "m01-credstuff-exfil",
+            "m03-slow-credstuff"
+          ]
+        },
+        "held_out": {
+          "accuracy": 0.25,
+          "f1": 0.4,
+          "fn": 1,
+          "fn_ids": [
+            "m04-insider-known-ip-bulk"
+          ],
+          "fp": 2,
+          "fp_ids": [
+            "b02-password-expiry-retries",
+            "b03-helpdesk-unlock-burst"
+          ],
+          "n_benign": 2,
+          "n_malicious": 2,
+          "n_scenarios": 4,
+          "precision": 0.3333,
+          "recall": 0.5,
+          "tn": 0,
+          "tn_ids": [],
+          "tp": 1,
+          "tp_ids": [
+            "m02-validcreds-staged-exfil"
+          ]
+        }
+      }
+    },
+    "bulk_egress_from_new_ip": {
+      "description": "sequence detector: an auth success from an IP absent from the asset baseline for that actor, followed inside 3600s by >=5 data-plane reads totalling >=500000000 bytes",
+      "event_level": {
+        "all": {
+          "attack_coverage": 0.6,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 70,
+          "attack_events_in_evidence": 70,
+          "attack_events_reached": 42,
+          "evidence_ids_cited": 42,
+          "evidence_ids_not_on_attack": 0,
+          "evidence_ids_on_attack": 42,
+          "evidence_precision": 1.0,
+          "per_scenario": {
+            "b01-admin-bulk-restore": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b02-password-expiry-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b03-helpdesk-unlock-burst": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b04-quarterly-report-export": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b05-vpn-reconnect-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m01-credstuff-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 27,
+              "attack_events_in_evidence": 27,
+              "cited_attack_ids": [
+                "m01-000011",
+                "m01-000012",
+                "m01-000013",
+                "m01-000014",
+                "m01-000015",
+                "m01-000016",
+                "m01-000017",
+                "m01-000018",
+                "m01-000019",
+                "m01-000020",
+                "m01-000021",
+                "m01-000022",
+                "m01-000023",
+                "m01-000024",
+                "m01-000025",
+                "m01-000026",
+                "m01-000031"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 17,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 17,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m01-000001",
+                "m01-000002",
+                "m01-000003",
+                "m01-000004",
+                "m01-000005",
+                "m01-000006",
+                "m01-000007",
+                "m01-000008",
+                "m01-000009",
+                "m01-000010"
+              ]
+            },
+            "m02-validcreds-staged-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 15,
+              "attack_events_in_evidence": 15,
+              "cited_attack_ids": [
+                "m02-000001",
+                "m02-000002",
+                "m02-000003",
+                "m02-000004",
+                "m02-000005",
+                "m02-000006",
+                "m02-000007",
+                "m02-000008",
+                "m02-000009",
+                "m02-000010",
+                "m02-000011",
+                "m02-000012",
+                "m02-000013",
+                "m02-000014",
+                "m02-000015"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 15,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 15,
+              "malicious": true,
+              "missed_attack_ids": []
+            },
+            "m03-slow-credstuff": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 16,
+              "attack_events_in_evidence": 16,
+              "cited_attack_ids": [
+                "m03-000007",
+                "m03-000008",
+                "m03-000009",
+                "m03-000010",
+                "m03-000011",
+                "m03-000012",
+                "m03-000013",
+                "m03-000014",
+                "m03-000015",
+                "m03-000016"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 10,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 10,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m03-000001",
+                "m03-000002",
+                "m03-000003",
+                "m03-000004",
+                "m03-000005",
+                "m03-000006"
+              ]
+            },
+            "m04-insider-known-ip-bulk": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 12,
+              "attack_events_in_evidence": 12,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m04-000001",
+                "m04-000002",
+                "m04-000003",
+                "m04-000004",
+                "m04-000005",
+                "m04-000006",
+                "m04-000007",
+                "m04-000008",
+                "m04-000009",
+                "m04-000010",
+                "m04-000011",
+                "m04-000012"
+              ]
+            }
+          }
+        },
+        "dev": {
+          "attack_coverage": 0.6279,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 43,
+          "attack_events_in_evidence": 43,
+          "attack_events_reached": 27,
+          "evidence_ids_cited": 27,
+          "evidence_ids_not_on_attack": 0,
+          "evidence_ids_on_attack": 27,
+          "evidence_precision": 1.0,
+          "per_scenario": {
+            "b01-admin-bulk-restore": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b04-quarterly-report-export": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b05-vpn-reconnect-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m01-credstuff-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 27,
+              "attack_events_in_evidence": 27,
+              "cited_attack_ids": [
+                "m01-000011",
+                "m01-000012",
+                "m01-000013",
+                "m01-000014",
+                "m01-000015",
+                "m01-000016",
+                "m01-000017",
+                "m01-000018",
+                "m01-000019",
+                "m01-000020",
+                "m01-000021",
+                "m01-000022",
+                "m01-000023",
+                "m01-000024",
+                "m01-000025",
+                "m01-000026",
+                "m01-000031"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 17,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 17,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m01-000001",
+                "m01-000002",
+                "m01-000003",
+                "m01-000004",
+                "m01-000005",
+                "m01-000006",
+                "m01-000007",
+                "m01-000008",
+                "m01-000009",
+                "m01-000010"
+              ]
+            },
+            "m03-slow-credstuff": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 16,
+              "attack_events_in_evidence": 16,
+              "cited_attack_ids": [
+                "m03-000007",
+                "m03-000008",
+                "m03-000009",
+                "m03-000010",
+                "m03-000011",
+                "m03-000012",
+                "m03-000013",
+                "m03-000014",
+                "m03-000015",
+                "m03-000016"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 10,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 10,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m03-000001",
+                "m03-000002",
+                "m03-000003",
+                "m03-000004",
+                "m03-000005",
+                "m03-000006"
+              ]
+            }
+          }
+        },
+        "held_out": {
+          "attack_coverage": 0.5556,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 27,
+          "attack_events_in_evidence": 27,
+          "attack_events_reached": 15,
+          "evidence_ids_cited": 15,
+          "evidence_ids_not_on_attack": 0,
+          "evidence_ids_on_attack": 15,
+          "evidence_precision": 1.0,
+          "per_scenario": {
+            "b02-password-expiry-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b03-helpdesk-unlock-burst": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m02-validcreds-staged-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 15,
+              "attack_events_in_evidence": 15,
+              "cited_attack_ids": [
+                "m02-000001",
+                "m02-000002",
+                "m02-000003",
+                "m02-000004",
+                "m02-000005",
+                "m02-000006",
+                "m02-000007",
+                "m02-000008",
+                "m02-000009",
+                "m02-000010",
+                "m02-000011",
+                "m02-000012",
+                "m02-000013",
+                "m02-000014",
+                "m02-000015"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 15,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 15,
+              "malicious": true,
+              "missed_attack_ids": []
+            },
+            "m04-insider-known-ip-bulk": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 12,
+              "attack_events_in_evidence": 12,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m04-000001",
+                "m04-000002",
+                "m04-000003",
+                "m04-000004",
+                "m04-000005",
+                "m04-000006",
+                "m04-000007",
+                "m04-000008",
+                "m04-000009",
+                "m04-000010",
+                "m04-000011",
+                "m04-000012"
+              ]
+            }
+          }
+        }
+      },
+      "kind": "sequence",
+      "scenario_level": {
+        "all": {
+          "accuracy": 0.8889,
+          "f1": 0.8571,
+          "fn": 1,
+          "fn_ids": [
+            "m04-insider-known-ip-bulk"
+          ],
+          "fp": 0,
+          "fp_ids": [],
+          "n_benign": 5,
+          "n_malicious": 4,
+          "n_scenarios": 9,
+          "precision": 1.0,
+          "recall": 0.75,
+          "tn": 5,
+          "tn_ids": [
+            "b01-admin-bulk-restore",
+            "b02-password-expiry-retries",
+            "b03-helpdesk-unlock-burst",
+            "b04-quarterly-report-export",
+            "b05-vpn-reconnect-retries"
+          ],
+          "tp": 3,
+          "tp_ids": [
+            "m01-credstuff-exfil",
+            "m02-validcreds-staged-exfil",
+            "m03-slow-credstuff"
+          ]
+        },
+        "dev": {
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "fn": 0,
+          "fn_ids": [],
+          "fp": 0,
+          "fp_ids": [],
+          "n_benign": 3,
+          "n_malicious": 2,
+          "n_scenarios": 5,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 3,
+          "tn_ids": [
+            "b01-admin-bulk-restore",
+            "b04-quarterly-report-export",
+            "b05-vpn-reconnect-retries"
+          ],
+          "tp": 2,
+          "tp_ids": [
+            "m01-credstuff-exfil",
+            "m03-slow-credstuff"
+          ]
+        },
+        "held_out": {
+          "accuracy": 0.75,
+          "f1": 0.6667,
+          "fn": 1,
+          "fn_ids": [
+            "m04-insider-known-ip-bulk"
+          ],
+          "fp": 0,
+          "fp_ids": [],
+          "n_benign": 2,
+          "n_malicious": 2,
+          "n_scenarios": 4,
+          "precision": 1.0,
+          "recall": 0.5,
+          "tn": 2,
+          "tn_ids": [
+            "b02-password-expiry-retries",
+            "b03-helpdesk-unlock-burst"
+          ],
+          "tp": 1,
+          "tp_ids": [
+            "m02-validcreds-staged-exfil"
+          ]
+        }
+      }
+    },
+    "failures_then_success": {
+      "description": "reference indicator rule from project.analyze: >=3 auth failures for one (user, ip) inside 300s, followed by a success",
+      "event_level": {
+        "all": {
+          "attack_coverage": 0.2429,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 70,
+          "attack_events_in_evidence": 70,
+          "attack_events_reached": 17,
+          "evidence_ids_cited": 35,
+          "evidence_ids_not_on_attack": 18,
+          "evidence_ids_on_attack": 17,
+          "evidence_precision": 0.4857,
+          "per_scenario": {
+            "b01-admin-bulk-restore": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b02-password-expiry-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b02-000001",
+                "b02-000002",
+                "b02-000003",
+                "b02-000004",
+                "b02-000005"
+              ],
+              "evidence_ids_cited": 5,
+              "evidence_ids_not_on_attack": 5,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b03-helpdesk-unlock-burst": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b03-000001",
+                "b03-000002",
+                "b03-000003",
+                "b03-000004",
+                "b03-000005",
+                "b03-000006"
+              ],
+              "evidence_ids_cited": 6,
+              "evidence_ids_not_on_attack": 6,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b04-quarterly-report-export": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b05-vpn-reconnect-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b05-000001",
+                "b05-000002",
+                "b05-000003",
+                "b05-000004",
+                "b05-000005",
+                "b05-000006",
+                "b05-000007"
+              ],
+              "evidence_ids_cited": 7,
+              "evidence_ids_not_on_attack": 7,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m01-credstuff-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 27,
+              "attack_events_in_evidence": 27,
+              "cited_attack_ids": [
+                "m01-000002",
+                "m01-000003",
+                "m01-000004",
+                "m01-000005",
+                "m01-000006",
+                "m01-000007",
+                "m01-000008",
+                "m01-000009",
+                "m01-000010",
+                "m01-000011"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 10,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 10,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m01-000001",
+                "m01-000012",
+                "m01-000013",
+                "m01-000014",
+                "m01-000015",
+                "m01-000016",
+                "m01-000017",
+                "m01-000018",
+                "m01-000019",
+                "m01-000020",
+                "m01-000021",
+                "m01-000022",
+                "m01-000023",
+                "m01-000024",
+                "m01-000025",
+                "m01-000026",
+                "m01-000031"
+              ]
+            },
+            "m02-validcreds-staged-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 15,
+              "attack_events_in_evidence": 15,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m02-000001",
+                "m02-000002",
+                "m02-000003",
+                "m02-000004",
+                "m02-000005",
+                "m02-000006",
+                "m02-000007",
+                "m02-000008",
+                "m02-000009",
+                "m02-000010",
+                "m02-000011",
+                "m02-000012",
+                "m02-000013",
+                "m02-000014",
+                "m02-000015"
+              ]
+            },
+            "m03-slow-credstuff": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 16,
+              "attack_events_in_evidence": 16,
+              "cited_attack_ids": [
+                "m03-000001",
+                "m03-000002",
+                "m03-000003",
+                "m03-000004",
+                "m03-000005",
+                "m03-000006",
+                "m03-000007"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 7,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 7,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m03-000008",
+                "m03-000009",
+                "m03-000010",
+                "m03-000011",
+                "m03-000012",
+                "m03-000013",
+                "m03-000014",
+                "m03-000015",
+                "m03-000016"
+              ]
+            },
+            "m04-insider-known-ip-bulk": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 12,
+              "attack_events_in_evidence": 12,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m04-000001",
+                "m04-000002",
+                "m04-000003",
+                "m04-000004",
+                "m04-000005",
+                "m04-000006",
+                "m04-000007",
+                "m04-000008",
+                "m04-000009",
+                "m04-000010",
+                "m04-000011",
+                "m04-000012"
+              ]
+            }
+          }
+        },
+        "dev": {
+          "attack_coverage": 0.3953,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 43,
+          "attack_events_in_evidence": 43,
+          "attack_events_reached": 17,
+          "evidence_ids_cited": 24,
+          "evidence_ids_not_on_attack": 7,
+          "evidence_ids_on_attack": 17,
+          "evidence_precision": 0.7083,
+          "per_scenario": {
+            "b01-admin-bulk-restore": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b04-quarterly-report-export": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b05-vpn-reconnect-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b05-000001",
+                "b05-000002",
+                "b05-000003",
+                "b05-000004",
+                "b05-000005",
+                "b05-000006",
+                "b05-000007"
+              ],
+              "evidence_ids_cited": 7,
+              "evidence_ids_not_on_attack": 7,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m01-credstuff-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 27,
+              "attack_events_in_evidence": 27,
+              "cited_attack_ids": [
+                "m01-000002",
+                "m01-000003",
+                "m01-000004",
+                "m01-000005",
+                "m01-000006",
+                "m01-000007",
+                "m01-000008",
+                "m01-000009",
+                "m01-000010",
+                "m01-000011"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 10,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 10,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m01-000001",
+                "m01-000012",
+                "m01-000013",
+                "m01-000014",
+                "m01-000015",
+                "m01-000016",
+                "m01-000017",
+                "m01-000018",
+                "m01-000019",
+                "m01-000020",
+                "m01-000021",
+                "m01-000022",
+                "m01-000023",
+                "m01-000024",
+                "m01-000025",
+                "m01-000026",
+                "m01-000031"
+              ]
+            },
+            "m03-slow-credstuff": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 16,
+              "attack_events_in_evidence": 16,
+              "cited_attack_ids": [
+                "m03-000001",
+                "m03-000002",
+                "m03-000003",
+                "m03-000004",
+                "m03-000005",
+                "m03-000006",
+                "m03-000007"
+              ],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 7,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 7,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m03-000008",
+                "m03-000009",
+                "m03-000010",
+                "m03-000011",
+                "m03-000012",
+                "m03-000013",
+                "m03-000014",
+                "m03-000015",
+                "m03-000016"
+              ]
+            }
+          }
+        },
+        "held_out": {
+          "attack_coverage": 0.0,
+          "attack_events_absent_from_sources": 0,
+          "attack_events_annotated": 27,
+          "attack_events_in_evidence": 27,
+          "attack_events_reached": 0,
+          "evidence_ids_cited": 11,
+          "evidence_ids_not_on_attack": 11,
+          "evidence_ids_on_attack": 0,
+          "evidence_precision": 0.0,
+          "per_scenario": {
+            "b02-password-expiry-retries": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b02-000001",
+                "b02-000002",
+                "b02-000003",
+                "b02-000004",
+                "b02-000005"
+              ],
+              "evidence_ids_cited": 5,
+              "evidence_ids_not_on_attack": 5,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "b03-helpdesk-unlock-burst": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 0,
+              "attack_events_in_evidence": 0,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [
+                "b03-000001",
+                "b03-000002",
+                "b03-000003",
+                "b03-000004",
+                "b03-000005",
+                "b03-000006"
+              ],
+              "evidence_ids_cited": 6,
+              "evidence_ids_not_on_attack": 6,
+              "evidence_ids_on_attack": 0,
+              "malicious": false,
+              "missed_attack_ids": []
+            },
+            "m02-validcreds-staged-exfil": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 15,
+              "attack_events_in_evidence": 15,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m02-000001",
+                "m02-000002",
+                "m02-000003",
+                "m02-000004",
+                "m02-000005",
+                "m02-000006",
+                "m02-000007",
+                "m02-000008",
+                "m02-000009",
+                "m02-000010",
+                "m02-000011",
+                "m02-000012",
+                "m02-000013",
+                "m02-000014",
+                "m02-000015"
+              ]
+            },
+            "m04-insider-known-ip-bulk": {
+              "attack_events_absent": [],
+              "attack_events_annotated": 12,
+              "attack_events_in_evidence": 12,
+              "cited_attack_ids": [],
+              "cited_non_attack_ids": [],
+              "evidence_ids_cited": 0,
+              "evidence_ids_not_on_attack": 0,
+              "evidence_ids_on_attack": 0,
+              "malicious": true,
+              "missed_attack_ids": [
+                "m04-000001",
+                "m04-000002",
+                "m04-000003",
+                "m04-000004",
+                "m04-000005",
+                "m04-000006",
+                "m04-000007",
+                "m04-000008",
+                "m04-000009",
+                "m04-000010",
+                "m04-000011",
+                "m04-000012"
+              ]
+            }
+          }
+        }
+      },
+      "kind": "indicator",
+      "scenario_level": {
+        "all": {
+          "accuracy": 0.4444,
+          "f1": 0.4444,
+          "fn": 2,
+          "fn_ids": [
+            "m02-validcreds-staged-exfil",
+            "m04-insider-known-ip-bulk"
+          ],
+          "fp": 3,
+          "fp_ids": [
+            "b02-password-expiry-retries",
+            "b03-helpdesk-unlock-burst",
+            "b05-vpn-reconnect-retries"
+          ],
+          "n_benign": 5,
+          "n_malicious": 4,
+          "n_scenarios": 9,
+          "precision": 0.4,
+          "recall": 0.5,
+          "tn": 2,
+          "tn_ids": [
+            "b01-admin-bulk-restore",
+            "b04-quarterly-report-export"
+          ],
+          "tp": 2,
+          "tp_ids": [
+            "m01-credstuff-exfil",
+            "m03-slow-credstuff"
+          ]
+        },
+        "dev": {
+          "accuracy": 0.8,
+          "f1": 0.8,
+          "fn": 0,
+          "fn_ids": [],
+          "fp": 1,
+          "fp_ids": [
+            "b05-vpn-reconnect-retries"
+          ],
+          "n_benign": 3,
+          "n_malicious": 2,
+          "n_scenarios": 5,
+          "precision": 0.6667,
+          "recall": 1.0,
+          "tn": 2,
+          "tn_ids": [
+            "b01-admin-bulk-restore",
+            "b04-quarterly-report-export"
+          ],
+          "tp": 2,
+          "tp_ids": [
+            "m01-credstuff-exfil",
+            "m03-slow-credstuff"
+          ]
+        },
+        "held_out": {
+          "accuracy": 0.0,
+          "f1": 0.0,
+          "fn": 2,
+          "fn_ids": [
+            "m02-validcreds-staged-exfil",
+            "m04-insider-known-ip-bulk"
+          ],
+          "fp": 2,
+          "fp_ids": [
+            "b02-password-expiry-retries",
+            "b03-helpdesk-unlock-burst"
+          ],
+          "n_benign": 2,
+          "n_malicious": 2,
+          "n_scenarios": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tn": 0,
+          "tn_ids": [],
+          "tp": 0,
+          "tp_ids": []
+        }
+      }
+    }
+  }
+}

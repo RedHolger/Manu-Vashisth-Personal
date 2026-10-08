@@ -1,0 +1,520 @@
+{
+  "schema_version": 1,
+  "release_id": "R1-trio1-review",
+  "as_of": "2026-10-08",
+  "honesty_statement": "This release had exactly ONE human. Every 'collaborator' named below is either a role that human wore, an AI coding agent used as a tool, or an external function recorded as NOT_APPLICABLE/BLOCKED. No cross-functional team existed, and none is simulated. coordination.py replays this document through an enforced model that refuses a second human.",
+  "roster": {
+    "human": {
+      "id": "owner",
+      "name": "RedHolger",
+      "email": "manuvashisth963@gmail.com",
+      "identity_evidence": "git log --format='%an <%ae>' over all 32 commits: 30 as RedHolger <manuvashisth963@gmail.com>, 2 as manu <manu@local>. manu@local is a non-routable local placeholder used for the two earliest P04 commits on 2026-10-03/04 on the same machine. No second human is evidenced anywhere in this repository; see decision DEC-014 and risk R-10.",
+      "roles_worn": [
+        {"role": "authorizing-principal", "evidence": "PLAN.md 'User decisions and approvals' records what the owner authorized and withheld"},
+        {"role": "planner", "evidence": "TRIO1_P04-P06_PLAN.md, PLAN.md, portfolio-source-kit/PLAN.md"},
+        {"role": "implementer", "evidence": "all 32 commits; source under flow-ledger/, evidence-rag/, data-bridge/, experiment-lab/, cohort-lens/, shift-bench/, cura-loop/"},
+        {"role": "tester", "evidence": "test_*.py and results/*/unittest-*.txt in every project"},
+        {"role": "release-engineer", "evidence": "opencode-handoff/export_impl.py and the three bundles in opencode-handoff/bundles/ (commit 5f5e077)"},
+        {"role": "documenter", "evidence": "README.md, HANDOFF.md, DECISIONS.md, LIMITATIONS.md, ACCEPTANCE.md per project plus results/*/README.md"},
+        {"role": "self-reviewer", "evidence": "results/*/measure-*-stdout.txt acceptance ledgers. NOTE: self-review by the implementer is not independent review; see risk R-09."}
+      ]
+    },
+    "tools": [
+      {
+        "id": "opencode-agent",
+        "kind": "ai-coding-agent",
+        "evidence": "20 of 32 commits carry the trailer 'Co-Authored-By: opencode <noreply@opencode.ai>' (git log --format='%b' | grep -c). Status documents name the operating sessions in opencode-handoff/CURRENT_STATE.md and opencode-handoff/RESUME.md."
+      },
+      {
+        "id": "copilot-agent",
+        "kind": "ai-coding-agent",
+        "evidence": "1 of 32 commits carries 'Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'. portfolio-source-kit/COPILOT_START_HERE.md is the kit's own entry point for that tool."
+      },
+      {
+        "id": "local-docker-postgres",
+        "kind": "runtime-dependency",
+        "evidence": "Containers p04-flowledger-postgres-1 (:5433), p06-databridge-postgres-1 (:5434), p05-evidencerag-postgres-1 (:5435) per PORTFOLIO_STATUS.md and opencode-handoff/RESUME.md."
+      }
+    ],
+    "external_parties": [
+      {
+        "id": "external-qa",
+        "function": "independent QA / test engineering",
+        "status": "NOT_APPLICABLE",
+        "reason": "No QA function existed. Tests were written and run by the implementer; no independent test review took place."
+      },
+      {
+        "id": "external-security",
+        "function": "security or privacy review",
+        "status": "NOT_APPLICABLE",
+        "reason": "No security review of the P05 tenant-isolation or prompt-injection claims was performed by anyone outside the implementer."
+      },
+      {
+        "id": "external-sre",
+        "function": "SRE / production operations handover",
+        "status": "NOT_APPLICABLE",
+        "reason": "PLAN.md non-goals forbid production deployment; there is no operations handover. The separate SRE portfolio at /Volumes/MANU_DISK/google/sre-portfolio was inspected read-only and is not part of this release."
+      },
+      {
+        "id": "external-customer",
+        "function": "customer or stakeholder acceptance",
+        "status": "NOT_APPLICABLE",
+        "reason": "No customer, user research participant or business stakeholder exists for this portfolio. Acceptance rests solely with the portfolio owner."
+      },
+      {
+        "id": "study-participants",
+        "function": "consenting human study participants (P10-04)",
+        "status": "BLOCKED",
+        "reason": "Zero participants were recruited and none were fabricated. cura-loop/results/p10-04-human-study/ records participants_measured = 0 and human_study_status = BLOCKED."
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "date": "2026-10-03",
+      "title": "P04 promises at-least-once attempts with deduplicated logical effects, not exactly-once",
+      "decision": "Guarantee only 'at-least-once attempts with deduplicated logical effects under the defined downstream contract', implemented with a monotonically increasing lease_generation checked on every state commit plus a durable downstream idempotency key. Do not promise exactly-once execution against arbitrary external services.",
+      "alternatives": [
+        "Promise exactly-once execution (rejected: unachievable against an arbitrary external service)",
+        "Rely on the lease alone (rejected: an expired worker can still finish after another worker takes over)"
+      ],
+      "reason": "A lease alone cannot fence a stale worker. The written plan states the precise guarantee so the claim is falsifiable by test rather than aspirational.",
+      "source": {"document": "TRIO1_P04-P06_PLAN.md", "section": "3.1 Side-effect guarantee (precise)", "commit": "b1e974f"},
+      "roles_worn": ["planner", "implementer"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-002",
+      "date": "2026-10-03",
+      "title": "Commit to P04 v1 only, then assess; do not commit the full trio as one block",
+      "decision": "Treat each project as a separate commitment and pause for user assessment after each project's v1 evidence package.",
+      "alternatives": [
+        "Commit to the full P04/P06/P05 trio as a single block up front"
+      ],
+      "reason": "The corrected timeline estimated 135-210 focused hours (12-27 weeks), which is too large to commit to as one block without an assessment point.",
+      "source": {"document": "TRIO1_P04-P06_PLAN.md", "section": "1 Timeline (corrected) and 7 Stop rule", "commit": "b1e974f"},
+      "roles_worn": ["planner"],
+      "status": "superseded"
+    },
+    {
+      "id": "DEC-003",
+      "date": "2026-10-04",
+      "title": "Delivery order P04 -> P06 -> P05 and the P06 stack",
+      "decision": "Confirm the order P04 FlowLedger, then P06 DataBridge, then P05 EvidenceRAG, and confirm P06 as Python with local PostgreSQL/pgvector via Docker Compose.",
+      "alternatives": [
+        "P05 first (rejected: it depends on retrieval and permission patterns that benefit from the data-movement work)",
+        "P06 in Java to match P04 (rejected: Python keeps the connector/adapter iteration cheap)"
+      ],
+      "reason": "The narrative order durable execution -> reliable data movement -> permission-aware AI delivery demonstrates three distinct capabilities without repeating one.",
+      "source": {"document": "PLAN.md", "section": "Order and stack; User decisions and approvals", "commit": "02b3301"},
+      "roles_worn": ["planner"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-004",
+      "date": "2026-10-05",
+      "title": "Batch authorization: the whole triplet in one continuous run, then a review ZIP each",
+      "decision": "Authorize completing P04, P06 and P05 in one continuous batch and then receiving a review ZIP for each of the three projects. This replaces the 'stop after each project for approval' sequencing FOR IMPLEMENTATION WORK ONLY. Marking anything ACCEPTED, creating or moving tags beyond p04-v1 / p04-v1-complete, pushing to a remote, and starting P07-P22 all remain withheld.",
+      "alternatives": [
+        "Keep the TRIO1_P04-P06_PLAN.md section 7 stop rule and pause after each project (rejected by the owner for latency)",
+        "Authorize P06 only and re-commit afterwards",
+        "Authorize P04-P22 in one go (not done at this point; it happened later as DEC-009)"
+      ],
+      "reason": "The two per-project assessment pauses were pure latency for a solo release whose reviewer is the same person authoring the work; the final acceptance review gate is the one that matters and was explicitly preserved.",
+      "source": {"document": "PLAN.md", "section": "User decisions and approvals", "commit": "29908c6"},
+      "roles_worn": ["authorizing-principal", "planner"],
+      "status": "made",
+      "supersedes": "DEC-002"
+    },
+    {
+      "id": "DEC-005",
+      "date": "2026-10-05",
+      "title": "Exclude ExFAT AppleDouble sidecars from test discovery instead of deleting them",
+      "decision": "Configure Maven surefire to exclude '._*' AppleDouble siblings from test discovery in P04, and retain the resulting failure as evidence.",
+      "alternatives": [
+        "Delete the sidecars once (rejected: the ExFAT volume regenerates them continuously)",
+        "Move the repository off ExFAT (rejected: the disk is the user's existing data volume)",
+        "Disable AppleDouble creation (rejected: it is a macOS-level behaviour on non-HFS volumes, not a repository setting)"
+      ],
+      "reason": "The workspace volume is ExFAT, so macOS regenerates '._*' metadata siblings next to every file. Deleting them is not durable; excluding them from discovery is.",
+      "source": {"document": "flow-ledger/DECISIONS.md #10 and PORTFOLIO_STATUS.md 'Unresolved blockers and discrepancies'", "section": null, "commit": "9830718"},
+      "roles_worn": ["implementer", "release-engineer"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-006",
+      "date": "2026-10-06",
+      "title": "Remove accidentally staged sidecars in a dedicated commit, not by amending",
+      "decision": "Commit 3be4111 removes the nine '._*' files that were staged with the P07 kit directory, as its own visible commit.",
+      "alternatives": [
+        "git commit --amend the preceding commit (rejected: rewrites history that was already the record of P07-02)",
+        "Leave them tracked (rejected: they are 4096-byte binary noise that breaks tooling)"
+      ],
+      "reason": "The mistake is part of the release history. Fixing forward keeps the failure visible, which is what the evidence rules in PLAN.md require.",
+      "source": {"document": "git history", "section": null, "commit": "3be4111"},
+      "roles_worn": ["release-engineer"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-007",
+      "date": "2026-10-06",
+      "title": "Write export_impl.py rather than modify the kit's review_bundle.py",
+      "decision": "Build the implementation-inclusive review ZIPs with a new script opencode-handoff/export_impl.py and leave portfolio-source-kit/tools/review_bundle.py untouched.",
+      "alternatives": [
+        "Patch the kit's review_bundle.py to include implementation files (rejected: it is covered by the kit SHA256SUMS manifest, so editing it breaks kit integrity verification)",
+        "Hand-build the ZIPs with 'zip -r' (rejected: no reproducible hash manifest)"
+      ],
+      "reason": "Kit integrity is verifiable only while kit bytes are unchanged. A new tool beside the kit preserves both the manifest and the ability to re-verify extraction by hash.",
+      "source": {"document": "opencode-handoff/RESUME.md", "section": "Review bundles", "commit": "5f5e077"},
+      "roles_worn": ["release-engineer", "implementer"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-008",
+      "date": "2026-10-06",
+      "title": "One pinned external dependency in a git-ignored venv, suite green without it",
+      "decision": "Add psycopg[binary]==3.3.6 pinned in data-bridge/requirements.txt, installed only in a git-ignored .venv. The unittest suite must still pass on system python with the PostgreSQL tests skipped.",
+      "alternatives": [
+        "Vendor the driver into the repository (rejected: PLAN.md non-goals exclude dependency directories in git)",
+        "Require it unconditionally (rejected: the suite would fail on any machine without the venv)",
+        "Drop PostgreSQL and use SQLite (rejected: the card requires a real PostgreSQL transaction per page)"
+      ],
+      "reason": "Keeps the single external dependency explicit, version-locked and optional, so a reviewer without Docker or a venv still gets a green suite and an honest skip count.",
+      "source": {"document": "PORTFOLIO_STATUS.md", "section": "Unresolved blockers and discrepancies; Current measurements", "commit": "1f63677"},
+      "roles_worn": ["implementer", "tester"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-009",
+      "date": "2026-10-06",
+      "title": "Extend scope from the trio to P04-P22 and defer CV work",
+      "decision": "Continue through P04-P22 one acceptance card at a time, completing local implementation and evidence without intermediate implementation approval gates. CVs are deferred. Human review, participant studies, hardware validation and final acceptance remain explicit outstanding requirements; never substitute synthetic evidence or automated sign-off for them.",
+      "alternatives": [
+        "Finish the trio, then do CV work (rejected by the owner)",
+        "Keep the P07-P22 withholding from PLAN.md 'User decisions and approvals' (not done - and the two records now contradict each other; see risk R-01)"
+      ],
+      "reason": "The owner asked for all projects to be finished before CV work. The scope paragraph was edited to say so, but the approvals paragraph that still withholds P07-P22 was not updated and the edit was never committed.",
+      "source": {"document": "PLAN.md", "section": "Scope", "commit": null, "commit_note": "UNCOMMITTED: 'git diff -- PLAN.md' shows this paragraph as an unstaged addition; 'git show HEAD:PLAN.md' does not contain it."},
+      "roles_worn": ["authorizing-principal", "planner"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-010",
+      "date": "2026-10-08",
+      "title": "Leave the P10-04 human study BLOCKED at zero participants",
+      "decision": "Verify the consent-gated timing harness with a labelled DRY-RUN session, report participants_measured = 0 and human_study_status = BLOCKED, and keep measured human time in a separate field from the synthetic proxy cost. combined_cost() raises.",
+      "alternatives": [
+        "Synthesize participant timings (rejected: fabricated human data)",
+        "Report the simulation's proxy cost as human time (rejected: exactly the confusion the separation contract exists to prevent)",
+        "Drop the card silently (rejected: an undelivered optional card must be visibly blocked)"
+      ],
+      "reason": "No consenting annotators exist. Exit 0 from the harness proves the tooling works; it must never be readable as 'a human study was conducted'.",
+      "source": {"document": "cura-loop/HANDOFF.md and cura-loop/results/p10-04-human-study/README.md", "section": null, "commit": "a7a1a83"},
+      "roles_worn": ["implementer", "documenter"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-011",
+      "date": "2026-10-08",
+      "title": "Author the P16 release charter in JSON, not YAML",
+      "decision": "charter.json is the machine-readable source of truth; CHARTER.md is its readable view and defers to the JSON on any disagreement.",
+      "alternatives": [
+        "Hand-roll a YAML-subset parser (rejected: a parser is not a charter, and a partial one silently misreads nesting)",
+        "Ship YAML as an unparsed string blob (rejected: then nothing validates it)",
+        "Vendor PyYAML (rejected: this project is Python 3 stdlib only)"
+      ],
+      "reason": "SPEC.md allows 'YAML/JSON'. The stdlib json module parses and round-trips exactly, so the charter can be validated and measured rather than merely read.",
+      "source": {"document": "portfolio-source-kit/projects/release-plan/SPEC.md", "section": "Stack", "commit": null},
+      "roles_worn": ["planner", "implementer"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-012",
+      "date": "2026-10-08",
+      "title": "Derive readiness from artifacts on disk, never from a hand-checked boolean",
+      "decision": "verify.ArtifactVerifier opens every referenced artifact, checks existence, non-emptiness and the recorded exit status, and feeds the result into the unmodified reference plan(). No charter task carries a 'done' or 'ready' field.",
+      "alternatives": [
+        "Keep the reference behaviour where evidence paths are declarations (rejected: its own note says they are 'declared, not content-verified')",
+        "Add a manual sign-off boolean per task (rejected: that is the unchecked boolean this card exists to remove)"
+      ],
+      "reason": "A release plan whose readiness can be asserted is a release plan that can lie. Two independent verification passes must agree, and readiness may never exceed verification.",
+      "source": {"document": "portfolio-source-kit/projects/release-plan/project.py", "section": "plan() note", "commit": null},
+      "roles_worn": ["implementer", "tester"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-013",
+      "date": "2026-10-08",
+      "title": "Model coordination as roles worn by one human, plus tools and NOT_APPLICABLE externals",
+      "decision": "The roster holds exactly one human. Delivery functions are recorded as roles that human wore. AI agents are recorded as tools with is_a_collaborator = false. QA, security, SRE, customer and study-participant functions are recorded as NOT_APPLICABLE or BLOCKED with a reason and no participants. Roster.add_person() always raises.",
+      "alternatives": [
+        "Invent a reviewer or QA function to make the release look cross-functional (rejected: fabrication)",
+        "Describe the AI agents as collaborators (rejected: they are tools of the author and cannot own a commitment)",
+        "Omit the coordination record entirely (rejected: then the absence of a team is invisible rather than explicit)"
+      ],
+      "reason": "The acceptance criterion for this card is negative - do not invent a team. Enforcing it in the data model means the record cannot drift into fabrication later.",
+      "source": {"document": "portfolio-source-kit/projects/release-plan/ACCEPTANCE.md", "section": "P16-03", "commit": null},
+      "roles_worn": ["planner", "documenter"],
+      "status": "made"
+    },
+    {
+      "id": "DEC-014",
+      "date": "2026-10-08",
+      "title": "Treat the two git identities as one human owner of record",
+      "decision": "Name RedHolger <manuvashisth963@gmail.com> as the release owner (30 of 32 commits, including every commit in the release window) and record the earlier manu <manu@local> identity as an unexplained identity change rather than as a second contributor.",
+      "alternatives": [
+        "Report two contributors (rejected: manu@local is a non-routable local placeholder and no second human is evidenced anywhere in the repository)",
+        "Silently normalize the identities (rejected: that hides a real fact an auditor would find)"
+      ],
+      "reason": "Overstating headcount would be the same fabrication this card forbids, in the opposite direction. The identity change is recorded as risk R-10 instead.",
+      "source": {"document": "git log --format='%an <%ae>' | sort | uniq -c", "section": null, "commit": "0243b98"},
+      "roles_worn": ["planner", "documenter"],
+      "status": "made"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R-01",
+      "risk": "Authorization of record drift: the P04-P22 scope authorization exists only in the uncommitted working tree, while the committed PLAN.md at HEAD still says 'Not authorized and still withheld: ... starting P07-P22'. Seventeen commits delivered P07-P10 under an authorization that git HEAD does not contain.",
+      "owner": "owner",
+      "status": "open",
+      "likelihood": "high",
+      "impact": "high",
+      "mitigation": "preflight.py check PF-1 fails the release when a delivered project directory has no committed authorization. Committing the PLAN.md scope paragraph is a RECOMMENDATION only - PLAN.md is outside release-plan/ and was not modified.",
+      "evidence": "git diff -- PLAN.md (unstaged addition of the 2026-10-06 scope paragraph); git show HEAD:PLAN.md (still withholds P07-P22); git log --oneline -- experiment-lab cohort-lens shift-bench cura-loop (17 commits)",
+      "detected_at": "2026-10-08"
+    },
+    {
+      "id": "R-02",
+      "risk": "Root status documents are stale: PORTFOLIO_STATUS.md and HANDOFF.md were last committed at f4996a8 (2026-10-06T21:34:32Z) and mention P07, P08, P09 and P10 zero times, while commits through a7a1a83 (2026-10-08T17:57:28Z) delivered all four.",
+      "owner": "owner",
+      "status": "open",
+      "likelihood": "high",
+      "impact": "medium",
+      "mitigation": "preflight.py check PF-2 measures the lag in commits and hours and reports STALE. Updating the root documents is a RECOMMENDATION only; they are outside release-plan/.",
+      "evidence": "git log -1 --format=%aI -- PORTFOLIO_STATUS.md; grep -c 'P07' PORTFOLIO_STATUS.md = 0",
+      "detected_at": "2026-10-08",
+      "review_due": "2026-10-06",
+      "due_basis": "PORTFOLIO_STATUS.md's own header stamp 'Last inspected: 2026-10-06T04:11:59Z'. The document declares its own inspection date, so anything delivered after it is out of date by the document's own claim."
+    },
+    {
+      "id": "R-03",
+      "risk": "No git remote is configured. All 32 commits, every evidence directory and the three review bundles exist only on one ExFAT disk with no off-machine backup.",
+      "owner": "owner",
+      "status": "open",
+      "likelihood": "medium",
+      "impact": "high",
+      "mitigation": "None available inside this project: PLAN.md explicitly withholds pushing to a remote and no remote publishing is authorized. Recorded, not solved.",
+      "evidence": "git remote -v (empty); PORTFOLIO_STATUS.md 'No Git remote is configured; local commits have no remote backup.'",
+      "detected_at": "2026-10-06"
+    },
+    {
+      "id": "R-04",
+      "risk": "The ExFAT workspace makes macOS regenerate AppleDouble '._*' sidecars continuously. They have already broken Maven surefire test discovery once (P04-01) and reached a commit once (3be4111). They can be staged again at any time.",
+      "owner": "owner",
+      "status": "accepted",
+      "likelihood": "high",
+      "impact": "low",
+      "mitigation": "pom.xml surefire exclusion (DEC-005), staged-file review before every commit, and preflight.py check PF-4 which counts '._*' entries in git status. The sidecars cannot be prevented at the filesystem level.",
+      "evidence": "git status --short shows hundreds of '?? ._*' entries; commit 3be4111 removed nine that were staged; flow-ledger/results/p04-01-reference-test-map/attempt1-surefire-appledouble-failure.txt",
+      "detected_at": "2026-10-05"
+    },
+    {
+      "id": "R-05",
+      "risk": "Fifty-four build artifacts under flow-ledger/target/ are tracked in git, and 101 tracked files show mode changes, so the working tree is permanently dirty and real diffs are hard to see.",
+      "owner": "owner",
+      "status": "open",
+      "likelihood": "medium",
+      "impact": "medium",
+      "mitigation": "RECOMMENDATION only (outside release-plan/): add target/ to .gitignore, then 'git rm -r --cached flow-ledger/target'. preflight.py check PF-3 counts tracked build artifacts so the number cannot grow unnoticed.",
+      "evidence": "git ls-files 'flow-ledger/target/*' | wc -l = 54; git status --short | wc -l = 852; PORTFOLIO_STATUS.md 'tracked mode changes, tracked target/*.class and target/surefire-reports rebuilds'",
+      "detected_at": "2026-10-06"
+    },
+    {
+      "id": "R-06",
+      "risk": "Nothing in this portfolio is ACCEPTED. P04 v1 is CHANGES_REQUESTED, P05 and P06 are NOT_EVALUATED, and both P16 human review gates are unmet with no artifact that automation could ever produce.",
+      "owner": "owner",
+      "status": "open",
+      "likelihood": "high",
+      "impact": "high",
+      "mitigation": "Both review gates are modelled with requires_human_decision = true, zero artifacts and ok = false permanently. PLAN.md withholds marking anything ACCEPTED. No automated sign-off exists or may be added.",
+      "evidence": "PORTFOLIO_STATUS.md 'Active gate' and 'Unresolved blockers'; charter.json gates G-USER-REVIEW-TRIO1 and G-USER-REVIEW-P07-P10",
+      "detected_at": "2026-10-05",
+      "review_due": "2026-10-08",
+      "due_basis": "Set by P16-03 on 2026-10-08 as 48 h after the review bundles were delivered at 5f5e077 (2026-10-06T22:07:44Z). No due date existed before this charter; the date is a new planning act, not a recovered fact."
+    },
+    {
+      "id": "R-07",
+      "risk": "The P10-04 human study is BLOCKED with zero consenting participants. The measured human-time figure stays 0 and the card cannot be completed without real people.",
+      "owner": "owner",
+      "status": "blocked",
+      "likelihood": "medium",
+      "impact": "high",
+      "mitigation": "Consent-gated harness verified with a labelled DRY-RUN; measured human time and synthetic proxy cost are separate fields and combined_cost() raises. No participants were recruited or fabricated.",
+      "evidence": "cura-loop/results/p10-04-human-study/report.json (participants_measured 0, human_study_status BLOCKED); cura-loop/HANDOFF.md",
+      "detected_at": "2026-10-08"
+    },
+    {
+      "id": "R-08",
+      "risk": "P05 and P06 evidence depends on local Docker PostgreSQL containers. On system python without the venv, 7 / 13 / 27 tests skip respectively, so a reviewer cannot reproduce the full result set without that runtime.",
+      "owner": "owner",
+      "status": "open",
+      "likelihood": "medium",
+      "impact": "medium",
+      "mitigation": "Both interpreter configurations are recorded side by side in every affected evidence directory (unittest-exit-status.txt and unittest-system-python-exit-status.txt), so the skip counts are visible rather than hidden.",
+      "evidence": "PORTFOLIO_STATUS.md 'Current measurements' P06-02/03/04 and P05-01..04 lines; data-bridge/results/p06-02-persistent-adapter/unittest-system-python-exit-status.txt records the skip configuration beside the venv run",
+      "detected_at": "2026-10-06"
+    },
+    {
+      "id": "R-09",
+      "risk": "Solo release with no second pair of eyes: the person who implemented the work also planned it, tested it, bundled it, wrote its acceptance ledger and self-reviewed it. Every 'review' in this charter is a self-review.",
+      "owner": "owner",
+      "status": "open",
+      "likelihood": "high",
+      "impact": "high",
+      "mitigation": "None available. Recorded explicitly so that no reader mistakes the acceptance ledgers for independent review. This project therefore does NOT demonstrate cross-functional leadership.",
+      "evidence": "coordination.json roster: distinct_humans = 1, role 'self-reviewer' with its own note; external-qa and external-security both NOT_APPLICABLE",
+      "detected_at": "2026-10-08"
+    },
+    {
+      "id": "R-10",
+      "risk": "The git identity changed mid-history from manu <manu@local> to RedHolger <manuvashisth963@gmail.com> with no recorded reason. A future auditor reading only git could mistake this for two contributors.",
+      "owner": "owner",
+      "status": "open",
+      "likelihood": "low",
+      "impact": "low",
+      "mitigation": "DEC-014 records the interpretation and its evidence; the roster declares distinct_humans = 1 with an identity_evidence field. The git history itself is not rewritten.",
+      "evidence": "git log --format='%an <%ae>' | sort | uniq -c -> 2 manu <manu@local>, 30 RedHolger <manuvashisth963@gmail.com>",
+      "detected_at": "2026-10-08"
+    },
+    {
+      "id": "R-11",
+      "risk": "The acceptance decision for this release has no possible owner other than the portfolio owner acting as reviewer, and the implementer cannot own their own acceptance. Until that person acts, both review gates are unmet with nobody able to close them.",
+      "owner": null,
+      "status": "open",
+      "likelihood": "high",
+      "impact": "high",
+      "mitigation": "Deliberately left unowned so that RiskRegister.missing_owner() surfaces it. Assigning it to the implementer would make a self-review look like an acceptance decision.",
+      "evidence": "coordination.py RiskRegister.missing_owner(); charter.json G-USER-REVIEW-TRIO1 with cannot_be_satisfied_by_automation = true",
+      "detected_at": "2026-10-08"
+    }
+  ],
+  "communications": [
+    {
+      "id": "C-01",
+      "date": "2026-10-05",
+      "channel": "written instruction recorded in the plan document",
+      "direction": "authorizing-principal -> implementer",
+      "subject": "Batch authorization for P04/P06/P05 with a review ZIP for each",
+      "participants": ["owner"],
+      "artifact": "PLAN.md 'User decisions and approvals', committed in 29908c6",
+      "status": "recorded"
+    },
+    {
+      "id": "C-02",
+      "date": "2026-10-06",
+      "channel": "written instruction recorded in the plan document",
+      "direction": "authorizing-principal -> implementer",
+      "subject": "Scope extension to P04-P22; CV work deferred",
+      "participants": ["owner"],
+      "artifact": "PLAN.md 'Scope' paragraph - UNCOMMITTED, present only in the working tree",
+      "status": "recorded",
+      "note": "This is the communication that risk R-01 is about: the instruction was written down but never committed, so the authorization of record at HEAD contradicts it."
+    },
+    {
+      "id": "C-03",
+      "date": "2026-10-06",
+      "channel": "asynchronous handoff document between working sessions",
+      "direction": "implementer -> implementer (cross-session)",
+      "subject": "Interruption handoff: exact repository HEAD, runtime state, dirty-tree warnings and what must not be staged",
+      "participants": ["owner", "opencode-agent"],
+      "artifact": "opencode-handoff/CURRENT_STATE.md (untracked) and opencode-handoff/RESUME.md",
+      "status": "recorded",
+      "note": "CURRENT_STATE.md explicitly warns 'The workspace is on ExFAT: mode changes and ._* sidecars are widespread. Some P04 build outputs are tracked. Do not stage the whole working tree.'"
+    },
+    {
+      "id": "C-04",
+      "date": "2026-10-06",
+      "channel": "commit plus handoff record",
+      "direction": "implementer -> authorizing-principal",
+      "subject": "Three implementation-inclusive review bundles delivered with hash manifests and secret-like flags listed",
+      "participants": ["owner"],
+      "artifact": "commit 5f5e077; opencode-handoff/RESUME.md 'Review bundles' (P04 148 files sha256 18d2a265..., P06 90 files 146739b2..., P05 137 files 833a5168...)",
+      "status": "recorded",
+      "note": "The flagged items are disposable-lab user:pass@localhost DSNs in old evidence and source defaults, listed in each REVIEW_CONTENTS.json."
+    },
+    {
+      "id": "C-05",
+      "date": "2026-10-06",
+      "channel": "commit message",
+      "direction": "implementer -> implementer (self-correction on the record)",
+      "subject": "AppleDouble sidecars accidentally staged with the P07 kit directory were removed",
+      "participants": ["owner"],
+      "artifact": "commit 3be4111 (nine '._*' files deleted, 4096 -> 0 bytes each)",
+      "status": "recorded"
+    },
+    {
+      "id": "C-06",
+      "date": "2026-10-08",
+      "channel": "evidence directory plus acceptance ledger",
+      "direction": "implementer -> authorizing-principal",
+      "subject": "P16 retrospective findings PF-1..PF-4: authorization drift, stale root status docs, tracked build artifacts, sidecar noise",
+      "participants": ["owner"],
+      "artifact": "release-plan/results/p16-04-retrospective/preflight-report.json and README.md",
+      "status": "recorded",
+      "note": "awaiting-response"
+    },
+    {
+      "id": "C-07",
+      "date": "2026-10-08",
+      "channel": "none",
+      "direction": "none",
+      "subject": "Independent QA or test-engineering review of the release",
+      "participants": [],
+      "external_party": "external-qa",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "id": "C-08",
+      "date": "2026-10-08",
+      "channel": "none",
+      "direction": "none",
+      "subject": "Security or privacy review of the P05 tenant-isolation and prompt-injection claims",
+      "participants": [],
+      "external_party": "external-security",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "id": "C-09",
+      "date": "2026-10-08",
+      "channel": "none",
+      "direction": "none",
+      "subject": "SRE or production operations handover",
+      "participants": [],
+      "external_party": "external-sre",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "id": "C-10",
+      "date": "2026-10-08",
+      "channel": "none",
+      "direction": "none",
+      "subject": "Customer or stakeholder acceptance of the portfolio",
+      "participants": [],
+      "external_party": "external-customer",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "id": "C-11",
+      "date": "2026-10-08",
+      "channel": "none",
+      "direction": "none",
+      "subject": "Recruitment and consent of human study participants for P10-04",
+      "participants": [],
+      "external_party": "study-participants",
+      "status": "BLOCKED",
+      "note": "Zero participants. None recruited, none fabricated. The consent form at cura-loop/results/p10-04-human-study/CONSENT_FORM.md is an unsigned template."
+    }
+  ]
+}

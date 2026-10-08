@@ -1,0 +1,14 @@
+{
+  "note": "detector input, not a label",
+  "scenario": "b01-admin-bulk-restore",
+  "source": "asset-owner configuration (synthetic)",
+  "users": {
+    "svc-backup": {
+      "known_ips": [
+        "198.51.100.10"
+      ],
+      "normal_daily_egress_bytes": 10737418240,
+      "session_type": "workload"
+    }
+  }
+}

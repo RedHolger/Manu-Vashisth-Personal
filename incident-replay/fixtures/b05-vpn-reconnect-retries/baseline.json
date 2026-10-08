@@ -1,0 +1,14 @@
+{
+  "note": "detector input, not a label",
+  "scenario": "b05-vpn-reconnect-retries",
+  "source": "asset-owner configuration (synthetic)",
+  "users": {
+    "u-7731": {
+      "known_ips": [
+        "198.51.100.88"
+      ],
+      "normal_daily_egress_bytes": 5242880,
+      "session_type": "interactive"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+server:
+  port: 8084
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/flowledger
+    username: flowledger
+    password: flowledger
+    hikari:
+      maximum-pool-size: 10
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+flowledger:
+  worker:
+    leaseMillis: 10000
+    maxAttempts: 5

@@ -1,0 +1,11 @@
+{
+  "centroid_sha256": "a07299362ca80fdbc63f9e278b4858720b1b12973df9c304d7aa93770092ed82",
+  "dataset_seed": 7,
+  "dataset_sha256": "8d85d259d307f0a6f36f3c5427c22a5dc23c9cfb6da24c0fc67e6cb59bfd4d92",
+  "split_seed": 0,
+  "versions": {
+    "numpy": "2.5.3",
+    "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+    "python": "3.14.7"
+  }
+}

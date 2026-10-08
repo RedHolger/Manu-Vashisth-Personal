@@ -1,0 +1,303 @@
+{
+  "clock_skew_tolerance_seconds": 30,
+  "corpus_sha256": "9c1a520cf7f2243785791a91b2cf5e90beb2c3a8f8a2cb057c133196afd98050",
+  "files": [
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m01-credstuff-exfil/audit.jsonl",
+      "bytes": 8728,
+      "format": "json-audit",
+      "path": "m01-credstuff-exfil/audit.jsonl",
+      "records": 27,
+      "scenario": "m01-credstuff-exfil",
+      "sha256": "448c28071174e6f0a70b0e42bb81d922445cba8a81b36dc49a7899f3e32ab65c"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m01-credstuff-exfil/edge-syslog.log",
+      "bytes": 3350,
+      "format": "syslog-kv",
+      "path": "m01-credstuff-exfil/edge-syslog.log",
+      "records": 12,
+      "scenario": "m01-credstuff-exfil",
+      "sha256": "03a5007f5eb1b96c7ba4677eeba3f2adc700a51ad4f936b85af5b3ffbf656ade"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m01-credstuff-exfil/baseline.json",
+      "bytes": 309,
+      "format": "baseline-config",
+      "path": "m01-credstuff-exfil/baseline.json",
+      "records": 0,
+      "scenario": "m01-credstuff-exfil",
+      "sha256": "be1863198777ae3b72ef8149f9ed2656f17e3959f999170fbc282c75602d22e6"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m02-validcreds-staged-exfil/audit.jsonl",
+      "bytes": 4966,
+      "format": "json-audit",
+      "path": "m02-validcreds-staged-exfil/audit.jsonl",
+      "records": 15,
+      "scenario": "m02-validcreds-staged-exfil",
+      "sha256": "dc578764531240d4a52970dc95c537eabd622069938d4199227ba2799a4ed5a3"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m02-validcreds-staged-exfil/edge-syslog.log",
+      "bytes": 269,
+      "format": "syslog-kv",
+      "path": "m02-validcreds-staged-exfil/edge-syslog.log",
+      "records": 1,
+      "scenario": "m02-validcreds-staged-exfil",
+      "sha256": "92cb15f9b8d13411ed39ca409e0f19959d621346c84423430a697eb314290d38"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m02-validcreds-staged-exfil/baseline.json",
+      "bytes": 318,
+      "format": "baseline-config",
+      "path": "m02-validcreds-staged-exfil/baseline.json",
+      "records": 0,
+      "scenario": "m02-validcreds-staged-exfil",
+      "sha256": "15672aa74937574ae40185b8ad9b5053c83da8f97cf879cec98bf21d7e513302"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m03-slow-credstuff/audit.jsonl",
+      "bytes": 5136,
+      "format": "json-audit",
+      "path": "m03-slow-credstuff/audit.jsonl",
+      "records": 16,
+      "scenario": "m03-slow-credstuff",
+      "sha256": "4ca30b7dc4041d5498573b770c4b35192a8f6142258a2fd92481b3509d7d3b22"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m03-slow-credstuff/edge-syslog.log",
+      "bytes": 1935,
+      "format": "syslog-kv",
+      "path": "m03-slow-credstuff/edge-syslog.log",
+      "records": 7,
+      "scenario": "m03-slow-credstuff",
+      "sha256": "17c45810f9f97f088a14344000ba79d82b4015671b8e2a9a1d20a74cfd8b661e"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m03-slow-credstuff/baseline.json",
+      "bytes": 308,
+      "format": "baseline-config",
+      "path": "m03-slow-credstuff/baseline.json",
+      "records": 0,
+      "scenario": "m03-slow-credstuff",
+      "sha256": "b019814bfa686172cca42f4e5125e2b2c0ae3cad592a978ed62acd2c6d23cbce"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m04-insider-known-ip-bulk/audit.jsonl",
+      "bytes": 3987,
+      "format": "json-audit",
+      "path": "m04-insider-known-ip-bulk/audit.jsonl",
+      "records": 12,
+      "scenario": "m04-insider-known-ip-bulk",
+      "sha256": "58b6f305e992b8b410b3a79cd3f8b2b853bddc39c0617bf05059658882145da1"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/m04-insider-known-ip-bulk/baseline.json",
+      "bytes": 316,
+      "format": "baseline-config",
+      "path": "m04-insider-known-ip-bulk/baseline.json",
+      "records": 0,
+      "scenario": "m04-insider-known-ip-bulk",
+      "sha256": "687acfee9de52704cbd78cbc569710eeb886fd4d8aa93f355442b41d3a9ae72a"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b01-admin-bulk-restore/audit.jsonl",
+      "bytes": 14421,
+      "format": "json-audit",
+      "path": "b01-admin-bulk-restore/audit.jsonl",
+      "records": 42,
+      "scenario": "b01-admin-bulk-restore",
+      "sha256": "f4ebd369378e41a07df1844e28ceb028479613540bb5bf9bc76730d49f8984f9"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b01-admin-bulk-restore/edge-syslog.log",
+      "bytes": 560,
+      "format": "syslog-kv",
+      "path": "b01-admin-bulk-restore/edge-syslog.log",
+      "records": 2,
+      "scenario": "b01-admin-bulk-restore",
+      "sha256": "6de0846605efc2a08e174d7008b3c76ae964612f952d62703c3a41c8a7ef9f67"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b01-admin-bulk-restore/baseline.json",
+      "bytes": 316,
+      "format": "baseline-config",
+      "path": "b01-admin-bulk-restore/baseline.json",
+      "records": 0,
+      "scenario": "b01-admin-bulk-restore",
+      "sha256": "b39996f77e33d258f108da775f80961685c59252ed5a13fd789554d378650dbe"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b02-password-expiry-retries/audit.jsonl",
+      "bytes": 2192,
+      "format": "json-audit",
+      "path": "b02-password-expiry-retries/audit.jsonl",
+      "records": 7,
+      "scenario": "b02-password-expiry-retries",
+      "sha256": "2899b336cb83ca275ffeeb584b1873c7666dd7d7c41773612dabeae02b0ee1e8"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b02-password-expiry-retries/baseline.json",
+      "bytes": 317,
+      "format": "baseline-config",
+      "path": "b02-password-expiry-retries/baseline.json",
+      "records": 0,
+      "scenario": "b02-password-expiry-retries",
+      "sha256": "c9527f7745574b0906576247babc01831dca0a65f8f3d0d5d0682340f1c5f0db"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b03-helpdesk-unlock-burst/audit.jsonl",
+      "bytes": 2202,
+      "format": "json-audit",
+      "path": "b03-helpdesk-unlock-burst/audit.jsonl",
+      "records": 7,
+      "scenario": "b03-helpdesk-unlock-burst",
+      "sha256": "6f36327bf70740c2fd2209d3e73249ca48380bb7a107853c864efd920c4963ab"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b03-helpdesk-unlock-burst/baseline.json",
+      "bytes": 316,
+      "format": "baseline-config",
+      "path": "b03-helpdesk-unlock-burst/baseline.json",
+      "records": 0,
+      "scenario": "b03-helpdesk-unlock-burst",
+      "sha256": "941f47797d18fb851cb94603c5b053ccd60f626d0fac3fd183dc0ae2065d5b9e"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b04-quarterly-report-export/audit.jsonl",
+      "bytes": 1992,
+      "format": "json-audit",
+      "path": "b04-quarterly-report-export/audit.jsonl",
+      "records": 6,
+      "scenario": "b04-quarterly-report-export",
+      "sha256": "6655080d9f03ae37055c00b1893c036683e4bbacc92f03e920a1bdc8da8849b9"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b04-quarterly-report-export/baseline.json",
+      "bytes": 318,
+      "format": "baseline-config",
+      "path": "b04-quarterly-report-export/baseline.json",
+      "records": 0,
+      "scenario": "b04-quarterly-report-export",
+      "sha256": "c7a2f5a3fb4042aa8cdd20976d147a83b58758d9ebf72511b259525c160b3205"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b05-vpn-reconnect-retries/audit.jsonl",
+      "bytes": 2141,
+      "format": "json-audit",
+      "path": "b05-vpn-reconnect-retries/audit.jsonl",
+      "records": 7,
+      "scenario": "b05-vpn-reconnect-retries",
+      "sha256": "b407b3ed2919f1180c1072caac1dcb77f236f8f17e0d3ce3b62344e0e3408343"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/b05-vpn-reconnect-retries/baseline.json",
+      "bytes": 314,
+      "format": "baseline-config",
+      "path": "b05-vpn-reconnect-retries/baseline.json",
+      "records": 0,
+      "scenario": "b05-vpn-reconnect-retries",
+      "sha256": "477531f3173a1b811ce1fd030c9e3f683f19e2d95a228e224a612de9c0d78519"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/adversarial/legacy-naive.log",
+      "bytes": 534,
+      "format": "adversarial",
+      "path": "adversarial/legacy-naive.log",
+      "records": 0,
+      "scenario": "adversarial",
+      "sha256": "9ebc5a2e476032b51e7a48d4f1aa586a11ec187bb4115c1e0d4728cd169abd06"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/adversarial/legacy-declared-offset.log",
+      "bytes": 540,
+      "format": "adversarial",
+      "path": "adversarial/legacy-declared-offset.log",
+      "records": 0,
+      "scenario": "adversarial",
+      "sha256": "b009067f57d57d6775421a31f1410d2b1a9a5137a22a5bdf8f58ffcd9ca000df"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/adversarial/conflicting-same-id.jsonl",
+      "bytes": 616,
+      "format": "adversarial",
+      "path": "adversarial/conflicting-same-id.jsonl",
+      "records": 0,
+      "scenario": "adversarial",
+      "sha256": "f336185aea52fc58b7392a5948970fe54a0354a6a2a383c1102b54f3c83f68f7"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/adversarial/skew-beyond-tolerance.jsonl",
+      "bytes": 618,
+      "format": "adversarial",
+      "path": "adversarial/skew-beyond-tolerance.jsonl",
+      "records": 0,
+      "scenario": "adversarial",
+      "sha256": "28fdd4c09ecdeddbc52174727e412e9eb2726d6fb48d009bc431432e7c33f12b"
+    },
+    {
+      "absolute_path": "/Volumes/MANU_DISK/google/Google_2027/incident-replay/fixtures/adversarial/mixed-naive-and-offset.jsonl",
+      "bytes": 939,
+      "format": "adversarial",
+      "path": "adversarial/mixed-naive-and-offset.jsonl",
+      "records": 0,
+      "scenario": "adversarial",
+      "sha256": "de063ff07ad21129ebd38417f700c9849ae97e02a09f10b2574ece1f95513cb1"
+    }
+  ],
+  "forwarder_clock_skew_seconds": 7,
+  "generated_by": "scenarios.write_fixtures()",
+  "real_incident": false,
+  "scenario_sources": {
+    "b01-admin-bulk-restore": {
+      "host": "blr-edge-03",
+      "syslog_skew_seconds": 0,
+      "zone_utc_offset": "0:00:00"
+    },
+    "m01-credstuff-exfil": {
+      "host": "tokyo-edge-01",
+      "syslog_skew_seconds": 7,
+      "zone_utc_offset": "9:00:00"
+    },
+    "m02-validcreds-staged-exfil": {
+      "host": "ams-edge-02",
+      "syslog_skew_seconds": 7,
+      "zone_utc_offset": "9:00:00"
+    },
+    "m03-slow-credstuff": {
+      "host": "tokyo-edge-01",
+      "syslog_skew_seconds": 7,
+      "zone_utc_offset": "9:00:00"
+    }
+  },
+  "seed": 7,
+  "split": {
+    "dev": [
+      "b05-vpn-reconnect-retries",
+      "m03-slow-credstuff",
+      "m01-credstuff-exfil",
+      "b04-quarterly-report-export",
+      "b01-admin-bulk-restore"
+    ],
+    "held_out": [
+      "m04-insider-known-ip-bulk",
+      "b02-password-expiry-retries",
+      "m02-validcreds-staged-exfil",
+      "b03-helpdesk-unlock-burst"
+    ],
+    "order": [
+      "b05-vpn-reconnect-retries",
+      "m03-slow-credstuff",
+      "m01-credstuff-exfil",
+      "b04-quarterly-report-export",
+      "b01-admin-bulk-restore",
+      "m04-insider-known-ip-bulk",
+      "b02-password-expiry-retries",
+      "m02-validcreds-staged-exfil",
+      "b03-helpdesk-unlock-burst"
+    ],
+    "seed": 7
+  },
+  "synthetic": true
+}

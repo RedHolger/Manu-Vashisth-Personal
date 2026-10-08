@@ -1,0 +1,16 @@
+# P07 ExperimentLab — example experiment configuration
+#
+# Subset-YAML contract (see experiment.py): `key: value` mappings with
+# two-space indents, `- item` lists, bare/number/boolean/quoted scalars.
+# Tabs, flow collections and anchors are rejected.
+
+unit: user
+hypothesis: Checkout button color increases purchase rate
+primary_metric: purchased
+guardrails:
+  - refund_rate
+allocation:
+  A: 0.5
+  B: 0.5
+horizon_days: 14
+randomization_seed: 7

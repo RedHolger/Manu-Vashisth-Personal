@@ -1,0 +1,14 @@
+{
+  "note": "detector input, not a label",
+  "scenario": "m01-credstuff-exfil",
+  "source": "asset-owner configuration (synthetic)",
+  "users": {
+    "u-1042": {
+      "known_ips": [
+        "198.51.100.23"
+      ],
+      "normal_daily_egress_bytes": 52428800,
+      "session_type": "interactive"
+    }
+  }
+}

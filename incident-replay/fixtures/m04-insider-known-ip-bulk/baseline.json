@@ -1,0 +1,14 @@
+{
+  "note": "detector input, not a label",
+  "scenario": "m04-insider-known-ip-bulk",
+  "source": "asset-owner configuration (synthetic)",
+  "users": {
+    "u-4402": {
+      "known_ips": [
+        "198.51.100.77"
+      ],
+      "normal_daily_egress_bytes": 262144000,
+      "session_type": "interactive"
+    }
+  }
+}

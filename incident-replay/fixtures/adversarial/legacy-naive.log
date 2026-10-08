@@ -1,0 +1,2 @@
+Jan  4 09:13:22 legacy-host-01 authd[900]: event_id=adv-naive-000001 ts=2026-01-04T09:13:22 actor=u-9001 src_ip=203.0.113.200 event_type=auth_failure action=password_rejected bytes_out=0 object= ticket_ref= session_id=s-adv session_type=interactive auth_factors= seq=1
+Jan  4 09:13:30 legacy-host-01 authd[900]: event_id=adv-naive-000002 ts=2026-01-04T09:13:30 actor=u-9001 src_ip=203.0.113.200 event_type=auth_success action=login bytes_out=0 object= ticket_ref= session_id=s-adv session_type=interactive auth_factors=password seq=2

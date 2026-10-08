@@ -1,0 +1,14 @@
+{
+  "note": "detector input, not a label",
+  "scenario": "b04-quarterly-report-export",
+  "source": "asset-owner configuration (synthetic)",
+  "users": {
+    "u-6620": {
+      "known_ips": [
+        "198.51.100.61"
+      ],
+      "normal_daily_egress_bytes": 524288000,
+      "session_type": "interactive"
+    }
+  }
+}

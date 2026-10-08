@@ -1,0 +1,21 @@
+# ExFAT/IDE noise + build outputs stay out of the repo.
+._*
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+target/
+node_modules/
+dist/
+build/
+*.vvp
+*.vcd
+*.class
+*.jar
+*.db
+*.sqlite*
+.env
+*.pem
+*.key

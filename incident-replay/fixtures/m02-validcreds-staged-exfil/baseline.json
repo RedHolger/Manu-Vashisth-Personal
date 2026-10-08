@@ -1,0 +1,14 @@
+{
+  "note": "detector input, not a label",
+  "scenario": "m02-validcreds-staged-exfil",
+  "source": "asset-owner configuration (synthetic)",
+  "users": {
+    "u-2077": {
+      "known_ips": [
+        "198.51.100.31"
+      ],
+      "normal_daily_egress_bytes": 104857600,
+      "session_type": "interactive"
+    }
+  }
+}

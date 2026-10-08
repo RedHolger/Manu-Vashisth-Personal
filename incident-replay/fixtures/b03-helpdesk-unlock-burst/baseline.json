@@ -1,0 +1,14 @@
+{
+  "note": "detector input, not a label",
+  "scenario": "b03-helpdesk-unlock-burst",
+  "source": "asset-owner configuration (synthetic)",
+  "users": {
+    "svc-helpdesk": {
+      "known_ips": [
+        "198.51.100.9"
+      ],
+      "normal_daily_egress_bytes": 1048576,
+      "session_type": "workload"
+    }
+  }
+}

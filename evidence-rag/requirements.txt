@@ -1,0 +1,22 @@
+# P05-01 + P05-02 pins, resolved from the official indexes on 2026-10-06:
+#   https://pypi.org/pypi/<name>/json  and
+#   https://hub.docker.com/v2/repositories/pgvector/pgvector/tags
+# httpx2 (not httpx) is what starlette 1.7.0's TestClient imports; starlette
+# falls back to httpx only with a deprecation warning.
+# PostgreSQL itself runs in container pgvector/pgvector:0.8.7-pg16 (extension
+# vector 0.8.7) on host port 5435; see README.md.
+#
+# P05-02 (2026-10-06): fastembed 0.8.1 runs BAAI/bge-small-en-v1.5 on
+# ONNX Runtime — 384 dimensions, matching `embedding vector(384)` in migration
+# 0001. It pulls onnxruntime 1.30.0, tokenizers 0.23.2, numpy 2.5.3,
+# huggingface-hub 1.33.0 and py-rust-stemmers 0.1.8; see dependency-lock.txt in
+# results/p05-02-versioned-retrieval/. The model weights are cached outside the
+# repository on first use and are never committed. Keyword retrieval and every
+# non-vector test still run without it: `embedding_available()` gates the path
+# and the store reports ModeUnavailable instead of degrading silently.
+fastapi==0.142.2
+uvicorn==0.54.0
+httpx2==2.13.1
+pydantic==2.13.5
+psycopg[binary]==3.3.6
+fastembed==0.8.1

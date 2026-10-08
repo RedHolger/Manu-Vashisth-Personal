@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="380" viewBox="0 0 520 380" font-family="monospace" font-size="13">
+<rect width="520" height="380" fill="white"/>
+<text x="20" y="28" font-size="15">StudyPath wireframe (editable source, NOT a screenshot)</text>
+<rect x="20" y="45" width="480" height="40" fill="none" stroke="black" stroke-width="2"/>
+<text x="32" y="70">[Export]  [Import plan]  (toolbar)</text>
+<rect x="20" y="100" width="480" height="70" fill="none" stroke="black"/>
+<text x="32" y="125">Pixels and sampling</text>
+<text x="32" y="145">Requires: none</text>
+<rect x="360" y="120" width="120" height="28" fill="none" stroke="black"/>
+<text x="372" y="139">[Mark complete]</text>
+<rect x="20" y="180" width="480" height="70" fill="none" stroke="#888" stroke-dasharray="5,4"/>
+<text x="32" y="205">Blurring and sharpening</text>
+<text x="32" y="225">Requires: pixels (locked until done)</text>
+<rect x="360" y="200" width="120" height="28" fill="none" stroke="#888" stroke-dasharray="5,4"/>
+<text x="372" y="219">[Mark complete]</text>
+<rect x="20" y="260" width="480" height="44" fill="none" stroke="black"/>
+<text x="32" y="287">#message (role=status): errors + confirmations here</text>
+<text x="20" y="330">Conflict box appears here on overlap (P14-02), plan preserved.</text>
+<text x="20" y="352">Decisions + rejected alternatives: DESIGN.md (not this picture).</text>
+</svg>

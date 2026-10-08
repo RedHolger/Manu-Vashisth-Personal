@@ -1,0 +1,14 @@
+{
+  "note": "detector input, not a label",
+  "scenario": "m03-slow-credstuff",
+  "source": "asset-owner configuration (synthetic)",
+  "users": {
+    "u-3311": {
+      "known_ips": [
+        "198.51.100.47"
+      ],
+      "normal_daily_egress_bytes": 20971520,
+      "session_type": "interactive"
+    }
+  }
+}
