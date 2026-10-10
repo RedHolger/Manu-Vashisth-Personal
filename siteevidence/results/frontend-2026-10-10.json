@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "--test",
+    "tests/labels.test.ts"
+  ],
+  "exit_code": 0,
+  "date": "2026-10-10T00:57:36.863927+00:00",
+  "log_sha256": "db6479fce997b339beb5c527e93da1c31d283d002b6855a379967bd9578bcc1d"
+}

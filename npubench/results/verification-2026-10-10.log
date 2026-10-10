@@ -1,0 +1,17 @@
+/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/projects/builds/npubench/tests/test_parity.py:13: ResourceWarning: unclosed file <_io.TextIOWrapper name='package/meta.json' mode='r' encoding='UTF-8'>
+  cls.meta = json.load(open("package/meta.json"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/projects/builds/npubench/tests/test_parity.py:14: ResourceWarning: unclosed file <_io.TextIOWrapper name='results/bench.json' mode='r' encoding='UTF-8'>
+  cls.report = json.load(open("results/bench.json"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+test_cpu_provider_only (test_parity.TestParity.test_cpu_provider_only) ... ok
+test_latency_reported (test_parity.TestParity.test_latency_reported) ... ok
+test_model_hash_matches (test_parity.TestParity.test_model_hash_matches) ... ok
+test_npu_marked_skipped (test_parity.TestParity.test_npu_marked_skipped) ... ok
+test_parity_thresholds (test_parity.TestParity.test_parity_thresholds) ... ok
+test_weights_hash_matches_provenance (test_parity.TestParity.test_weights_hash_matches_provenance) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.061s
+
+OK

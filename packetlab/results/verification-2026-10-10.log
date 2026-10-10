@@ -1,0 +1,14 @@
+test_healthy_is_recovered (test_diagnostics.TestDiagnostics.test_healthy_is_recovered) ... ok
+test_loss_with_peers_up_flagged (test_diagnostics.TestDiagnostics.test_loss_with_peers_up_flagged) ... ok
+test_missing_prefix_flagged (test_diagnostics.TestDiagnostics.test_missing_prefix_flagged) ... ok
+test_peer_down_detected (test_diagnostics.TestDiagnostics.test_peer_down_detected) ... ok
+test_wrong_route_detected (test_diagnostics.TestDiagnostics.test_wrong_route_detected) ... ok
+test_rejects_missing_preconditions_and_kind (test_diagnostics.TestFaultPlan.test_rejects_missing_preconditions_and_kind) ... ok
+test_rejects_unbounded_and_missing_rollback (test_diagnostics.TestFaultPlan.test_rejects_unbounded_and_missing_rollback) ... ok
+test_valid_plan_passes (test_diagnostics.TestFaultPlan.test_valid_plan_passes) ... ok
+test_wrong_route_needs_prefixes (test_diagnostics.TestFaultPlan.test_wrong_route_needs_prefixes) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.002s
+
+OK

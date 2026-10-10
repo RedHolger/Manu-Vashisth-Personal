@@ -1,0 +1,40 @@
+{
+  "as_of": "2026-10-08",
+  "invoiced_per_ccy_minor": {
+    "EUR": 17500,
+    "USD": 5000,
+    "GBP": 3333
+  },
+  "invoiced_base_minor": 26000,
+  "open_base_minor": 9060,
+  "match_rate": "2/3",
+  "exceptions": [
+    {
+      "kind": "duplicate",
+      "payment": "PAY-D",
+      "ref": "INV-01"
+    },
+    {
+      "kind": "unmatched",
+      "payment": "PAY-E",
+      "ref": "INV-99"
+    }
+  ],
+  "open_rows": [
+    {
+      "invoice": "INV-03",
+      "status": "partial",
+      "open_base": 1560,
+      "bucket": "90+",
+      "past_due_days": 99
+    },
+    {
+      "invoice": "INV-04",
+      "status": "open",
+      "open_base": 7500,
+      "bucket": "1-30",
+      "past_due_days": 18
+    }
+  ],
+  "definitions": "match=same ref within 1 minor unit; FX half-up to EUR base (USD 0.92, GBP 1.17); aging vs 2026-10-08; educational, no advice"
+}

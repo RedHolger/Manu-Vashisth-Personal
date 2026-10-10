@@ -1,0 +1,15 @@
+{
+  "command": "make TOP=fifo TESTMOD=test_fifo DEPTH=4 DW=8",
+  "exit_code": 2,
+  "date": "2026-10-10T00:53:04.435976+00:00",
+  "evidence_ref": "results/verification-2026-10-10.log",
+  "evidence_sha256": "112624bfe7e4300e3fc89f7d2cc27198a67bbd3edca9d6bca3f98de63664b4ec",
+  "source_sha256": {
+    "rtl/axis_adapter.sv": "e10d51173c90483b9e745985e12212ab2b62f2e20abb649a4cfd9dd684ace370",
+    "rtl/fifo.sv": "b460622131b077dd7ba392f922c2688365ff47b75aefe2a029211bee309ac903",
+    "tests/test_axis.py": "28f70b81be668f9c32f0e963f7edbe9613989177ed0855032e88851a46d0d01c",
+    "tests/test_fifo.py": "ba69abf1e8f1ec0c0ee73e9adcda2266e0d4108fcf1eddd61947d1806d243fec"
+  },
+  "prior_measurement_ref": "results/regression.json",
+  "notes": "Fresh test invocation; raw output retained. Hardware/SQL Server exclusions remain explicit."
+}

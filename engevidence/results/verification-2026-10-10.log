@@ -1,0 +1,14 @@
+test_pdf_builds (test_trace.TestPackage.test_pdf_builds) ... /Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/projects/builds/engevidence/tests/test_trace.py:42: ResourceWarning: unclosed file <_io.TextIOWrapper name='results/review.json' mode='r' encoding='UTF-8'>
+  pkg = json.load(open("results/review.json"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_conflict (test_trace.TestSeededDefects.test_conflict) ... ok
+test_incomplete_evidence (test_trace.TestSeededDefects.test_incomplete_evidence) ... ok
+test_matrix_complete (test_trace.TestSeededDefects.test_matrix_complete) ... ok
+test_orphan (test_trace.TestSeededDefects.test_orphan) ... ok
+test_pending_and_failed (test_trace.TestSeededDefects.test_pending_and_failed) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.453s
+
+OK

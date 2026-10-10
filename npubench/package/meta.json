@@ -1,0 +1,10 @@
+{
+  "seed": 7,
+  "frames_T": 101,
+  "torch_version": "2.14.1",
+  "opset_requested": 17,
+  "opset_actual": 18,
+  "model_sha256": "313f1dfd508fc7f915a9273e523e116805949b7e5c34accb77fff6a5b0f561de",
+  "weights_sha256": "1d1c0e9309c5d9df99851e8fc79d5b22f0e312aa00afb320b00f5779eb93b372",
+  "n_inputs": 9
+}

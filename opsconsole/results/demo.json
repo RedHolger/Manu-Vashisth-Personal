@@ -1,0 +1,122 @@
+[
+  {
+    "op": "GET /api/jobs?status=failed as operator",
+    "status": 200,
+    "body": {
+      "items": [
+        {
+          "id": 1,
+          "name": "compile-api",
+          "status": "failed",
+          "version": 1,
+          "runs": []
+        },
+        {
+          "id": 3,
+          "name": "queue-drain-1",
+          "status": "failed",
+          "version": 1,
+          "runs": []
+        },
+        {
+          "id": 7,
+          "name": "compile-worker",
+          "status": "failed",
+          "version": 1,
+          "runs": []
+        },
+        {
+          "id": 12,
+          "name": "run-rollback-drill",
+          "status": "failed",
+          "version": 1,
+          "runs": []
+        }
+      ],
+      "page": 1,
+      "per_page": 10,
+      "total": 4
+    }
+  },
+  {
+    "op": "GET /api/jobs/1 as operator",
+    "status": 200,
+    "body": {
+      "id": 1,
+      "name": "compile-api",
+      "status": "failed",
+      "version": 1,
+      "runs": []
+    }
+  },
+  {
+    "op": "POST /api/jobs/1/retry as operator",
+    "status": 200,
+    "body": {
+      "job": {
+        "id": 1,
+        "name": "compile-api",
+        "status": "queued",
+        "version": 2,
+        "runs": [
+          1000
+        ]
+      },
+      "run_id": 1000,
+      "replayed": false
+    }
+  },
+  {
+    "op": "POST /api/jobs/1/retry as operator",
+    "status": 200,
+    "body": {
+      "job": {
+        "id": 1,
+        "name": "compile-api",
+        "status": "queued",
+        "version": 2,
+        "runs": [
+          1000
+        ]
+      },
+      "run_id": 1000,
+      "replayed": true
+    }
+  },
+  {
+    "op": "GET /api/audit as admin",
+    "status": 200,
+    "body": {
+      "items": [
+        {
+          "t": "2026-10-08T17:07:31Z",
+          "actor": "operator",
+          "action": "job.retry",
+          "detail": "job=1 run=1000 key=demo-investigation-1"
+        }
+      ]
+    }
+  },
+  {
+    "op": "POST /api/incidents/1/actions as operator",
+    "status": 200,
+    "body": {
+      "incident": {
+        "id": 1,
+        "title": "queue depth spike",
+        "severity": "high",
+        "actions": [
+          "paged on-call",
+          "retried failed job from investigation"
+        ]
+      }
+    }
+  },
+  {
+    "op": "POST /api/jobs/1/cancel as viewer",
+    "status": 403,
+    "body": {
+      "error": "forbidden for role viewer"
+    }
+  }
+]

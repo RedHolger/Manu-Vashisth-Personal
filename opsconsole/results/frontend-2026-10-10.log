@@ -1,0 +1,106 @@
+TAP version 13
+# (node:52951) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: auth matrix (mirrors backend)
+    # Subtest: viewer is read-only
+    ok 1 - viewer is read-only
+      ---
+      duration_ms: 0.385167
+      ...
+    # Subtest: operator mutates but sees no audit
+    ok 2 - operator mutates but sees no audit
+      ---
+      duration_ms: 0.067125
+      ...
+    # Subtest: admin does everything
+    ok 3 - admin does everything
+      ---
+      duration_ms: 0.06775
+      ...
+    # Subtest: status rules match backend 422s
+    ok 4 - status rules match backend 422s
+      ---
+      duration_ms: 0.061959
+      ...
+    1..4
+ok 1 - auth matrix (mirrors backend)
+  ---
+  duration_ms: 1.25275
+  type: 'suite'
+  ...
+# (node:52952) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: frontend client cancel integration (live backend)
+    # Subtest: cancel sends the required key (was HTTP 400)
+    ok 1 - cancel sends the required key (was HTTP 400)
+      ---
+      duration_ms: 5.54725
+      ...
+    # Subtest: repeating the same logical cancel replays (no second mutation)
+    ok 2 - repeating the same logical cancel replays (no second mutation)
+      ---
+      duration_ms: 2.842875
+      ...
+    # Subtest: actWithRetry reuses the stable key on the retry path
+    ok 3 - actWithRetry reuses the stable key on the retry path
+      ---
+      duration_ms: 4.510791
+      ...
+    1..3
+ok 2 - frontend client cancel integration (live backend)
+  ---
+  duration_ms: 155.8505
+  type: 'suite'
+  ...
+# Subtest: key policy units
+    # Subtest: makeKey is stable per logical action
+    ok 1 - makeKey is stable per logical action
+      ---
+      duration_ms: 0.171
+      ...
+    # Subtest: isAmbiguous: network/5xx retry, 4xx decisive
+    ok 2 - isAmbiguous: network/5xx retry, 4xx decisive
+      ---
+      duration_ms: 0.244792
+      ...
+    1..2
+ok 3 - key policy units
+  ---
+  duration_ms: 0.603791
+  type: 'suite'
+  ...
+# (node:52953) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: paging helpers
+    # Subtest: page counts
+    ok 1 - page counts
+      ---
+      duration_ms: 0.519584
+      ...
+    # Subtest: clamps
+    ok 2 - clamps
+      ---
+      duration_ms: 0.074708
+      ...
+    # Subtest: slices match backend windowing
+    ok 3 - slices match backend windowing
+      ---
+      duration_ms: 0.770458
+      ...
+    1..3
+ok 4 - paging helpers
+  ---
+  duration_ms: 1.988209
+  type: 'suite'
+  ...
+1..4
+# tests 12
+# suites 4
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 331.189416
+(node:52950) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

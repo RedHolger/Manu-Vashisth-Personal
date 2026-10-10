@@ -1,0 +1,18 @@
+Partner pipeline: win rate 5/7 (71.43%), average won deal EUR 11666.67 over 3 deals; 1 outlier excluded by the 3x-median rule; 2 rows lack amounts, 1 lack a stage, 1 duplicate ext_id deduped. Enablement completion 3/5 (60.0%). Every excluded row is counted above; open pipeline is outside win-rate scope.
+/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/projects/builds/partnerops/tests/test_kpis.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='sql/schema.sql' mode='r' encoding='UTF-8'>
+  db.execute(open("sql/schema.sql").read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/projects/builds/partnerops/tests/test_kpis.py:19: ResourceWarning: unclosed file <_io.TextIOWrapper name='sql/seed.sql' mode='r' encoding='UTF-8'>
+  db.execute(open("sql/seed.sql").read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+test_avg_and_outlier (test_kpis.TestHandCalcs.test_avg_and_outlier) ... ok
+test_deterministic (test_kpis.TestHandCalcs.test_deterministic) ... ok
+test_enablement (test_kpis.TestHandCalcs.test_enablement) ... ok
+test_missing_unknown_duplicates (test_kpis.TestHandCalcs.test_missing_unknown_duplicates) ... ok
+test_narrative_reconciles (test_kpis.TestHandCalcs.test_narrative_reconciles) ... ok
+test_win_rate (test_kpis.TestHandCalcs.test_win_rate) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.097s
+
+OK

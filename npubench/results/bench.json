@@ -1,0 +1,25 @@
+{
+  "parity_thresholds": {
+    "max_abs_below": 0.0001,
+    "or_max_rel_below": 1e-05,
+    "agreement_required": "9/9"
+  },
+  "max_abs_diff": 0.00146484375,
+  "max_rel_diff": 5.364418029785156e-07,
+  "parity_note": "sine-mel saturates logits (|.|~5758); its abs diff is rel 2.5e-7. Random inputs match to ~1e-7 abs.",
+  "mean_abs_diff": 8.01323350362932e-05,
+  "top1_agreement": "9/9",
+  "operator_support": "session built on CPUExecutionProvider: all graph ops supported",
+  "latency_ms": {
+    "p50_ms": 0.167,
+    "p90_ms": 0.215,
+    "p99_ms": 0.383
+  },
+  "ort_version": "1.30.0",
+  "providers": [
+    "CPUExecutionProvider"
+  ],
+  "hardware": "arm64 arm (CPU only; no NPU)",
+  "model_sha256": "313f1dfd508fc7f915a9273e523e116805949b7e5c34accb77fff6a5b0f561de",
+  "npu_execution": "SKIPPED (no NPU hardware); CPU numbers are not NPU results"
+}

@@ -1,0 +1,192 @@
+[
+  {
+    "name": "dns_unresolvable",
+    "outcome": "pass",
+    "steps": [
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "symptom",
+        "detail": "getaddrinfo('no-such-host.invalid') -> gaierror [Errno 8] nodename nor servname provided, or not known"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "diagnostics",
+        "detail": ".invalid is non-resolvable by design (RFC 2606); not a resolver outage"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "root_cause",
+        "detail": "wrong hostname in configuration"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "fix",
+        "detail": "use the correct hostname 'localhost'"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "recovery_proof",
+        "detail": "localhost resolves to ['127.0.0.1', '::1']"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "customer_explanation",
+        "detail": "The name ...invalid can never resolve by design; point the client at the documented hostname and retest DNS first."
+      }
+    ]
+  },
+  {
+    "name": "tcp_refused",
+    "outcome": "pass",
+    "steps": [
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "symptom",
+        "detail": "connect 127.0.0.1:54912 -> ConnectionRefusedError errno=61"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "diagnostics",
+        "detail": "errno 61 means nothing is listening on that port (no firewall RST seen)"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "root_cause",
+        "detail": "service not running on the expected port"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "fix",
+        "detail": "start the service on the documented port"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "recovery_proof",
+        "detail": "reconnect banner=b'OK\\n'"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "customer_explanation",
+        "detail": "Connection refused = reached host, no service on port. Start/enable the service (or correct the port) rather than changing firewall rules."
+      }
+    ]
+  },
+  {
+    "name": "http_timeout",
+    "outcome": "pass",
+    "steps": [
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "diagnostics",
+        "detail": "control /fast answers instantly: server is healthy"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "symptom",
+        "detail": "GET /slow timeout=0.5s -> TimeoutError after 0.50s"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "diagnostics",
+        "detail": "server needs 2.5s; client gave up at 0.5s"
+      },
+      {
+        "t": "2026-10-08T09:59:33+00:00",
+        "phase": "root_cause",
+        "detail": "client timeout shorter than normal handler latency"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "fix",
+        "detail": "retry once after backoff with timeout 8s"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "recovery_proof",
+        "detail": "200 body sha256=1a749a593d0a96ae12fc0ab2075e88aeee066350d089e507336c8ee9445e8dfa"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "customer_explanation",
+        "detail": "The request timed out client-side while the server was still working. Retried with a timeout above the known latency; no server change needed."
+      }
+    ]
+  },
+  {
+    "name": "tls_hostname",
+    "outcome": "pass",
+    "steps": [
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "symptom",
+        "detail": "handshake server_hostname='wrongname.example' -> CertificateError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'wrongname.example'. (_ssl.c:1082)"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "diagnostics",
+        "detail": "server cert identity: subject=CN=localhost\nX509v3 Subject Alternative Name: \n    DNS:localhost"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "root_cause",
+        "detail": "client requested a name not present in the cert SAN/CN"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "fix",
+        "detail": "connect with the name on the certificate ('localhost')"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "recovery_proof",
+        "detail": "verified TLS, first response line: b'HTTP/1.0 200 OK'"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "customer_explanation",
+        "detail": "TLS validates the server NAME, not just encryption. Use the hostname printed on the certificate (or reissue it for the right name)."
+      }
+    ]
+  },
+  {
+    "name": "upload_expiry",
+    "outcome": "pass",
+    "steps": [
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "symptom",
+        "detail": "POST with exp=1791453516 (60s old) -> 403 expired"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "diagnostics",
+        "detail": "server time ok; signature valid; only exp is stale (replay/expiry, not a signing bug)"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "root_cause",
+        "detail": "upload URL used after its expiry"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "fix",
+        "detail": "mint a fresh URL (exp=+300s) and re-upload"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "recovery_proof",
+        "detail": "200 stored sha256=e4a1f3f58eb64c29ec50507ddb2e554101635c1cfae2073fb9709ea313b0a449 matches client"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "diagnostics",
+        "detail": "tampered signature stays 403: expiry and signature are independent checks"
+      },
+      {
+        "t": "2026-10-08T09:59:36+00:00",
+        "phase": "customer_explanation",
+        "detail": "Signed upload links expire on purpose. Generate a new link just before uploading instead of reusing an old one."
+      }
+    ]
+  }
+]

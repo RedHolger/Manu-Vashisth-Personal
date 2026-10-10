@@ -1,0 +1,11 @@
+test_actions_cover_flagged (test_charts.TestHandCalcs.test_actions_cover_flagged) ... ok
+test_capability_range (test_charts.TestHandCalcs.test_capability_range) ... ok
+test_fixture_counts (test_charts.TestHandCalcs.test_fixture_counts) ... ok
+test_null_batch_valid_verdict (test_charts.TestHandCalcs.test_null_batch_valid_verdict) ... ok
+test_shifted_flagged_clean_clear (test_charts.TestHandCalcs.test_shifted_flagged_clean_clear) ... ok
+test_traceability (test_charts.TestHandCalcs.test_traceability) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.007s
+
+OK

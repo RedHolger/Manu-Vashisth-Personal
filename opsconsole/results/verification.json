@@ -1,0 +1,26 @@
+{
+  "command": "/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/bin/python -B -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "date": "2026-10-10T00:52:55.757712+00:00",
+  "evidence_ref": "results/verification-2026-10-10.log",
+  "evidence_sha256": "7a393d3a896d9ff7f84001983426d088b9833650d57bb838806bc1afea25ff0e",
+  "source_sha256": {
+    "backend/adapters.py": "44052faf6da3b45a777b41d883b4f2eb2717b67498b14262cc4569792ba1a964",
+    "backend/server.py": "17c76f6e3bcc3fc8ec8ace5effe80b830f4177e6cd81dcdb544ebe08227da7b0",
+    "demo_investigation.py": "bd3aa30b4aad8d7ebca7550f48a85cea831939bfb5566f0bbd7abdd07b9bd836",
+    "frontend/src/App.tsx": "bfde88dbc74efb576a298b3581d7582f7a7e8ee505277136b7f6ff34c3a39236",
+    "frontend/src/api.ts": "558b446175a1dcaee3f5063b6f6cbb53779874635345a5845e637d33a93e088c",
+    "frontend/src/auth.ts": "589240f598dfc638a5b8f7217bfee7b0521eafc77f62c5cd489fc0d7dc52c206",
+    "frontend/src/main.tsx": "f11b5c2fb8b63400f9ddecc0948af6b9292b128c90c0e8a7c51463f2b6bec8b0",
+    "frontend/src/paging.ts": "b89d5d82f5f6e1b8ae713f0789b85f858bd72595955bf921b811488f077fcb37",
+    "frontend/src/types.ts": "32fc137b6c0cbfdc30a9931373503b5130e39e3828171ae2bf8cbd0caaafb81c",
+    "frontend/tests/auth.test.ts": "77b63b48a59647e34a502b549c4294c23d64161c717c2024df0f434373c49977",
+    "frontend/tests/client.test.ts": "610807b8180938f9fc9bb8f625bda232f442b1cbfde1754fca75268bfc2f8fda",
+    "frontend/tests/paging.test.ts": "59a5c7fd288a50c97050d81007764ffe8a1b2ee9f459e54bce4881ee867959c6",
+    "frontend/vite.config.ts": "aa4d793f4437c6a2208409853f2d27959f620393a96081746587dbac2650ba72",
+    "tests/test_api.py": "1f3b1bec04309d14394efbe2a152f77baef1a265d5d4bedaf519ea01964be749"
+  },
+  "prior_measurement_ref": "results/demo.json",
+  "notes": "Fresh test invocation; raw output retained. Hardware/SQL Server exclusions remain explicit.",
+  "tests_passed": 11
+}

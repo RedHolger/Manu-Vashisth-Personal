@@ -1,0 +1,28 @@
+{
+  "critical_path": [
+    "T1",
+    "T2",
+    "T4",
+    "T8"
+  ],
+  "critical_length_days": 19,
+  "weekly": {
+    "as_of": "2026-10-08",
+    "by_status": {
+      "done": 2,
+      "in-progress": 1,
+      "queued": 4
+    },
+    "drifts": {
+      "M1": -2
+    },
+    "top_risks": [
+      "R1"
+    ],
+    "narrative": "Week of 2026-10-08: 2/7 tasks done; milestone drift {'M1': -2}; top open risks: R1:settlement window overruns."
+  },
+  "milestone_drift": {
+    "M1": -2
+  },
+  "charter_scope": "synthetic training scope; no real programme"
+}

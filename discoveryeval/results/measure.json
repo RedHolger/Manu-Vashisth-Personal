@@ -1,0 +1,56 @@
+{
+  "n_docs": 60,
+  "n_queries": 24,
+  "n_cold": 6,
+  "seed": 42,
+  "methods": {
+    "lexical": {
+      "recall@5": 0.6667,
+      "recall@5_ci95": [
+        0.4792,
+        0.8333
+      ],
+      "recall@10": 0.8125,
+      "ndcg@10": 0.5872,
+      "mrr": 0.5336,
+      "mean_latency_ms": 0.325,
+      "cold_recall@5": 0.0
+    },
+    "dense": {
+      "recall@5": 0.6458,
+      "recall@5_ci95": [
+        0.4583,
+        0.8125
+      ],
+      "recall@10": 0.8125,
+      "ndcg@10": 0.544,
+      "mrr": 0.4731,
+      "mean_latency_ms": 0.989,
+      "cold_recall@5": 0.0
+    },
+    "hybrid": {
+      "recall@5": 0.6667,
+      "recall@5_ci95": [
+        0.4792,
+        0.8333
+      ],
+      "recall@10": 0.8125,
+      "ndcg@10": 0.5788,
+      "mrr": 0.5231,
+      "mean_latency_ms": 1.312,
+      "cold_recall@5": 0.0
+    },
+    "rerank": {
+      "recall@5": 0.5833,
+      "recall@5_ci95": [
+        0.3958,
+        0.75
+      ],
+      "recall@10": 0.8125,
+      "ndcg@10": 0.5698,
+      "mrr": 0.5072,
+      "mean_latency_ms": 1.357,
+      "cold_recall@5": 0.0
+    }
+  }
+}

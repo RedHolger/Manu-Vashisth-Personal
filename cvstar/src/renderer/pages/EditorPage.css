@@ -1,0 +1,250 @@
+.editor-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #252526;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.back-btn {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid #3c3c3c;
+  border-radius: 4px;
+  color: #cccccc;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+.editor-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.editor-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.compile-btn {
+  padding: 8px 16px;
+  border: 1px solid #3c3c3c;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #cccccc;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.compile-btn:hover {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+.compile-btn.compiling {
+  background-color: #0e639c;
+  color: #ffffff;
+  border-color: #0e639c;
+  cursor: wait;
+}
+
+.settings-btn,
+.tools-btn {
+  padding: 8px 12px;
+  background-color: transparent;
+  border: 1px solid #3c3c3c;
+  border-radius: 4px;
+  color: #cccccc;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.settings-btn:hover,
+.tools-btn:hover {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+.tools-btn::after {
+  content: '▼';
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.editor-container {
+  flex: 1;
+  display: flex;
+  height: calc(100% - 80px); /* Header height minus status bar */
+}
+
+.editor-panel,
+.preview-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: 1px solid #3c3c3c;
+  box-sizing: border-box;
+}
+
+.editor-panel {
+  border-right: none;
+}
+
+.editor-toolbar,
+.preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #252526;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.file-name {
+  font-weight: 500;
+  color: #cccccc;
+}
+
+.editor-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.tab {
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #858585;
+  cursor: pointer;
+}
+
+.tab.active {
+  border-color: #3c3c3c;
+  color: #ffffff;
+  background-color: #1e1e1e;
+}
+
+.editor-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.editor-outline {
+  padding: 12px;
+  border-top: 1px solid #3c3c3c;
+  background-color: #252526;
+  font-size: 14px;
+}
+
+.editor-outline h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #cccccc;
+}
+
+.editor-outline ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.editor-outline li {
+  padding: 4px 0;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.editor-outline li:last-child {
+  border-bottom: none;
+}
+
+.preview-content {
+  flex: 1;
+  overflow: auto;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-placeholder {
+  text-align: center;
+  color: #858585;
+  font-style: italic;
+  padding: 40px;
+}
+
+.preview-placeholder p {
+  margin: 0;
+}
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  background-color: #252526;
+  border-top: 1px solid #3c3c3c;
+  height: 40px;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.status-compiling {
+  color: #ffcc00;
+}
+
+.status-error {
+  color: #f44747;
+}
+
+.status-ready {
+  color: #6a9955;
+}
+
+.status-right {
+  display: flex;
+  gap: 8px;
+}
+
+.recompile-btn {
+  padding: 6px 12px;
+  border: 1px solid #3c3c3c;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #cccccc;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.recompile-btn:hover {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+.recompile-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

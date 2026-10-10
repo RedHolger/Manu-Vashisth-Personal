@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "--test",
+    "tests/auth.test.ts",
+    "tests/client.test.ts",
+    "tests/paging.test.ts"
+  ],
+  "exit_code": 0,
+  "date": "2026-10-10T00:57:37.255203+00:00",
+  "log_sha256": "0d332e714475b14aa83d6e27f068681135f5d8211ffb082e65477db0e008deca"
+}

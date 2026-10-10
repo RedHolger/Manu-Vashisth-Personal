@@ -1,0 +1,12 @@
+test_bounds_and_keys (test_eval.TestDeterminism.test_bounds_and_keys) ... ok
+test_measure_twice_identical (test_eval.TestDeterminism.test_measure_twice_identical) ... ok
+test_counts (test_eval.TestFrozen.test_counts) ... ok
+test_overlap_contracts_hold (test_eval.TestFrozen.test_overlap_contracts_hold) ... ok
+test_bootstrap_shape (test_eval.TestMetrics.test_bootstrap_shape) ... ok
+test_partial_ranking (test_eval.TestMetrics.test_partial_ranking) ... ok
+test_perfect_ranking (test_eval.TestMetrics.test_perfect_ranking) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.452s
+
+OK

@@ -1,0 +1,17 @@
+$ /Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/bin/python -m unittest discover -s tests -v
+test_basket_only_store (test_funnel.TestHandCalcs.test_basket_only_store) ... ok
+test_cohorts (test_funnel.TestHandCalcs.test_cohorts) ... ok
+test_dedup (test_funnel.TestHandCalcs.test_dedup) ... ok
+test_empty_store_no_crash (test_funnel.TestHandCalcs.test_empty_store_no_crash) ... ok
+test_funnel (test_funnel.TestHandCalcs.test_funnel) ... ok
+test_idempotent_ingest (test_funnel.TestHandCalcs.test_idempotent_ingest) ... ok
+test_substitution_and_slots (test_funnel.TestHandCalcs.test_substitution_and_slots) ... ok
+test_view_only_store (test_funnel.TestHandCalcs.test_view_only_store) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.004s
+
+OK
+unittest exit: 0
+$ /Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/bin/python report.py
+report exit: 0

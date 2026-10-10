@@ -1,0 +1,36 @@
+TAP version 13
+# (node:52948) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: site labels
+    # Subtest: overdue logic mirrors backend
+    ok 1 - overdue logic mirrors backend
+      ---
+      duration_ms: 0.353459
+      ...
+    # Subtest: labels
+    ok 2 - labels
+      ---
+      duration_ms: 0.061542
+      ...
+    # Subtest: owner buckets count open only
+    ok 3 - owner buckets count open only
+      ---
+      duration_ms: 0.299334
+      ...
+    1..3
+ok 1 - site labels
+  ---
+  duration_ms: 1.148125
+  type: 'suite'
+  ...
+1..1
+# tests 3
+# suites 1
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 101.992208
+(node:52946) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

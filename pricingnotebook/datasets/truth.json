@@ -1,0 +1,29 @@
+{
+ "B_FREQ": {
+  "intercept": -2.0,
+  "young": 0.6,
+  "urban": 0.5,
+  "suv": 0.3
+ },
+ "B_SEV": {
+  "intercept": 6.5,
+  "suv": 0.2,
+  "urban": 0.1
+ },
+ "SIGMA": 0.4,
+ "seed": 5,
+ "train_periods": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "test_periods": [
+  8,
+  9,
+  10
+ ]
+}

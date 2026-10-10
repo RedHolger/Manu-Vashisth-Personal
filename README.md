@@ -28,6 +28,25 @@ plainly — including what still needs hardware, participants, or review.
 | `edge-bench/` | Host CPU vision baseline + one bit-identical optimization. |
 | `silicon-check/` | FIFO RTL verified against a Python model in Icarus Verilog. |
 | `enclosure-lab/` | Parametric enclosure CAD (OpenSCAD + drawings) on assumed dimensions. |
+| `readingqueue/` | Java REST reading list, dual-dialect migrations: same 9-test contract green on PostgreSQL 16 and SQL Server 2022, plus React UI. |
+| `partnerops/` | Partner-pipeline analytics dashboard (Python/PostgreSQL). |
+| `commercefunnel/` | E-commerce funnel and fulfilment dashboard (Python/SQL). |
+| `deliveryplan/` | Launch delivery tracker: owners, dependencies, milestones, RAID (React/FastAPI). |
+| `pricingnotebook/` | Educational synthetic insurance frequency/severity GLMs (Python). |
+| `pdebench/` | 1D heat + 2D Poisson finite-difference solvers with PINN comparison (Python). |
+| `packetlab/` | Live two-peer FRR eBGP fault/recovery lab with Python diagnostics. |
+| `siliconcheck/` | Parameterized FIFO + AXI-Stream checks with cocotb/open simulator. |
+| `engevidence/` | Requirements/revision/review traceability demo (Python/SQLite). |
+| `siteevidence/` | Construction RFI/inspection tracker (FastAPI/React/SQLite). |
+| `processcheck/` | Synthetic batch-quality analysis with control charts (Python). |
+| `devicetelemetry/` | Sensor-frame simulator + fault harness, ASan/UBSan clean (C++/Python). |
+| `npubench/` | ONNX CPU parity baseline for keyword spotting; NPU run skipped (no hardware). |
+| `priveval/` | Canary-secret GenAI privacy evaluation harness (Python/SQLite). |
+| `cloudsupport/` | Reproducible DNS/TCP/HTTP/TLS troubleshooting casebook (stdlib Python). |
+| `opsconsole/` | Job/incident dashboard over lab adapters (React/TypeScript). |
+| `discoveryeval/` | Lexical/dense/hybrid retrieval comparison (Python/NumPy). |
+| `recondesk/` | Invoice-payment reconciliation lab with FX handling (Python/SQL). |
+| `cvstar/` | LaTeX resume editing workspace: Monaco editor + PDF preview in Electron (React/TS). Excludes a stale nested copy and the unrelated Flutter side folder. |
 
 SRE work (BudgetGuard/FaultLab/RecoverOps audits) lives in a separate
 private repository and is not published here.

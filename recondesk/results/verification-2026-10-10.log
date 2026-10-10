@@ -1,0 +1,11 @@
+test_aging_buckets (test_ledger.TestHandCalcs.test_aging_buckets) ... ok
+test_fx_half_up (test_ledger.TestHandCalcs.test_fx_half_up) ... ok
+test_overpayment_flagged (test_ledger.TestHandCalcs.test_overpayment_flagged) ... ok
+test_reconcile_matches_spec (test_ledger.TestHandCalcs.test_reconcile_matches_spec) ... ok
+test_report_ties_out (test_ledger.TestHandCalcs.test_report_ties_out) ... ok
+test_tolerance_dust (test_ledger.TestHandCalcs.test_tolerance_dust) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

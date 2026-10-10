@@ -1,0 +1,10 @@
+[
+  {"id": "B1", "user": "alice", "tenant": "alpha", "query": "lunch fridays", "expect": "sandwiches"},
+  {"id": "B2", "user": "alice", "tenant": "alpha", "query": "holiday january", "expect": "January first"},
+  {"id": "B3", "user": "bob", "tenant": "beta", "query": "deploy restart", "expect": "migrations"},
+  {"id": "B4", "user": "bob", "tenant": "beta", "query": "holiday", "expect": "January first"},
+  {"id": "B5", "user": "alice", "tenant": "alpha", "query": "vpn connect", "expect": "vpn.example"},
+  {"id": "B6", "user": "alice", "tenant": "alpha", "query": "refund days", "expect": "30 days"},
+  {"id": "B7", "user": "bob", "tenant": "beta", "query": "invoice total", "expect": "4200"},
+  {"id": "B8", "user": "bob", "tenant": "beta", "query": "deploy before restart", "expect": "migrations"}
+]

@@ -1,0 +1,1210 @@
+[
+ {
+  "id": "P001",
+  "title": "brass pn16 gate-101",
+  "description": "brass pn16 shutoff with seat stem body. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "101",
+   "body.",
+   "brass",
+   "gate",
+   "industrial",
+   "pn16",
+   "seat",
+   "service.",
+   "shutoff",
+   "stem",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P002",
+  "title": "shutoff pn16 gate-102",
+  "description": "shutoff pn16 brass with pressure rated stem body. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "102",
+   "body.",
+   "brass",
+   "gate",
+   "industrial",
+   "pn16",
+   "pressure",
+   "rated",
+   "service.",
+   "shutoff",
+   "stem",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P003",
+  "title": "brass flow gate-103",
+  "description": "brass flow gate with body pressure rated handwheel. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "103",
+   "body",
+   "brass",
+   "flow",
+   "gate",
+   "handwheel.",
+   "industrial",
+   "pressure",
+   "rated",
+   "service.",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P004",
+  "title": "brass shutoff gate-104",
+  "description": "brass shutoff pn16 with stem body handwheel. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "104",
+   "body",
+   "brass",
+   "gate",
+   "handwheel.",
+   "industrial",
+   "pn16",
+   "service.",
+   "shutoff",
+   "stem",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P005",
+  "title": "valve shutoff gate-105",
+  "description": "valve shutoff flanged with stem pressure rated handwheel. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "105",
+   "flanged",
+   "gate",
+   "handwheel.",
+   "industrial",
+   "pressure",
+   "rated",
+   "service.",
+   "shutoff",
+   "stem",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P006",
+  "title": "valve brass gate-106",
+  "description": "valve brass flow with seat stem handwheel. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "106",
+   "brass",
+   "flow",
+   "gate",
+   "handwheel.",
+   "industrial",
+   "seat",
+   "service.",
+   "stem",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P007",
+  "title": "gate flanged gate-107",
+  "description": "gate flanged flow with seat body handwheel. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "107",
+   "body",
+   "flanged",
+   "flow",
+   "gate",
+   "handwheel.",
+   "industrial",
+   "seat",
+   "service.",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P008",
+  "title": "valve brass gate-108",
+  "description": "valve brass flow with seat body handwheel. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "108",
+   "body",
+   "brass",
+   "flow",
+   "gate",
+   "handwheel.",
+   "industrial",
+   "seat",
+   "service.",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P009",
+  "title": "flow shutoff gate-109",
+  "description": "flow shutoff gate with pressure rated handwheel body. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "109",
+   "body.",
+   "flow",
+   "gate",
+   "handwheel",
+   "industrial",
+   "pressure",
+   "rated",
+   "service.",
+   "shutoff",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P010",
+  "title": "valve pn16 gate-110",
+  "description": "valve pn16 shutoff with seat body stem. Suitable for industrial gate valve service.",
+  "category": "gate-valve",
+  "terms": [
+   "110",
+   "body",
+   "gate",
+   "industrial",
+   "pn16",
+   "seat",
+   "service.",
+   "shutoff",
+   "stem.",
+   "suitable",
+   "valve"
+  ]
+ },
+ {
+  "id": "P011",
+  "title": "head pump centrifugal-111",
+  "description": "head pump volute with motor seal cavitation free. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "111",
+   "cavitation",
+   "centrifugal",
+   "free.",
+   "head",
+   "industrial",
+   "motor",
+   "pump",
+   "seal",
+   "service.",
+   "suitable",
+   "volute"
+  ]
+ },
+ {
+  "id": "P012",
+  "title": "pump head centrifugal-112",
+  "description": "pump head volute with discharge cavitation free motor. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "112",
+   "cavitation",
+   "centrifugal",
+   "discharge",
+   "free",
+   "head",
+   "industrial",
+   "motor.",
+   "pump",
+   "service.",
+   "suitable",
+   "volute"
+  ]
+ },
+ {
+  "id": "P013",
+  "title": "3kw volute centrifugal-113",
+  "description": "3kw volute centrifugal with bearing housing cavitation free motor. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "113",
+   "3kw",
+   "bearing",
+   "cavitation",
+   "centrifugal",
+   "free",
+   "housing",
+   "industrial",
+   "motor.",
+   "pump",
+   "service.",
+   "suitable",
+   "volute"
+  ]
+ },
+ {
+  "id": "P014",
+  "title": "impeller suction centrifugal-114",
+  "description": "impeller suction pump with discharge motor cavitation free. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "114",
+   "cavitation",
+   "centrifugal",
+   "discharge",
+   "free.",
+   "impeller",
+   "industrial",
+   "motor",
+   "pump",
+   "service.",
+   "suction",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P015",
+  "title": "centrifugal volute centrifugal-115",
+  "description": "centrifugal volute pump with motor cavitation free seal. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "115",
+   "cavitation",
+   "centrifugal",
+   "free",
+   "industrial",
+   "motor",
+   "pump",
+   "seal.",
+   "service.",
+   "suitable",
+   "volute"
+  ]
+ },
+ {
+  "id": "P016",
+  "title": "suction head centrifugal-116",
+  "description": "suction head centrifugal with cavitation free seal discharge. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "116",
+   "cavitation",
+   "centrifugal",
+   "discharge.",
+   "free",
+   "head",
+   "industrial",
+   "pump",
+   "seal",
+   "service.",
+   "suction",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P017",
+  "title": "3kw centrifugal centrifugal-117",
+  "description": "3kw centrifugal volute with discharge cavitation free motor. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "117",
+   "3kw",
+   "cavitation",
+   "centrifugal",
+   "discharge",
+   "free",
+   "industrial",
+   "motor.",
+   "pump",
+   "service.",
+   "suitable",
+   "volute"
+  ]
+ },
+ {
+  "id": "P018",
+  "title": "head suction centrifugal-118",
+  "description": "head suction centrifugal with motor bearing housing discharge. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "118",
+   "bearing",
+   "centrifugal",
+   "discharge.",
+   "head",
+   "housing",
+   "industrial",
+   "motor",
+   "pump",
+   "service.",
+   "suction",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P019",
+  "title": "impeller pump centrifugal-119",
+  "description": "impeller pump centrifugal with seal discharge bearing housing. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "119",
+   "bearing",
+   "centrifugal",
+   "discharge",
+   "housing.",
+   "impeller",
+   "industrial",
+   "pump",
+   "seal",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P020",
+  "title": "volute 3kw centrifugal-120",
+  "description": "volute 3kw pump with motor seal cavitation free. Suitable for industrial centrifugal pump service.",
+  "category": "centrifugal-pump",
+  "terms": [
+   "120",
+   "3kw",
+   "cavitation",
+   "centrifugal",
+   "free.",
+   "industrial",
+   "motor",
+   "pump",
+   "seal",
+   "service.",
+   "suitable",
+   "volute"
+  ]
+ },
+ {
+  "id": "P021",
+  "title": "npn inductive proximity-121",
+  "description": "npn inductive sensor with response threaded barrel led indicator. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "121",
+   "barrel",
+   "indicator.",
+   "inductive",
+   "industrial",
+   "led",
+   "npn",
+   "proximity",
+   "response",
+   "sensor",
+   "service.",
+   "suitable",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P022",
+  "title": "npn sensor proximity-122",
+  "description": "npn sensor detection with cable led indicator threaded barrel. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "122",
+   "barrel.",
+   "cable",
+   "detection",
+   "indicator",
+   "industrial",
+   "led",
+   "npn",
+   "proximity",
+   "sensor",
+   "service.",
+   "suitable",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P023",
+  "title": "detection proximity proximity-123",
+  "description": "detection proximity sensor with response threaded barrel led indicator. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "123",
+   "barrel",
+   "detection",
+   "indicator.",
+   "industrial",
+   "led",
+   "proximity",
+   "response",
+   "sensor",
+   "service.",
+   "suitable",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P024",
+  "title": "8mm npn proximity-124",
+  "description": "8mm npn proximity with response ip67 threaded barrel. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "124",
+   "8mm",
+   "barrel.",
+   "industrial",
+   "ip67",
+   "npn",
+   "proximity",
+   "response",
+   "sensor",
+   "service.",
+   "suitable",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P025",
+  "title": "proximity npn proximity-125",
+  "description": "proximity npn switch with led indicator threaded barrel cable. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "125",
+   "barrel",
+   "cable.",
+   "indicator",
+   "industrial",
+   "led",
+   "npn",
+   "proximity",
+   "sensor",
+   "service.",
+   "suitable",
+   "switch",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P026",
+  "title": "switch 8mm proximity-126",
+  "description": "switch 8mm proximity with led indicator response threaded barrel. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "126",
+   "8mm",
+   "barrel.",
+   "indicator",
+   "industrial",
+   "led",
+   "proximity",
+   "response",
+   "sensor",
+   "service.",
+   "suitable",
+   "switch",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P027",
+  "title": "detection 8mm proximity-127",
+  "description": "detection 8mm proximity with ip67 response threaded barrel. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "127",
+   "8mm",
+   "barrel.",
+   "detection",
+   "industrial",
+   "ip67",
+   "proximity",
+   "response",
+   "sensor",
+   "service.",
+   "suitable",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P028",
+  "title": "sensor npn proximity-128",
+  "description": "sensor npn switch with cable response ip67. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "128",
+   "cable",
+   "industrial",
+   "ip67.",
+   "npn",
+   "proximity",
+   "response",
+   "sensor",
+   "service.",
+   "suitable",
+   "switch"
+  ]
+ },
+ {
+  "id": "P029",
+  "title": "8mm inductive proximity-129",
+  "description": "8mm inductive proximity with ip67 threaded barrel led indicator. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "129",
+   "8mm",
+   "barrel",
+   "indicator.",
+   "inductive",
+   "industrial",
+   "ip67",
+   "led",
+   "proximity",
+   "sensor",
+   "service.",
+   "suitable",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P030",
+  "title": "switch 8mm proximity-130",
+  "description": "switch 8mm npn with threaded barrel led indicator response. Suitable for industrial proximity sensor service.",
+  "category": "proximity-sensor",
+  "terms": [
+   "130",
+   "8mm",
+   "barrel",
+   "indicator",
+   "industrial",
+   "led",
+   "npn",
+   "proximity",
+   "response.",
+   "sensor",
+   "service.",
+   "suitable",
+   "switch",
+   "threaded"
+  ]
+ },
+ {
+  "id": "P031",
+  "title": "bearing ball ball-131",
+  "description": "bearing ball greased with speed rated steel cage. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "131",
+   "ball",
+   "bearing",
+   "cage.",
+   "greased",
+   "industrial",
+   "rated",
+   "service.",
+   "speed",
+   "steel",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P032",
+  "title": "ball bore ball-132",
+  "description": "ball bore bearing with steel clearance cage. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "132",
+   "ball",
+   "bearing",
+   "bore",
+   "cage.",
+   "clearance",
+   "industrial",
+   "service.",
+   "steel",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P033",
+  "title": "shielded ball ball-133",
+  "description": "shielded ball bearing with steel cage speed rated. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "133",
+   "ball",
+   "bearing",
+   "cage",
+   "industrial",
+   "rated.",
+   "service.",
+   "shielded",
+   "speed",
+   "steel",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P034",
+  "title": "608zz radial ball-134",
+  "description": "608zz radial greased with cage steel sealed. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "134",
+   "608zz",
+   "ball",
+   "bearing",
+   "cage",
+   "greased",
+   "industrial",
+   "radial",
+   "sealed.",
+   "service.",
+   "steel",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P035",
+  "title": "ball shielded ball-135",
+  "description": "ball shielded 608zz with sealed cage clearance. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "135",
+   "608zz",
+   "ball",
+   "bearing",
+   "cage",
+   "clearance.",
+   "industrial",
+   "sealed",
+   "service.",
+   "shielded",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P036",
+  "title": "bearing bore ball-136",
+  "description": "bearing bore shielded with clearance sealed steel. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "136",
+   "ball",
+   "bearing",
+   "bore",
+   "clearance",
+   "industrial",
+   "sealed",
+   "service.",
+   "shielded",
+   "steel.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P037",
+  "title": "bearing radial ball-137",
+  "description": "bearing radial bore with speed rated steel clearance. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "137",
+   "ball",
+   "bearing",
+   "bore",
+   "clearance.",
+   "industrial",
+   "radial",
+   "rated",
+   "service.",
+   "speed",
+   "steel",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P038",
+  "title": "608zz bore ball-138",
+  "description": "608zz bore ball with steel sealed cage. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "138",
+   "608zz",
+   "ball",
+   "bearing",
+   "bore",
+   "cage.",
+   "industrial",
+   "sealed",
+   "service.",
+   "steel",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P039",
+  "title": "radial 608zz ball-139",
+  "description": "radial 608zz bearing with cage clearance sealed. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "139",
+   "608zz",
+   "ball",
+   "bearing",
+   "cage",
+   "clearance",
+   "industrial",
+   "radial",
+   "sealed.",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P040",
+  "title": "bearing greased ball-140",
+  "description": "bearing greased shielded with steel speed rated sealed. Suitable for industrial ball bearing service.",
+  "category": "ball-bearing",
+  "terms": [
+   "140",
+   "ball",
+   "bearing",
+   "greased",
+   "industrial",
+   "rated",
+   "sealed.",
+   "service.",
+   "shielded",
+   "speed",
+   "steel",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P041",
+  "title": "wiring 4core control-141",
+  "description": "wiring 4core pvc with copper uv resistant jacket. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "141",
+   "4core",
+   "cable",
+   "control",
+   "copper",
+   "industrial",
+   "jacket.",
+   "pvc",
+   "resistant",
+   "service.",
+   "suitable",
+   "uv",
+   "wiring"
+  ]
+ },
+ {
+  "id": "P042",
+  "title": "pvc cable control-142",
+  "description": "pvc cable wiring with copper metre reel uv resistant. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "142",
+   "cable",
+   "control",
+   "copper",
+   "industrial",
+   "metre",
+   "pvc",
+   "reel",
+   "resistant.",
+   "service.",
+   "suitable",
+   "uv",
+   "wiring"
+  ]
+ },
+ {
+  "id": "P043",
+  "title": "flexible cable control-143",
+  "description": "flexible cable shielded with uv resistant bend radius jacket. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "143",
+   "bend",
+   "cable",
+   "control",
+   "flexible",
+   "industrial",
+   "jacket.",
+   "radius",
+   "resistant",
+   "service.",
+   "shielded",
+   "suitable",
+   "uv"
+  ]
+ },
+ {
+  "id": "P044",
+  "title": "flexible wiring control-144",
+  "description": "flexible wiring pvc with uv resistant metre reel jacket. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "144",
+   "cable",
+   "control",
+   "flexible",
+   "industrial",
+   "jacket.",
+   "metre",
+   "pvc",
+   "reel",
+   "resistant",
+   "service.",
+   "suitable",
+   "uv",
+   "wiring"
+  ]
+ },
+ {
+  "id": "P045",
+  "title": "wiring pvc control-145",
+  "description": "wiring pvc cable with metre reel copper jacket. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "145",
+   "cable",
+   "control",
+   "copper",
+   "industrial",
+   "jacket.",
+   "metre",
+   "pvc",
+   "reel",
+   "service.",
+   "suitable",
+   "wiring"
+  ]
+ },
+ {
+  "id": "P046",
+  "title": "pvc cable control-146",
+  "description": "pvc cable 4core with copper jacket bend radius. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "146",
+   "4core",
+   "bend",
+   "cable",
+   "control",
+   "copper",
+   "industrial",
+   "jacket",
+   "pvc",
+   "radius.",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P047",
+  "title": "cable 4core control-147",
+  "description": "cable 4core pvc with uv resistant bend radius copper. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "147",
+   "4core",
+   "bend",
+   "cable",
+   "control",
+   "copper.",
+   "industrial",
+   "pvc",
+   "radius",
+   "resistant",
+   "service.",
+   "suitable",
+   "uv"
+  ]
+ },
+ {
+  "id": "P048",
+  "title": "shielded wiring control-148",
+  "description": "shielded wiring control with metre reel jacket bend radius. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "148",
+   "bend",
+   "cable",
+   "control",
+   "industrial",
+   "jacket",
+   "metre",
+   "radius.",
+   "reel",
+   "service.",
+   "shielded",
+   "suitable",
+   "wiring"
+  ]
+ },
+ {
+  "id": "P049",
+  "title": "control shielded control-149",
+  "description": "control shielded 4core with uv resistant jacket metre reel. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "149",
+   "4core",
+   "cable",
+   "control",
+   "industrial",
+   "jacket",
+   "metre",
+   "reel.",
+   "resistant",
+   "service.",
+   "shielded",
+   "suitable",
+   "uv"
+  ]
+ },
+ {
+  "id": "P050",
+  "title": "4core flexible control-150",
+  "description": "4core flexible shielded with jacket uv resistant copper. Suitable for industrial control cable service.",
+  "category": "control-cable",
+  "terms": [
+   "150",
+   "4core",
+   "cable",
+   "control",
+   "copper.",
+   "flexible",
+   "industrial",
+   "jacket",
+   "resistant",
+   "service.",
+   "shielded",
+   "suitable",
+   "uv"
+  ]
+ },
+ {
+  "id": "P051",
+  "title": "hydraulic cartridge hydraulic-151",
+  "description": "hydraulic cartridge bypass with service life flow rate housing. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "151",
+   "bypass",
+   "cartridge",
+   "filter",
+   "flow",
+   "housing.",
+   "hydraulic",
+   "industrial",
+   "life",
+   "rate",
+   "service",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P052",
+  "title": "hydraulic bypass hydraulic-152",
+  "description": "hydraulic bypass cartridge with flow rate housing service life. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "152",
+   "bypass",
+   "cartridge",
+   "filter",
+   "flow",
+   "housing",
+   "hydraulic",
+   "industrial",
+   "life.",
+   "rate",
+   "service",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P053",
+  "title": "filter 10micron hydraulic-153",
+  "description": "filter 10micron hydraulic with housing seals indicator. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "10micron",
+   "153",
+   "filter",
+   "housing",
+   "hydraulic",
+   "indicator.",
+   "industrial",
+   "seals",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P054",
+  "title": "10micron hydraulic hydraulic-154",
+  "description": "10micron hydraulic cartridge with seals service life flow rate. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "10micron",
+   "154",
+   "cartridge",
+   "filter",
+   "flow",
+   "hydraulic",
+   "industrial",
+   "life",
+   "rate.",
+   "seals",
+   "service",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P055",
+  "title": "10micron element hydraulic-155",
+  "description": "10micron element return with seals flow rate housing. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "10micron",
+   "155",
+   "element",
+   "filter",
+   "flow",
+   "housing.",
+   "hydraulic",
+   "industrial",
+   "rate",
+   "return",
+   "seals",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P056",
+  "title": "bypass filter hydraulic-156",
+  "description": "bypass filter 10micron with service life housing flow rate. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "10micron",
+   "156",
+   "bypass",
+   "filter",
+   "flow",
+   "housing",
+   "hydraulic",
+   "industrial",
+   "life",
+   "rate.",
+   "service",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P057",
+  "title": "element 10micron hydraulic-157",
+  "description": "element 10micron return with flow rate service life seals. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "10micron",
+   "157",
+   "element",
+   "filter",
+   "flow",
+   "hydraulic",
+   "industrial",
+   "life",
+   "rate",
+   "return",
+   "seals.",
+   "service",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P058",
+  "title": "bypass return hydraulic-158",
+  "description": "bypass return filter with indicator seals service life. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "158",
+   "bypass",
+   "filter",
+   "hydraulic",
+   "indicator",
+   "industrial",
+   "life.",
+   "return",
+   "seals",
+   "service",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P059",
+  "title": "hydraulic filter hydraulic-159",
+  "description": "hydraulic filter 10micron with indicator service life housing. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "10micron",
+   "159",
+   "filter",
+   "housing.",
+   "hydraulic",
+   "indicator",
+   "industrial",
+   "life",
+   "service",
+   "service.",
+   "suitable"
+  ]
+ },
+ {
+  "id": "P060",
+  "title": "element filter hydraulic-160",
+  "description": "element filter cartridge with housing flow rate service life. Suitable for industrial hydraulic filter service.",
+  "category": "hydraulic-filter",
+  "terms": [
+   "160",
+   "cartridge",
+   "element",
+   "filter",
+   "flow",
+   "housing",
+   "hydraulic",
+   "industrial",
+   "life.",
+   "rate",
+   "service",
+   "service.",
+   "suitable"
+  ]
+ }
+]

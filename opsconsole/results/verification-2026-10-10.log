@@ -1,0 +1,16 @@
+test_action_mismatch_rejected (test_api.TestAPI.test_action_mismatch_rejected) ... ok
+test_auth_matrix (test_api.TestAPI.test_auth_matrix) ... ok
+test_cancel (test_api.TestAPI.test_cancel) ... ok
+test_cancel_replay (test_api.TestAPI.test_cancel_replay) ... ok
+test_concurrent_retry_single_mutation (test_api.TestAPI.test_concurrent_retry_single_mutation) ... ok
+test_cross_job_key_reuse_rejected (test_api.TestAPI.test_cross_job_key_reuse_rejected) ... ok
+test_idempotent_retry (test_api.TestAPI.test_idempotent_retry) ... ok
+test_incident_actions_and_audit (test_api.TestAPI.test_incident_actions_and_audit) ... ok
+test_pagination (test_api.TestAPI.test_pagination) ... ok
+test_retry_rules (test_api.TestAPI.test_retry_rules) ... ok
+test_stale_version_409 (test_api.TestAPI.test_stale_version_409) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.046s
+
+OK

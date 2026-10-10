@@ -1,0 +1,404 @@
+{
+  "image": "quay.io/frrouting/frr:10.2.1",
+  "events": [
+    {
+      "event": "baseline",
+      "monotonic": 279832.09442575,
+      "utc": "2026-10-10T00:50:21.445840+00:00",
+      "routes": {
+        "10.20.1.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.1.0",
+            "prefixLen": 24,
+            "network": "10.20.1.0/24",
+            "version": 1,
+            "metric": 0,
+            "weight": 32768,
+            "peerId": "(unspec)",
+            "path": "",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "0.0.0.0",
+                "hostname": "r1",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ],
+        "10.20.2.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.2.0",
+            "prefixLen": 24,
+            "network": "10.20.2.0/24",
+            "version": 2,
+            "metric": 0,
+            "weight": 0,
+            "peerId": "172.20.0.3",
+            "path": "65002",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "172.20.0.3",
+                "hostname": "r2",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ]
+      },
+      "summary": {
+        "ipv4Unicast": {
+          "routerId": "172.20.0.2",
+          "as": 65001,
+          "vrfId": 0,
+          "vrfName": "default",
+          "tableVersion": 2,
+          "ribCount": 3,
+          "ribMemory": 384,
+          "peerCount": 1,
+          "peerMemory": 16904,
+          "peers": {
+            "172.20.0.3": {
+              "hostname": "r2",
+              "softwareVersion": "n/a",
+              "remoteAs": 65002,
+              "localAs": 65001,
+              "version": 4,
+              "msgRcvd": 6,
+              "msgSent": 6,
+              "tableVersion": 2,
+              "outq": 0,
+              "inq": 0,
+              "peerUptime": "00:00:02",
+              "peerUptimeMsec": 2000,
+              "peerUptimeEstablishedEpoch": 1791593419,
+              "pfxRcd": 1,
+              "pfxSnt": 2,
+              "state": "Established",
+              "peerState": "OK",
+              "connectionsEstablished": 1,
+              "connectionsDropped": 0,
+              "idType": "ipv4"
+            }
+          },
+          "failedPeers": 0,
+          "displayedPeers": 1,
+          "totalPeers": 1,
+          "dynamicPeers": 0,
+          "bestPath": {
+            "multiPathRelax": "false"
+          }
+        }
+      }
+    },
+    {
+      "event": "peer_down",
+      "monotonic": 279832.290448291,
+      "utc": "2026-10-10T00:50:21.641864+00:00",
+      "routes": {
+        "10.20.1.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.1.0",
+            "prefixLen": 24,
+            "network": "10.20.1.0/24",
+            "version": 1,
+            "metric": 0,
+            "weight": 32768,
+            "peerId": "(unspec)",
+            "path": "",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "0.0.0.0",
+                "hostname": "r1",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event": "peer_recovered",
+      "monotonic": 279834.783508875,
+      "utc": "2026-10-10T00:50:24.134894+00:00",
+      "routes": {
+        "10.20.1.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.1.0",
+            "prefixLen": 24,
+            "network": "10.20.1.0/24",
+            "version": 1,
+            "metric": 0,
+            "weight": 32768,
+            "peerId": "(unspec)",
+            "path": "",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "0.0.0.0",
+                "hostname": "r1",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ],
+        "10.20.2.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.2.0",
+            "prefixLen": 24,
+            "network": "10.20.2.0/24",
+            "version": 4,
+            "metric": 0,
+            "weight": 0,
+            "peerId": "172.20.0.3",
+            "path": "65002",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "172.20.0.3",
+                "hostname": "r2",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event": "incorrect_prefix",
+      "monotonic": 279835.042772625,
+      "utc": "2026-10-10T00:50:24.394156+00:00",
+      "routes": {
+        "10.20.1.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.1.0",
+            "prefixLen": 24,
+            "network": "10.20.1.0/24",
+            "version": 1,
+            "metric": 0,
+            "weight": 32768,
+            "peerId": "(unspec)",
+            "path": "",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "0.0.0.0",
+                "hostname": "r1",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ],
+        "10.99.99.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.99.99.0",
+            "prefixLen": 24,
+            "network": "10.99.99.0/24",
+            "version": 6,
+            "metric": 0,
+            "weight": 0,
+            "peerId": "172.20.0.3",
+            "path": "65002",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "172.20.0.3",
+                "hostname": "r2",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event": "prefix_recovered",
+      "monotonic": 279835.280516958,
+      "utc": "2026-10-10T00:50:24.631900+00:00",
+      "routes": {
+        "10.20.1.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.1.0",
+            "prefixLen": 24,
+            "network": "10.20.1.0/24",
+            "version": 1,
+            "metric": 0,
+            "weight": 32768,
+            "peerId": "(unspec)",
+            "path": "",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "0.0.0.0",
+                "hostname": "r1",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ],
+        "10.20.2.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.2.0",
+            "prefixLen": 24,
+            "network": "10.20.2.0/24",
+            "version": 8,
+            "metric": 0,
+            "weight": 0,
+            "peerId": "172.20.0.3",
+            "path": "65002",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "172.20.0.3",
+                "hostname": "r2",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event": "packet_loss_peer_timeout",
+      "monotonic": 279838.840446666,
+      "utc": "2026-10-10T00:50:28.191820+00:00",
+      "routes": {
+        "10.20.1.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.1.0",
+            "prefixLen": 24,
+            "network": "10.20.1.0/24",
+            "version": 1,
+            "metric": 0,
+            "weight": 32768,
+            "peerId": "(unspec)",
+            "path": "",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "0.0.0.0",
+                "hostname": "r1",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event": "packet_loss_recovered",
+      "monotonic": 279840.684234541,
+      "utc": "2026-10-10T00:50:30.035597+00:00",
+      "routes": {
+        "10.20.1.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.1.0",
+            "prefixLen": 24,
+            "network": "10.20.1.0/24",
+            "version": 1,
+            "metric": 0,
+            "weight": 32768,
+            "peerId": "(unspec)",
+            "path": "",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "0.0.0.0",
+                "hostname": "r1",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ],
+        "10.20.2.0/24": [
+          {
+            "valid": true,
+            "bestpath": true,
+            "selectionReason": "First path received",
+            "pathFrom": "external",
+            "prefix": "10.20.2.0",
+            "prefixLen": 24,
+            "network": "10.20.2.0/24",
+            "version": 10,
+            "metric": 0,
+            "weight": 0,
+            "peerId": "172.20.0.3",
+            "path": "65002",
+            "origin": "IGP",
+            "nexthops": [
+              {
+                "ip": "172.20.0.3",
+                "hostname": "r2",
+                "afi": "ipv4",
+                "used": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event": "passed",
+      "monotonic": 279840.684285583,
+      "utc": "2026-10-10T00:50:30.035644+00:00",
+      "scope": "FRR BGP control plane; no kernel forwarding or containerlab claim"
+    }
+  ]
+}

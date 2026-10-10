@@ -1,0 +1,4 @@
+[
+  {"batch": "B07", "cause": "tool wear shift +0.35mm", "action": "replace insert, re-run 5 subgroups", "owner": "QA", "date": "2026-10-02", "status": "closed"},
+  {"batch": "B08", "cause": "same tool wear (before changeover)", "action": "quarantine lot, 100% sort", "owner": "QA", "date": "2026-10-03", "status": "closed"}
+]

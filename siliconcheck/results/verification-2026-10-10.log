@@ -1,0 +1,50 @@
+=== TOP=fifo MOD=test_fifo DEPTH=4 DW=8 ===
+pass (log /tmp/sim_fifo_4.log)
+=== TOP=axis_adapter MOD=test_axis DEPTH=4 DW=8 ===
+pass (log /tmp/sim_axis_adapter_4.log)
+=== TOP=fifo MOD=test_fifo DEPTH=16 DW=32 ===
+pass (log /tmp/sim_fifo_16.log)
+=== TOP=axis_adapter MOD=test_axis DEPTH=16 DW=32 ===
+pass (log /tmp/sim_axis_adapter_16.log)
+=== TOP=fifo MOD=test_fifo DEPTH=64 DW=32 ===
+pass (log /tmp/sim_fifo_64.log)
+=== TOP=axis_adapter MOD=test_axis DEPTH=64 DW=32 ===
+pass (log /tmp/sim_axis_adapter_64.log)
+[
+  {
+    "top": "fifo",
+    "depth": 4,
+    "dw": 8,
+    "status": "pass"
+  },
+  {
+    "top": "axis_adapter",
+    "depth": 4,
+    "dw": 8,
+    "status": "pass"
+  },
+  {
+    "top": "fifo",
+    "depth": 16,
+    "dw": 32,
+    "status": "pass"
+  },
+  {
+    "top": "axis_adapter",
+    "depth": 16,
+    "dw": 32,
+    "status": "pass"
+  },
+  {
+    "top": "fifo",
+    "depth": 64,
+    "dw": 32,
+    "status": "pass"
+  },
+  {
+    "top": "axis_adapter",
+    "depth": 64,
+    "dw": 32,
+    "status": "pass"
+  }
+]

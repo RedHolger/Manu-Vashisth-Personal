@@ -1,0 +1,17 @@
+{
+  "command": "bash pg.sh",
+  "exit_code": 0,
+  "date": "2026-10-10T00:52:56.872755+00:00",
+  "evidence_ref": "results/verification-2026-10-10.log",
+  "evidence_sha256": "ca735c09ab99e8105f9ebd65a239ed35da6d262bdb30dafbe25199d8514e0872",
+  "source_sha256": {
+    "kpi.py": "d2d9ca73e8d8c794f9996fe72ad8fcb52d72c6fa989955bdaee53e382b66801c",
+    "sql/queries.sql": "20dba298b17f101f021bf6acb9cbbcd22d975fecd47148878c950ddee4332b1c",
+    "sql/schema.sql": "7becb194b0040abf82977f136ec610d3dc9c456d0c5b6405bb3a797d2e8c913f",
+    "sql/seed.sql": "c74c341ef4ec0a124076c72515230bbd28bbc4701a16495111d62ca9cbb42f03",
+    "tests/test_kpis.py": "35af8a39e6fc1dc59e1d72ed5936c56571ba25c40dcebf4e38afd528c2f7eee5"
+  },
+  "prior_measurement_ref": "results/kpis.json",
+  "notes": "Fresh test invocation; raw output retained. Hardware/SQL Server exclusions remain explicit.",
+  "tests_passed": 6
+}

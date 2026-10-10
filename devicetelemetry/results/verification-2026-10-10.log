@@ -1,0 +1,16 @@
+mkdir -p build
+c++ -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer src/sim.cpp -o build/sim
+/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/bin/python -m unittest discover -s tests -v
+test_bad_length_and_sync (test_harness.TestFrames.test_bad_length_and_sync) ... ok
+test_clean_stream_streams (test_harness.TestFrames.test_clean_stream_streams) ... ok
+test_corrupt_frames_fault (test_harness.TestFrames.test_corrupt_frames_fault) ... ok
+test_crc16_known_vector (test_harness.TestFrames.test_crc16_known_vector) ... ok
+test_dropped_frames_gap (test_harness.TestFrames.test_dropped_frames_gap) ... ok
+test_out_of_range_faults (test_harness.TestFrames.test_out_of_range_faults) ... ok
+test_reordered_frames_regression (test_harness.TestFrames.test_reordered_frames_regression) ... ok
+test_reset_ack_clears_fault (test_harness.TestFrames.test_reset_ack_clears_fault) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.994s
+
+OK

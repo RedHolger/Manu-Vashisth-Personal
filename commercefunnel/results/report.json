@@ -1,0 +1,62 @@
+{
+  "events": 26,
+  "deduped": 1,
+  "funnel": {
+    "view_basket": {
+      "rate": "5/7",
+      "frac": 0.7143,
+      "ci95": [
+        0.3589,
+        0.9178
+      ]
+    },
+    "basket_purchase": {
+      "rate": "4/5",
+      "frac": 0.8,
+      "ci95": [
+        0.3755,
+        0.9638
+      ]
+    },
+    "view_purchase": {
+      "rate": "5/7",
+      "frac": 0.7143,
+      "ci95": [
+        0.3589,
+        0.9178
+      ]
+    }
+  },
+  "substitution": {
+    "rate": "1/1",
+    "frac": 1.0,
+    "ci95": [
+      0.2065,
+      1.0
+    ]
+  },
+  "ontime": {
+    "rate": "2/3",
+    "frac": 0.6667,
+    "ci95": [
+      0.2077,
+      0.9385
+    ]
+  },
+  "cohorts": {
+    "2026-09-07": {
+      "rate": "4/5",
+      "frac": 0.8
+    },
+    "2026-09-14": {
+      "rate": "1/2",
+      "frac": 0.5
+    }
+  },
+  "primary": "view_purchase",
+  "guardrails": [
+    "substitution",
+    "ontime"
+  ],
+  "experiment": "PROPOSED ONLY (see experiment.md) \u2014 not run, no results"
+}

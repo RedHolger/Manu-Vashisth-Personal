@@ -1,0 +1,6 @@
+/* Monaco Editor container - the actual editor styling is handled by Monaco itself */
+.monaco-editor-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}

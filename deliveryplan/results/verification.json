@@ -1,0 +1,21 @@
+{
+  "command": "/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/bin/python -B -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "date": "2026-10-10T00:52:51.851822+00:00",
+  "evidence_ref": "results/verification-2026-10-10.log",
+  "evidence_sha256": "88a4ccb75e53fc1f64260b86bb3a6c9b8fd53d0e129042f6a0081b302761af69",
+  "source_sha256": {
+    "backend/api.py": "2113f8515090366d06afbc357263388e81df08c479b2bb165c73baa5f594bedf",
+    "backend/plan.py": "2cd5192aa6c86994e3228e916fd6929e80233c643cb3a36f407056ad0fe11384",
+    "snapshot.py": "4e07d00697b399c3825a9e3264c5d100c04d33d2ae3dbb9f0cca360e58f82a52",
+    "tests/test_plan.py": "d065096db1dd9e4712f2d02b33286749449c3e1a0399de11fb8ed3ef0d04adb3",
+    "ui/src/App.tsx": "07c6669fa05304986c877178eddcb559cef867c79eb48a0350113c1b9e2bb763",
+    "ui/src/main.tsx": "f11b5c2fb8b63400f9ddecc0948af6b9292b128c90c0e8a7c51463f2b6bec8b0",
+    "ui/src/view.ts": "9f2becedb4e0d55f51aeda94c413aee728af7f38a3aaf7c4828a928a99f7587f",
+    "ui/tests/view.test.ts": "b072954baf7796183a006e05a011097956914e3bb8fca2d9034faaf9f6cbb532",
+    "ui/vite.config.ts": "6c756ef34e0cf225721cf6c5c8a374e2d4d8ae262358037121dd00485d646715"
+  },
+  "prior_measurement_ref": "results/snapshot.json",
+  "notes": "Fresh test invocation; raw output retained. Hardware/SQL Server exclusions remain explicit.",
+  "tests_passed": 10
+}

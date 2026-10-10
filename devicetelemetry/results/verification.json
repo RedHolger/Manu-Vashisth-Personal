@@ -1,0 +1,15 @@
+{
+  "command": "make -B test",
+  "exit_code": 0,
+  "date": "2026-10-10T00:52:54.242889+00:00",
+  "evidence_ref": "results/verification-2026-10-10.log",
+  "evidence_sha256": "b66251a6a1db795dc8f0be1a83245c28cc5ccedc7020d94aef7416022444a095",
+  "source_sha256": {
+    "src/harness.py": "ce7b8d37d53ddb2ddaf6bf54ee31d0d0fe6389f56a951aaec520860a2e34cb0c",
+    "src/sim.cpp": "5803bef22483f69d230490265996eb67aa2e75b6f13435be50b8520ff15b24a8",
+    "tests/test_harness.py": "f08cdcbb77e2d0a6f9777c187572a569d034fb1d3d6cafafa0083d30c9a36695"
+  },
+  "prior_measurement_ref": "results/clean-build",
+  "notes": "Fresh test invocation; raw output retained. Hardware/SQL Server exclusions remain explicit.",
+  "tests_passed": 8
+}

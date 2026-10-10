@@ -1,0 +1,25 @@
+{
+  "final_state": "FAULT",
+  "event_kinds": [
+    "CORRUPT_FRAME",
+    "SEQ_GAP"
+  ],
+  "events": [
+    {
+      "type": "CORRUPT_FRAME",
+      "detail": "line 6: bad-crc"
+    },
+    {
+      "type": "SEQ_GAP",
+      "detail": "4->6 (dropped?)"
+    },
+    {
+      "type": "CORRUPT_FRAME",
+      "detail": "line 18: bad-crc"
+    },
+    {
+      "type": "SEQ_GAP",
+      "detail": "16->18 (dropped?)"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "rfis": [
+    {
+      "id": "RFI-1",
+      "title": "parapet flashing",
+      "owner": "AO",
+      "due": "2026-09-20",
+      "status": "open",
+      "rev": 2
+    },
+    {
+      "id": "RFI-2",
+      "title": "expansion joint",
+      "owner": "BK",
+      "due": "2026-10-15",
+      "status": "open",
+      "rev": 1
+    },
+    {
+      "id": "RFI-3",
+      "title": "sealant spec",
+      "owner": "CM",
+      "due": "2026-09-25",
+      "status": "answered",
+      "rev": 1
+    }
+  ],
+  "inspections": [
+    {
+      "id": "INSP-1",
+      "rfi": "RFI-1",
+      "rev": 1,
+      "date": "2026-09-22",
+      "result": "pass",
+      "evidence": null
+    },
+    {
+      "id": "INSP-2",
+      "rfi": "RFI-2",
+      "rev": 1,
+      "date": "2026-09-23",
+      "result": "pass",
+      "evidence": "photo-221"
+    },
+    {
+      "id": "INSP-3",
+      "rfi": "RFI-3",
+      "rev": 1,
+      "date": "2026-09-26",
+      "result": "fail",
+      "evidence": "photo-222"
+    }
+  ],
+  "gaps": {
+    "as_of": "2026-10-08",
+    "overdue": [
+      "RFI-1"
+    ],
+    "missing_evidence": [
+      "INSP-1"
+    ],
+    "mismatches": [
+      {
+        "inspection": "INSP-1",
+        "tested": 1,
+        "current": 2
+      }
+    ],
+    "failed": [
+      "INSP-3"
+    ],
+    "open_by_owner": {
+      "AO": 1,
+      "BK": 1
+    }
+  },
+  "note": "SYNTHETIC handover pack for a fictional site. Not a real handover; no site competence implied."
+}

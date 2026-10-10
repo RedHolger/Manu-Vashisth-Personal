@@ -1,0 +1,18 @@
+{
+  "command": "/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/bin/python -B -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "date": "2026-10-10T00:53:00.140002+00:00",
+  "evidence_ref": "results/verification-2026-10-10.log",
+  "evidence_sha256": "fb2e2ff601e602a850a45c80972610f165e391a302cb2f76350e8f1e41afadb5",
+  "source_sha256": {
+    "measure.py": "990ea7547d7c46a43ade71ba1615b8c095f0f6f3d816f43bc4c84e4dfdd13d62",
+    "src/answer.py": "8599b58e5c16f5f18d1135ff2447d5a8f80b89e8c1b5810427d08ad05c3369c9",
+    "src/cache.py": "89f73d7768492df82bbb2152ef623adc5392d70db0a46d2e2a031d2bfd44e9ed",
+    "src/retrieval.py": "dc2e2c7810f035aed1c1953c5ac5b965d9cb747bfefeee4ae147b13dba6d2e38",
+    "src/store.py": "485e96995d0f478914b44449e027bea22088627252d5ee120dc70bc5aa52b17c",
+    "tests/test_priveval.py": "62cf9d2dfb276bda193b3f537a646a7ac0398167797fb4b91d3d0db484224208"
+  },
+  "prior_measurement_ref": "results/measure.json",
+  "notes": "Fresh test invocation; raw output retained. Hardware/SQL Server exclusions remain explicit.",
+  "tests_passed": 12
+}

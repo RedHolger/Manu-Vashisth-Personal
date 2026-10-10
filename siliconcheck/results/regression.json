@@ -1,0 +1,38 @@
+[
+  {
+    "top": "fifo",
+    "depth": 4,
+    "dw": 8,
+    "status": "pass"
+  },
+  {
+    "top": "axis_adapter",
+    "depth": 4,
+    "dw": 8,
+    "status": "pass"
+  },
+  {
+    "top": "fifo",
+    "depth": 16,
+    "dw": 32,
+    "status": "pass"
+  },
+  {
+    "top": "axis_adapter",
+    "depth": 16,
+    "dw": 32,
+    "status": "pass"
+  },
+  {
+    "top": "fifo",
+    "depth": 64,
+    "dw": 32,
+    "status": "pass"
+  },
+  {
+    "top": "axis_adapter",
+    "depth": 64,
+    "dw": 32,
+    "status": "pass"
+  }
+]

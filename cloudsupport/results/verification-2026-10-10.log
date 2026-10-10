@@ -1,0 +1,11 @@
+test_dns (test_cases.TestCases.test_dns) ... ok
+test_evidence_shape (test_cases.TestCases.test_evidence_shape) ... ok
+test_http (test_cases.TestCases.test_http) ... ok
+test_tcp (test_cases.TestCases.test_tcp) ... ok
+test_tls (test_cases.TestCases.test_tls) ... ok
+test_upload (test_cases.TestCases.test_upload) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 6.996s
+
+OK

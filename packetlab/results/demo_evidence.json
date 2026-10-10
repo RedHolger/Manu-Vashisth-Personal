@@ -1,0 +1,20 @@
+{
+  "healthy": [
+    {
+      "type": "RECOVERED",
+      "detail": "peers up, routes correct, max loss 0.2% over 3 samples"
+    }
+  ],
+  "peer-down": [
+    {
+      "type": "PEER_DOWN",
+      "detail": "192.0.2.3"
+    }
+  ],
+  "wrong-route": [
+    {
+      "type": "WRONG_ROUTE",
+      "detail": "10.1.0.0/24 via 192.0.2.9 (expected 192.0.2.2)"
+    }
+  ]
+}

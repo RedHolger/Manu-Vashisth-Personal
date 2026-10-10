@@ -1,0 +1,17 @@
+/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/lib/python3.14/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_charter_and_stakeholders (test_plan.TestAPI.test_charter_and_stakeholders) ... ok
+test_cycle_rejected (test_plan.TestAPI.test_cycle_rejected) ... ok
+test_decision_and_raid_logs (test_plan.TestAPI.test_decision_and_raid_logs) ... ok
+test_shift_and_report (test_plan.TestAPI.test_shift_and_report) ... ok
+test_weekly_matches_state (test_plan.TestAPI.test_weekly_matches_state) ... ok
+test_critical_path (test_plan.TestGraph.test_critical_path) ... ok
+test_cycle_found (test_plan.TestGraph.test_cycle_found) ... ok
+test_drift_and_shift (test_plan.TestGraph.test_drift_and_shift) ... ok
+test_no_cycle_in_seed (test_plan.TestGraph.test_no_cycle_in_seed) ... ok
+test_weekly_traceable (test_plan.TestGraph.test_weekly_traceable) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.048s
+
+OK

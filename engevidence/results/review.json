@@ -1,0 +1,179 @@
+{
+  "subject": "FICTIONAL overhead-bin latch retrofit (synthetic review package \u2014 not certification, not EASA evidence)",
+  "matrix": [
+    {
+      "req": "REQ-01",
+      "title": "latch static load",
+      "rev_current": "A",
+      "tests": [
+        {
+          "id": "T-01",
+          "rev": "A",
+          "result": "pass"
+        }
+      ],
+      "orphan": false,
+      "conflict": [],
+      "incomplete_evidence": [],
+      "pending": [],
+      "failed": []
+    },
+    {
+      "req": "REQ-02",
+      "title": "latch corrosion",
+      "rev_current": "A",
+      "tests": [
+        {
+          "id": "T-02",
+          "rev": "A",
+          "result": "pass"
+        }
+      ],
+      "orphan": false,
+      "conflict": [],
+      "incomplete_evidence": [],
+      "pending": [],
+      "failed": []
+    },
+    {
+      "req": "REQ-03",
+      "title": "latch cycle life",
+      "rev_current": "C",
+      "tests": [
+        {
+          "id": "T-03a",
+          "rev": "B",
+          "result": "pass"
+        },
+        {
+          "id": "T-03b",
+          "rev": "C",
+          "result": "pending"
+        }
+      ],
+      "orphan": false,
+      "conflict": [
+        "B",
+        "C"
+      ],
+      "incomplete_evidence": [],
+      "pending": [
+        "T-03b"
+      ],
+      "failed": []
+    },
+    {
+      "req": "REQ-04",
+      "title": "bin door sensor",
+      "rev_current": "A",
+      "tests": [
+        {
+          "id": "T-04",
+          "rev": "A",
+          "result": "pass"
+        },
+        {
+          "id": "T-05",
+          "rev": "A",
+          "result": "pass"
+        }
+      ],
+      "orphan": false,
+      "conflict": [],
+      "incomplete_evidence": [
+        "T-05"
+      ],
+      "pending": [],
+      "failed": []
+    },
+    {
+      "req": "REQ-05",
+      "title": "placard legibility",
+      "rev_current": "A",
+      "tests": [
+        {
+          "id": "T-06",
+          "rev": "A",
+          "result": "fail"
+        }
+      ],
+      "orphan": false,
+      "conflict": [],
+      "incomplete_evidence": [],
+      "pending": [],
+      "failed": [
+        "T-06"
+      ]
+    },
+    {
+      "req": "REQ-06",
+      "title": "tool-less access",
+      "rev_current": "A",
+      "tests": [
+        {
+          "id": "T-07",
+          "rev": "A",
+          "result": "pass"
+        }
+      ],
+      "orphan": false,
+      "conflict": [],
+      "incomplete_evidence": [],
+      "pending": [],
+      "failed": []
+    },
+    {
+      "req": "REQ-07",
+      "title": "emergency placard contrast",
+      "rev_current": "A",
+      "tests": [],
+      "orphan": true,
+      "conflict": [],
+      "incomplete_evidence": [],
+      "pending": [],
+      "failed": []
+    }
+  ],
+  "gaps": {
+    "orphans": [
+      "REQ-07"
+    ],
+    "conflicts": {
+      "REQ-03": [
+        "B",
+        "C"
+      ]
+    },
+    "incomplete_evidence": [
+      "T-05"
+    ],
+    "pending": [
+      "T-03b"
+    ],
+    "failed": [
+      "T-06"
+    ]
+  },
+  "signoff": [
+    {
+      "item": "all requirements have tests",
+      "ready": false
+    },
+    {
+      "item": "no revision conflicts",
+      "ready": false
+    },
+    {
+      "item": "all passes evidenced",
+      "ready": false
+    },
+    {
+      "item": "no pending tests",
+      "ready": false
+    },
+    {
+      "item": "no failed tests",
+      "ready": false
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "freq_beta": {
+    "intercept": -1.948,
+    "young": 0.5766,
+    "urban": 0.513,
+    "suv": 0.244
+  },
+  "freq_se": {
+    "intercept": 0.0629,
+    "young": 0.0613,
+    "urban": 0.0627,
+    "suv": 0.0608
+  },
+  "freq_truth": {
+    "intercept": -2.0,
+    "young": 0.6,
+    "urban": 0.5,
+    "suv": 0.3
+  },
+  "test_deviance": {
+    "model": 1625.92,
+    "baseline": 1703.57,
+    "lift": 77.65,
+    "lift_ci95": [
+      41.87,
+      115.3
+    ]
+  },
+  "calibration_deciles": [
+    {
+      "pred": 0.0861,
+      "actual": 0.1417
+    },
+    {
+      "pred": 0.1108,
+      "actual": 0.075
+    },
+    {
+      "pred": 0.1289,
+      "actual": 0.1083
+    },
+    {
+      "pred": 0.1448,
+      "actual": 0.1833
+    },
+    {
+      "pred": 0.1662,
+      "actual": 0.1333
+    },
+    {
+      "pred": 0.188,
+      "actual": 0.1708
+    },
+    {
+      "pred": 0.215,
+      "actual": 0.1875
+    },
+    {
+      "pred": 0.2428,
+      "actual": 0.2667
+    },
+    {
+      "pred": 0.2882,
+      "actual": 0.3
+    },
+    {
+      "pred": 0.3993,
+      "actual": 0.4
+    }
+  ],
+  "sev_beta": {
+    "intercept": 6.5029,
+    "young": 0.054,
+    "urban": 0.0652,
+    "suv": 0.2117
+  },
+  "sev_se": {
+    "intercept": 0.0262,
+    "young": 0.0256,
+    "urban": 0.0257,
+    "suv": 0.0253
+  },
+  "sev_truth": {
+    "intercept": 6.5,
+    "suv": 0.2,
+    "urban": 0.1
+  },
+  "n_train": 5600,
+  "n_test": 2400,
+  "irls": {
+    "n_iter": 7
+  }
+}

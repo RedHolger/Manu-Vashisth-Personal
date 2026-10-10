@@ -1,0 +1,31 @@
+TAP version 13
+# (node:52943) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: view helpers
+    # Subtest: drift labels
+    ok 1 - drift labels
+      ---
+      duration_ms: 1.040958
+      ...
+    # Subtest: status groups
+    ok 2 - status groups
+      ---
+      duration_ms: 0.606375
+      ...
+    1..2
+ok 1 - view helpers
+  ---
+  duration_ms: 2.133125
+  type: 'suite'
+  ...
+1..1
+# tests 2
+# suites 1
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 146.521833
+(node:52941) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

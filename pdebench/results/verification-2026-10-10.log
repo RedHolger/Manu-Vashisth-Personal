@@ -1,0 +1,19 @@
+test_saved_comparison (test_pinn.TestPINN.test_saved_comparison) ... /Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/projects/builds/pdebench/tests/test_pinn.py:16: ResourceWarning: unclosed file <_io.TextIOWrapper name='results/pinn.json' mode='r' encoding='UTF-8'>
+  r = json.load(open("results/pinn.json"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_smoke_training_falls (test_pinn.TestPINN.test_smoke_training_falls) ... ok
+test_bad_inputs_raise (test_solvers.TestHeatFixtures.test_bad_inputs_raise) ... ok
+test_boundaries_pinned (test_solvers.TestHeatFixtures.test_boundaries_pinned) ... ok
+test_cfl_violation_raises (test_solvers.TestHeatFixtures.test_cfl_violation_raises) ... ok
+test_one_step_matches_hand_calc (test_solvers.TestHeatFixtures.test_one_step_matches_hand_calc) ... ok
+test_spatial_convergence_order_two (test_solvers.TestHeatFixtures.test_spatial_convergence_order_two) ... ok
+test_bad_inputs_raise (test_solvers.TestPoissonFixtures.test_bad_inputs_raise) ... ok
+test_one_sweep_matches_hand_calc (test_solvers.TestPoissonFixtures.test_one_sweep_matches_hand_calc) ... ok
+test_refinement_reduces_error (test_solvers.TestPoissonFixtures.test_refinement_reduces_error) ... ok
+test_residual_decreases_and_converges (test_solvers.TestPoissonFixtures.test_residual_decreases_and_converges) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 1.115s
+
+OK

@@ -1,0 +1,22 @@
+$ /Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/bin/python -m unittest discover -s tests -v
+/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/projects/builds/priveval/tests/test_priveval.py:82: ResourceWarning: unclosed file <_io.TextIOWrapper name='results/measure.json' mode='r' encoding='UTF-8'>
+  cls.m = json.load(open("results/measure.json"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+test_baseline_leaks_controls_do_not (test_priveval.TestAcceptance.test_baseline_leaks_controls_do_not) ... ok
+test_denominators_present (test_priveval.TestAcceptance.test_denominators_present) ... ok
+test_stale_and_revocation (test_priveval.TestAcceptance.test_stale_and_revocation) ... ok
+test_stale_cache_scenario (test_priveval.TestAcceptance.test_stale_cache_scenario) ... ok
+test_utility_preserved (test_priveval.TestAcceptance.test_utility_preserved) ... ok
+test_naive_serves_stale_after_revoke (test_priveval.TestCache.test_naive_serves_stale_after_revoke) ... ok
+test_validated_blocks_after_revoke (test_priveval.TestCache.test_validated_blocks_after_revoke) ... ok
+test_validated_hits_when_unchanged (test_priveval.TestCache.test_validated_hits_when_unchanged) ... ok
+test_abstention_when_nothing_visible (test_priveval.TestUnits.test_abstention_when_nothing_visible) ... ok
+test_bm25_ranks_match_first (test_priveval.TestUnits.test_bm25_ranks_match_first) ... ok
+test_canaries_planted (test_priveval.TestUnits.test_canaries_planted) ... ok
+test_unauthorized_logic (test_priveval.TestUnits.test_unauthorized_logic) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.030s
+
+OK
+unittest exit: 0

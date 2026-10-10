@@ -1,0 +1,11 @@
+{
+  "first_loss": 0.6533517241477966,
+  "last_loss": 0.00026826068642549217,
+  "wall_s": 9.0,
+  "l2_at_t002": 0.0024066093428764326,
+  "seed": 11,
+  "epochs": 3000,
+  "mlp": "2x32 tanh",
+  "optimizer": "Adam lr=1e-3",
+  "device": "cpu"
+}

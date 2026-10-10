@@ -1,0 +1,19 @@
+{
+  "win_rate": "5/7",
+  "win_rate_pct": 71.43,
+  "avg_won_size": 11666.67,
+  "avg_basis": "3 deals",
+  "outliers": {
+    "count": 1,
+    "median": 15000.0,
+    "rule": "> 3x median"
+  },
+  "missing_amount": 2,
+  "unknown_stage": [
+    "D10"
+  ],
+  "duplicates": 1,
+  "enablement": "3/5",
+  "enablement_pct": 60.0,
+  "narrative": "Partner pipeline: win rate 5/7 (71.43%), average won deal EUR 11666.67 over 3 deals; 1 outlier excluded by the 3x-median rule; 2 rows lack amounts, 1 lack a stage, 1 duplicate ext_id deduped. Enablement completion 3/5 (60.0%). Every excluded row is counted above; open pipeline is outside win-rate scope."
+}

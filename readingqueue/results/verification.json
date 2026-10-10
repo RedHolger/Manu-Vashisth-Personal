@@ -1,0 +1,29 @@
+{
+  "command": "bash pg.sh && mvn test (postgres ../db/postgres) && mvn test (sqlserver ../db/sqlserver)",
+  "exit_code": 0,
+  "date": "2026-10-10T02:18:10.921404+00:00",
+  "evidence_ref": "results/verification-2026-10-10.log",
+  "evidence_sha256": "fdc15ce8592265882b31eb3c495c5d642b847c4ad6acffe035abbf9d3781690d",
+  "source_sha256": {
+    "backend/src/main/java/queue/Databases.java": "e53474772cbb7335c047e20b7a7fbca977c5c4e3bdd2dc48bbb27dd10e4f49e8",
+    "backend/src/main/java/queue/Db.java": "4edb7a7566b2117ed4721745549b498bd220b902f11795c2767efd002d6b9b49",
+    "backend/src/main/java/queue/PostgresDb.java": "e0a1245c3e401b79525594f17b93aeb5a7d178ba3b1b614eed9ac7578b8925f6",
+    "backend/src/main/java/queue/Server.java": "0e8ff4c9f79db549918405c99704f7678492b82bb47a313c0151d6c318f4291a",
+    "backend/src/main/java/queue/SqlServerDb.java": "7917541d3d9296d537559b7f3162b07e27413aa15da87f07ed486b92191fbf07",
+    "backend/src/test/java/queue/ApiTest.java": "6211e96f1fabea10d8c8e395d368187c509b74575c881dba2fb02ffab1ee981a",
+    "backend/src/test/java/queue/DbTest.java": "5b807954e2b8c3671bf88f45ad017b9d626f6a92b3ffc67512b281824ee4b5d8",
+    "db/postgres/V1__init.sql": "7ed8be27a37300c7c25c858b643a9ff285acbcbed3f7df78a323277450803ea1",
+    "db/postgres/V2__status.sql": "0bed799615680459d615334e05380b3362c14e48c3e7f9d0eb602a0b0385ba9e",
+    "db/sqlserver/V1__init.sql": "5d21263c87b92acc3b3fa3ca1014c6e0377da67245812bb731a1f58552bf53eb",
+    "db/sqlserver/V2__status.sql": "f1f31c94feb9b610013150db1c461e6c4b37448e4dbb5abccdb72258856cca03",
+    "demo_api.py": "7c8553c79afce5bfb072773149618e3e32f9bca849faa24291e684ff090fd786",
+    "ui/src/App.tsx": "3798aa82d7d31eaece3068a831bd18d90891cee6a3f792f654d8c8fa12927d03",
+    "ui/src/api.ts": "dbc8e596d70d477d94b0ac5c4506bcd1b7a5af46a2087bf616e723d17cb70f0f",
+    "ui/src/main.tsx": "f11b5c2fb8b63400f9ddecc0948af6b9292b128c90c0e8a7c51463f2b6bec8b0",
+    "ui/src/rules.ts": "5d4a619c4dc77d2e051b4e77f5e65d16174bc77a51259d6ae92aba52b9d9b3b0",
+    "ui/tests/rules.test.ts": "d3a0ba5f0d3ab17fdabec532f4a7b3c2427dc678eceb2954d57b3e4657ae0171",
+    "ui/vite.config.ts": "000931d61123dae0237d1b6d2cf8e4717fa38dbf423cf3e0effea21c0eeb78de"
+  },
+  "prior_measurement_ref": "results/demo.json",
+  "notes": "Fresh test invocation both dialects 2026-10-10: PostgreSQL 16 9/9 + SQL Server 2022 (Docker linux/amd64) 9/9. Raw logs retained."
+}

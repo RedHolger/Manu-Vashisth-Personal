@@ -1,0 +1,15 @@
+{
+  "command": "/Users/manuvashistha/Developer/MANU_INTERNSHIP_OPPURTUNITIES/.venv-builds/bin/python -B -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "date": "2026-10-10T00:52:55.263571+00:00",
+  "evidence_ref": "results/verification-2026-10-10.log",
+  "evidence_sha256": "fe8b67ce6708ac781dc9eed5bb487fba67a2a8ebe0403c81222cd23e25be3e40",
+  "source_sha256": {
+    "review_package.py": "2fdde999b3a2a7ebdd03936b3d031ff29761b2caa9b6ac16935a1458482fc76e",
+    "src/trace.py": "34f016e2947a4488dbdb4a8bff170094d3de0300068bf7073a74a586e79a0cb6",
+    "tests/test_trace.py": "e0a66ae68830de5ebcc86a3f244606789e39dc1860f44c36f4e55f891668db07"
+  },
+  "prior_measurement_ref": "results/review.pdf",
+  "notes": "Fresh test invocation; raw output retained. Hardware/SQL Server exclusions remain explicit.",
+  "tests_passed": 6
+}
