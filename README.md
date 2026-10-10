@@ -48,8 +48,8 @@ plainly — including what still needs hardware, participants, or review.
 | `recondesk/` | Invoice-payment reconciliation lab with FX handling (Python/SQL). |
 | `cvstar/` | LaTeX resume editing workspace: Monaco editor + PDF preview in Electron (React/TS). Excludes a stale nested copy and the unrelated Flutter side folder. |
 
-SRE work (BudgetGuard/FaultLab/RecoverOps audits) lives in a separate
-private repository and is not published here.
+SRE work (BudgetGuard/FaultLab/RecoverOps lab) lives in the public
+companion repository RedHolger/Manu-Portfolio, with a static demo site.
 
 ## Running things
 
