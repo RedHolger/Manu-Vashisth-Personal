@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=EB+Garamond:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #07080c;
+  --bg-secondary: #0d0f15;
+  --bg-editor: #11131a;
+  --bg-tertiary: #181b24;
+  --bg-hover: #1f232f;
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --border-focus: rgba(99, 102, 241, 0.5);
+  
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  
+  --accent-purple: #8b5cf6;
+  --accent-indigo: #6366f1;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* App Header */
+.cvstar-header {
+  height: 52px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 20;
+}
+
+.cvstar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-gem {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+}
+
+.brand-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Split Workspace */
+.workspace-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 52px);
+  overflow: hidden;
+}
+
+/* Left Editor Pane */
+.editor-pane {
+  background: var(--bg-editor);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pane-toolbar {
+  height: 40px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  font-size: 0.8rem;
+}
+
+.editor-textarea {
+  flex: 1;
+  background: transparent;
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  padding: 16px;
+  border: none;
+  outline: none;
+  resize: none;
+  white-space: pre;
+  overflow-y: auto;
+}
+
+/* Right Preview Pane */
+.preview-pane {
+  background: #06070a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.preview-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* A4 Sheet Simulator (High-fidelity LaTeX Document) */
+.resume-sheet {
+  background: #ffffff;
+  color: #111827;
+  width: 100%;
+  max-width: 780px;
+  min-height: 1050px;
+  padding: 44px 48px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  font-family: 'EB Garamond', Georgia, serif;
+  line-height: 1.35;
+  font-size: 10.5pt;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.resume-name {
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+
+.resume-contact {
+  font-size: 9.5pt;
+  color: #374151;
+}
+
+.resume-section-title {
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #111827;
+  padding-bottom: 2px;
+  margin: 12px 0 6px 0;
+}
+
+.resume-entry-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 10pt;
+  margin-top: 6px;
+}
+
+.resume-entry-sub {
+  display: flex;
+  justify-content: space-between;
+  font-style: italic;
+  font-size: 9.5pt;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.resume-bullets {
+  list-style-type: disc;
+  margin-left: 18px;
+  margin-bottom: 6px;
+}
+
+.resume-bullets li {
+  font-size: 9.5pt;
+  margin-bottom: 3px;
+  text-align: justify;
+}
+
+/* Buttons and Controls */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.btn-pill:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-hover);
+  color: #fff;
+}
+
+.btn-ai-tailor {
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+}
+
+.btn-ai-tailor:hover {
+  opacity: 0.94;
+  box-shadow: 0 0 18px rgba(236, 72, 153, 0.45);
+}
+
+/* AI Drawer / Overlay */
+.ai-drawer {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  width: 440px;
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border-hover);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  animation: slideLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.ai-drawer-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ai-drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* ATS Gauge Circle */
+.ats-score-box {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.score-number {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin: 6px 0;
+}

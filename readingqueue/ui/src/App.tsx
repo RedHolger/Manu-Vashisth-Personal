@@ -1,63 +1,166 @@
 import { useEffect, useState } from 'react';
 import type { JSX } from 'react';
-import { api, getUser, setUser } from './api';
-import { canEdit } from './rules';
-import type { Item } from './rules';
+import { Navbar } from './components/Navbar';
+import { QueueDashboard } from './components/QueueDashboard';
+import { TransactionVisualizer } from './components/TransactionVisualizer';
+import { SqlStudio } from './components/SqlStudio';
+import { TestHub } from './components/TestHub';
+import { TransferModal } from './components/TransferModal';
+import { api, setUser, getUser, setDialect, getDialect } from './api';
+import type { Item, Dialect } from './types';
+import { AlertCircle, X } from 'lucide-react';
+import './styles/theme.css';
 
 export default function App(): JSX.Element {
-  const [user, setUserState] = useState('alice');
+  const [currentUser, setCurrentUserState] = useState<string>(getUser());
+  const [currentDialect, setCurrentDialectState] = useState<Dialect>(getDialect());
   const [items, setItems] = useState<Item[]>([]);
-  const [total, setTotal] = useState(0);
-  const [search, setSearch] = useState('');
-  const [title, setTitle] = useState('');
-  const [msg, setMsg] = useState('');
+  const [activeTab, setActiveTab] = useState<'queue' | 'transactions' | 'sql' | 'tests'>('queue');
+  const [isLiveBackend, setIsLiveBackend] = useState<boolean>(false);
+  const [securityMessage, setSecurityMessage] = useState<string | null>(null);
+  const [transferringItem, setTransferringItem] = useState<Item | null>(null);
 
-  async function load(): Promise<void> {
+  const loadData = async (): Promise<void> => {
     try {
-      const r = await api.list(search, 1);
-      setItems(r.items);
-      setTotal(r.total);
-    } catch (e) {
-      setMsg(String(e));
+      const res = await api.list('', 1, 50);
+      setItems(res.items);
+      const isOnline = await api.checkHealth();
+      setIsLiveBackend(isOnline);
+    } catch (e: any) {
+      console.warn('Load failed:', e);
     }
-  }
+  };
 
   useEffect(() => {
-    setUser(user);
-    load().catch(() => undefined);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+    setUser(currentUser);
+    loadData();
+  }, [currentUser]);
+
+  const handleSelectDialect = (d: Dialect) => {
+    setCurrentDialectState(d);
+    setDialect(d);
+  };
+
+  const handleSelectUser = (u: string) => {
+    setCurrentUserState(u);
+    setUser(u);
+    setSecurityMessage(null);
+  };
+
+  const handleUpdateStatus = async (id: number, status: 'unread' | 'reading' | 'done') => {
+    try {
+      await api.setStatus(id, status);
+      await loadData();
+    } catch (err: any) {
+      setSecurityMessage(err.message);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await api.remove(id);
+      await loadData();
+    } catch (err: any) {
+      setSecurityMessage(err.message);
+    }
+  };
+
+  const handleAddItem = async (title: string, url: string, tags: string[]) => {
+    try {
+      await api.add(title, url, tags);
+      await loadData();
+    } catch (err: any) {
+      setSecurityMessage(err.message);
+    }
+  };
+
+  const handleExecuteTransfer = async (id: number, targetUser: string, injectFault: boolean) => {
+    try {
+      const res = await api.transfer(id, targetUser, injectFault);
+      if (res.rolledBack) {
+        setSecurityMessage(
+          `Notice: Rollback Hook Verified. Forced failure caused full rollback. Item remains owned by '${res.item?.owner}'.`
+        );
+      }
+      await loadData();
+    } catch (err: any) {
+      setSecurityMessage(err.message);
+    }
+  };
 
   return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: 800, margin: '0 auto', padding: 16 }}>
-      <h1>ReadingQueue (demo — local Java backend)</h1>
-      <label>
-        User:{' '}
-        <select value={user} onChange={(e) => setUserState(e.target.value)}>
-          <option value="alice">alice</option>
-          <option value="bob">bob</option>
-        </select>
-      </label>{' '}
-      <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="search titles" />{' '}
-      <button onClick={() => load()}>Search</button>
-      {msg && <p><b>{msg}</b></p>}
-      <p>{total} item(s). You can edit only your own (backend returns 403 otherwise).</p>
-      <ul>
-        {items.map((it) => (
-          <li key={it.id}>
-            [{it.status}] <b>{it.title}</b> <i>({it.owner})</i>{' '}
-            {canEdit(it.owner, getUser()) && (
-              <>
-                <button onClick={() => api.setStatus(it.id, 'done').then(load).catch((e) => setMsg(String(e)))}>done</button>{' '}
-                <button onClick={() => api.remove(it.id).then(load).catch((e) => setMsg(String(e)))}>delete</button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-      <h2>Add</h2>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="title" />{' '}
-      <button onClick={() => api.add(title, '').then(() => { setTitle(''); load(); }).catch((e) => setMsg(String(e)))}>Add</button>
+    <div style={{ position: 'relative', minHeight: '100vh', overflowX: 'hidden' }}>
+      <div className="top-glow" />
+
+      <div className="app-container">
+        <Navbar
+          currentDialect={currentDialect}
+          onSelectDialect={handleSelectDialect}
+          currentUser={currentUser}
+          onSelectUser={handleSelectUser}
+          activeTab={activeTab}
+          onSelectTab={setActiveTab}
+          isLiveBackend={isLiveBackend}
+          itemCount={items.length}
+        />
+
+        {/* Security / Error Toast Banner */}
+        {securityMessage && (
+          <div className="security-toast">
+            <AlertCircle size={18} style={{ color: 'var(--accent-rose)', flexShrink: 0, marginTop: 2 }} />
+            <div style={{ flex: 1 }}>{securityMessage}</div>
+            <button
+              onClick={() => setSecurityMessage(null)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'var(--text-muted)',
+                cursor: 'pointer',
+              }}
+            >
+              <X size={16} />
+            </button>
+          </div>
+        )}
+
+        {/* Tab Views */}
+        <main>
+          {activeTab === 'queue' && (
+            <QueueDashboard
+              items={items}
+              currentUser={currentUser}
+              onUpdateStatus={handleUpdateStatus}
+              onDelete={handleDelete}
+              onStartTransfer={(item) => setTransferringItem(item)}
+              onAddItem={handleAddItem}
+              onSecurityAlert={(msg) => setSecurityMessage(msg)}
+            />
+          )}
+
+          {activeTab === 'transactions' && (
+            <TransactionVisualizer
+              items={items}
+              currentUser={currentUser}
+              currentDialect={currentDialect}
+              onRefresh={loadData}
+            />
+          )}
+
+          {activeTab === 'sql' && <SqlStudio />}
+
+          {activeTab === 'tests' && <TestHub />}
+        </main>
+
+        {/* Transfer Modal */}
+        {transferringItem && (
+          <TransferModal
+            item={transferringItem}
+            currentUser={currentUser}
+            onClose={() => setTransferringItem(null)}
+            onExecute={handleExecuteTransfer}
+          />
+        )}
+      </div>
     </div>
   );
 }

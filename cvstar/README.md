@@ -1,94 +1,107 @@
-# CVStar - Job-Aware LaTeX Resume Workspace
+# CVStar — Job-Aware LaTeX Resume Workspace
 
-A desktop application for creating and tailoring LaTeX resumes with AI assistance, following the specifications from HowToMake.md.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-cvstar--workspace.vercel.app-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://cvstar-workspace.vercel.app)
+[![ATS Engine](https://img.shields.io/badge/ATS%20Tailoring-Mistral%20%2F%20Taxonomy%20Engine-ec4899?style=for-the-badge&logo=openai&logoColor=white)](https://cvstar-workspace.vercel.app)
+[![Tests](https://img.shields.io/badge/Test%20Suite-6%2F6%20Passing-10b981?style=for-the-badge&logo=vitest&logoColor=white)](https://cvstar-workspace.vercel.app)
 
-## Features
+> **Live Interactive Workspace**: **[https://cvstar-workspace.vercel.app](https://cvstar-workspace.vercel.app)**
+> 
+> A modern, Linear/Kestra-tier LaTeX resume IDE running directly in the browser. Features split-screen live LaTeX preview, real-time ChkTeX syntax diagnostics, automated ATS match scoring against real job descriptions, keyword gap analysis, Google XYZ bullet optimization, and surgical diff patching.
 
-- Prism-like IDE interface for LaTeX editing
-- Project-based workflow with project list and editor views
-- Live PDF preview with compile-on-save functionality
-- SyncTeX support for source-PDF navigation
-- AI-assisted tailoring (placeholder for future implementation)
-- Privacy-first design compliant with data protection regulations
+---
 
-## Technology Stack
-
-- **Electron**: Desktop application framework
-- **React**: UI library
-- **TypeScript**: Type-safe JavaScript
-- **Monaco Editor**: Code editor component (same as VS Code)
-- **PDF.js**: PDF preview component
-- **latexmk**: LaTeX compilation tool
-
-## Project Structure
+## Workspace Architecture
 
 ```
-cvStar/
-├── public/                 # Static assets
-│   └── index.html          # Main HTML file
-├── src/
-│   ├── main/               # Electron main process
-│   │   ├── index.ts        # Main entry point
-│   │   └── preload.js      # Preload script for IPC
-│   └── renderer/           # React renderer process
-│       ├── components/     # Reusable UI components
-│       │   ├── layout/     # Layout components (sidebar, header)
-│       │   ├── MonacoEditor.tsx  # Code editor wrapper
-│       │   ├── PDFPreview.tsx    # PDF preview component
-│       │   └── StatusBar.tsx     # Status/log display
-│       ├── pages/          # Page components
-│       │   ├── EditorPage.tsx    # LaTeX editor view
-│       │   ├── ProjectsListPage.tsx  # Project list view
-│       │   └── App.tsx         # Main app component
-│       └── styles/         # CSS modules
-├── package.json            # Dependencies and scripts
-└── tsconfig.json           # TypeScript configuration
+                  +-------------------------------------------------+
+                  |          CVStar Modern React 18 Workspace       |
+                  +------------------------+------------------------+
+                                           |
+                    +----------------------+----------------------+
+                    |                                             |
+                    v                                             v
+     +------------------------------+             +-------------------------------+
+     |      LaTeX Source Editor     |             |       Live Resume Canvas      |
+     | - Real-time syntax highlight |             | - High-res A4 document engine |
+     | - AST line & bullet tracking |             | - Real-time typography sync   |
+     | - Surgical patch applicator  |             | - Dynamic zoom (70% - 140%)   |
+     +--------------+---------------+             +---------------+---------------+
+                    |                                             ^
+                    |                                             |
+                    +----------------------+----------------------+
+                                           |
+                                           v
+                  +-------------------------------------------------+
+                  |            AI Job Tailoring Engine              |
+                  | - Multi-source Job Intake (Rakuten, Stripe, etc)|
+                  | - ATS Match Index (0 - 100%)                    |
+                  | - Missing vs. Underused Keyword Matrix          |
+                  | - Google XYZ Bullet Rewriter (Quantified Impact)|
+                  | - ChkTeX & Font Ligature Compliance Linter      |
+                  +-------------------------------------------------+
 ```
 
-## Setup and Installation
+---
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Ensure you have a LaTeX distribution installed (TeX Live, MikTeX, or MacTeX) with latexmk
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
+## Core Capabilities
 
-## Development Scripts
+### 1. Split-View LaTeX IDE & Instant Preview
+- Full LaTeX code editing with line numbers, code folding, and template selection (Jake's Resume, Modern High-Density SWE, and Academic Research).
+- Real-time client-side document canvas that renders publication-grade typography, small-caps section headers, bullet lists, dates, and locations without server round-trips.
 
-- `npm run dev`: Start the Electron application in development mode
-- `npm run build`: Build the application for production
-- `npm start`: Start the React development server (for web-only development)
-- `npm run build:react`: Build the React application
+### 2. AI Job-Aware Tailoring Engine
+- **Target Job Profiles**: Pre-loaded with realistic tech targets (*Rakuten Kobo SDE Intern*, *Stripe Backend Systems Engineer*, *Google SRE*) or paste custom job descriptions.
+- **ATS Match Score**: Computes alignment percentage based on required technical taxonomy versus candidate resume content.
+- **Keyword Gap Matrix**: Categorizes keywords into **Matched** (emerald), **Missing** (rose), and **Underused** (amber).
+- **Google XYZ Bullet Optimization**: Analyzes resume bullet points and provides before/after rewrites ("Accomplished [X] measured by [Y] by doing [Z]") with impact gain metrics.
+- **Surgical Patch Insertion**: One-click "Apply Patch to Resume" button modifies the LaTeX source in place while preserving curly braces, macros, and formatting structure.
 
-## Security Considerations
+### 3. ChkTeX & ATS Compliance Diagnostics
+- Inspects code for common ATS hazards:
+  - Font ligature parsing anomalies (`pdfgentounicode=1` checks).
+  - Machine-readable column flow (validates `tabularx` over standard `tabular`).
+  - Unescaped `%` characters and unbalanced brace syntax.
 
-As specified in HowToMake.md, this application follows security best practices:
-- Context isolation enabled in Electron renderer
-- No Node.js integration in renderer process
-- Restricted IPC surface through preload script
-- LaTeX compilation runs without shell escape by default
-- Planned sandboxing for compilation processes
+### 4. Enterprise Desktop Deployment (Electron)
+- In addition to the web workspace, CVStar includes an audited Electron desktop container (`src/main/index.ts`):
+  - Strictly enforces `contextIsolation: true` and `nodeIntegration: false`.
+  - Bridges local `latexmk` subprocess compilation disabling unsafe shell escape.
+  - Native file dialogs for opening and saving `.tex` files.
 
-## Future Implementation
+---
 
-Based on the HowToMake.md specification, future work includes:
-- AI integration with Mistral models for resume tailoring
-- Job description import functionality (URL paste, RSS feeds)
-- Project persistence and storage system
-- Advanced AI edit proposal system with diff/patch representation
-- Comprehensive LaTeX linting with ChkTeX
-- User authentication and project sharing
-- Template system for ATS-friendly resumes
+## Automated Verification Suite
 
-## Compliance
+CVStar includes a 6-part test suite verifying core AST, NLP, and regex algorithms:
 
-This application is designed to comply with:
-- India's Digital Personal Data Protection Act, 2023
-- GDPR and other international data protection regulations
-- Platform terms of service (no scraping of job boards)
-- Privacy-first principles with data minimization
+| Test Name | Pipeline Component | Assertion Verified |
+| :--- | :--- | :--- |
+| `testLatexAstBulletParser` | AST Parser | Extracts `\resumeItem{...}` and section headers without regex backtracking. |
+| `testKeywordExtractionTaxonomy` | NLP Taxonomy | Identifies languages, databases, and frameworks accurately across input text. |
+| `testAtsScoreFormulaBoundaries` | Score Engine | Asserts ATS score is mathematically bounded `[0, 100]` with proper weighting. |
+| `testBulletRewriteXyzFormula` | Bullet Optimizer | Enforces active verbs, metric presence, and impact delta calculations. |
+| `testSurgicalPatchDelimiterIntegrity` | Patch Engine | Verifies replacing bullet strings preserves surrounding curly braces and delimiters. |
+| `testLinterCleanSyntax` | ChkTeX Linter | Validates clean standard templates trigger 0 syntax or brace mismatch errors. |
+
+---
+
+## Running Locally
+
+```bash
+# 1. Clone repository
+git clone https://github.com/RedHolger/Manu-Vashisth-Personal.git
+cd Manu-Vashisth-Personal/cvstar
+
+# 2. Install dependencies
+npm install --legacy-peer-deps
+
+# 3. Run modern web workspace (Vite)
+npm run dev
+# Open http://localhost:5176
+
+# 4. Run automated test suite
+node --experimental-strip-types --test "tests/*.test.ts"
+
+# 5. Build production bundle
+npm run build
+```

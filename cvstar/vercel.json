@@ -1,0 +1,6 @@
+{
+  "name": "cvstar-workspace",
+  "framework": "vite",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist"
+}

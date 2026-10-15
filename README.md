@@ -5,6 +5,11 @@ permission-aware retrieval, experimentation, and hardware-adjacent validation.
 Every project runs locally, keeps its tests green, and states its limits
 plainly — including what still needs hardware, participants, or review.
 
+## Featured Live Web Applications
+
+- **CVStar LaTeX Workspace**: [https://cvstar-workspace.vercel.app](https://cvstar-workspace.vercel.app) — In-browser LaTeX resume IDE with live compiled canvas preview, ATS match index, keyword gap analysis, and Google XYZ bullet point optimizer.
+- **ReadingQueue Dual-Dialect Engine**: [https://readingqueue-demo.vercel.app](https://readingqueue-demo.vercel.app) — Linear-grade dashboard demonstrating row-level security (403 gating), ACID transaction rollback under injected faults, and side-by-side PostgreSQL 16 vs. SQL Server 2022 query comparisons.
+
 ## Projects
 
 | Directory | What it is |
@@ -28,7 +33,7 @@ plainly — including what still needs hardware, participants, or review.
 | `edge-bench/` | Host CPU vision baseline + one bit-identical optimization. |
 | `silicon-check/` | FIFO RTL verified against a Python model in Icarus Verilog. |
 | `enclosure-lab/` | Parametric enclosure CAD (OpenSCAD + drawings) on assumed dimensions. |
-| `readingqueue/` | Java REST reading list, dual-dialect migrations: same 9-test contract green on PostgreSQL 16 and SQL Server 2022, plus React UI. |
+| [`readingqueue/`](readingqueue/) | Java REST reading list, dual-dialect migrations: same 9-test contract green on PostgreSQL 16 & SQL Server 2022. Live demo: [readingqueue-demo.vercel.app](https://readingqueue-demo.vercel.app). |
 | `partnerops/` | Partner-pipeline analytics dashboard (Python/PostgreSQL). |
 | `commercefunnel/` | E-commerce funnel and fulfilment dashboard (Python/SQL). |
 | `deliveryplan/` | Launch delivery tracker: owners, dependencies, milestones, RAID (React/FastAPI). |
@@ -46,7 +51,7 @@ plainly — including what still needs hardware, participants, or review.
 | `opsconsole/` | Job/incident dashboard over lab adapters (React/TypeScript). |
 | `discoveryeval/` | Lexical/dense/hybrid retrieval comparison (Python/NumPy). |
 | `recondesk/` | Invoice-payment reconciliation lab with FX handling (Python/SQL). |
-| `cvstar/` | LaTeX resume editing workspace: Monaco editor + PDF preview in Electron (React/TS). Excludes a stale nested copy and the unrelated Flutter side folder. |
+| [`cvstar/`](cvstar/) | Job-Aware LaTeX resume workspace with live canvas preview, ChkTeX linting, and AI ATS tailoring. Live demo: [cvstar-workspace.vercel.app](https://cvstar-workspace.vercel.app). |
 
 SRE work (BudgetGuard/FaultLab/RecoverOps lab) lives in the public
 companion repository RedHolger/Manu-Portfolio, with a static demo site.
