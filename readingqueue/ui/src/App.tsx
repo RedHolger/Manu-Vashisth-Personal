@@ -148,6 +148,8 @@ export default function App(): JSX.Element {
             <QueueDashboard
               items={items}
               currentUser={currentUser}
+              currentDialect={currentDialect}
+              onSelectTab={setActiveTab}
               onUpdateStatus={handleUpdateStatus}
               onDelete={handleDelete}
               onStartTransfer={(item) => setTransferringItem(item)}

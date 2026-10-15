@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const [selectedTemplate, setSelectedTemplate] = useState<'jake' | 'modern' | 'research'>('jake');
   const [targetJobDesc, setTargetJobDesc] = useState<string>(JOB_TARGET_PRESETS[0].description);
   const [isCompiling, setIsCompiling] = useState<boolean>(false);
-  const [isAiDrawerOpen, setIsAiDrawerOpen] = useState<boolean>(false);
+  const [isAiDrawerOpen, setIsAiDrawerOpen] = useState<boolean>(true);
   const [isLinterOpen, setIsLinterOpen] = useState<boolean>(false);
   const [isTestOpen, setIsTestOpen] = useState<boolean>(false);
   const [copiedCode, setCopiedCode] = useState<boolean>(false);
@@ -144,6 +144,37 @@ const App: React.FC = () => {
               >
                 <Sparkles size={12} />
                 <span>AI Tailor</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Moonshot AI Copilot Live Strip */}
+          <div
+            style={{
+              background: 'linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%)',
+              borderBottom: '1px solid rgba(99, 102, 241, 0.25)',
+              padding: '8px 14px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              fontSize: '0.75rem',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Sparkles size={14} className="text-pink-400" />
+              <span style={{ color: '#fff', fontWeight: 600 }}>Moonshot ATS Intelligence Engine Active</span>
+              <span style={{ color: 'var(--text-muted)' }}>•</span>
+              <span style={{ color: 'var(--text-secondary)' }}>Target: Rakuten Kobo</span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ color: '#34d399', fontWeight: 600 }}>{analysis.matchScore}% Match Index</span>
+              <button
+                className="btn-pill"
+                style={{ padding: '2px 8px', fontSize: '0.7rem', background: 'rgba(99, 102, 241, 0.2)' }}
+                onClick={() => setIsAiDrawerOpen(!isAiDrawerOpen)}
+              >
+                {isAiDrawerOpen ? 'Close Drawer' : 'Open Drawer (⌘T)'}
               </button>
             </div>
           </div>
