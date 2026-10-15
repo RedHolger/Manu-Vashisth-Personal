@@ -36,6 +36,25 @@ export default function App(): JSX.Element {
     loadData();
   }, [currentUser]);
 
+  // Linear-style Keyboard Navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        document.activeElement?.tagName === 'INPUT' ||
+        document.activeElement?.tagName === 'TEXTAREA' ||
+        document.activeElement?.tagName === 'SELECT'
+      ) {
+        return;
+      }
+      if (e.key === '1') setActiveTab('queue');
+      else if (e.key === '2') setActiveTab('transactions');
+      else if (e.key === '3') setActiveTab('sql');
+      else if (e.key === '4') setActiveTab('tests');
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const handleSelectDialect = (d: Dialect) => {
     setCurrentDialectState(d);
     setDialect(d);

@@ -60,6 +60,41 @@ const App: React.FC = () => {
     setTimeout(() => setCopiedCode(false), 1500);
   };
 
+  // Calculate word and line counts
+  const wordCount = useMemo(() => {
+    return latexSource.trim().split(/\s+/).filter(Boolean).length;
+  }, [latexSource]);
+
+  const lineCount = useMemo(() => {
+    return latexSource.split('\n').length;
+  }, [latexSource]);
+
+  // Global Keyboard Shortcuts (Linear aesthetic)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        setIsCompiling(true);
+        setTimeout(() => setIsCompiling(false), 200);
+      } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 't') {
+        e.preventDefault();
+        setIsAiDrawerOpen((prev) => !prev);
+      } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'l') {
+        e.preventDefault();
+        setIsLinterOpen((prev) => !prev);
+      } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'u') {
+        e.preventDefault();
+        setIsTestOpen((prev) => !prev);
+      } else if (e.key === 'Escape') {
+        setIsAiDrawerOpen(false);
+        setIsLinterOpen(false);
+        setIsTestOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // Export / Print
   const handleExport = () => {
     window.print();
@@ -124,6 +159,34 @@ const App: React.FC = () => {
         {/* Right Side: Live Compiled Resume Canvas */}
         <ResumeCanvas latexSource={latexSource} />
       </div>
+
+      {/* Linear-Style Bottom Status Bar */}
+      <footer className="workspace-statusbar">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span className="pulse-dot" />
+            <span style={{ color: '#e2e8f0', fontWeight: 500 }}>Live ATS Engine Active</span>
+          </div>
+          <span>•</span>
+          <span>{lineCount} lines</span>
+          <span>•</span>
+          <span>{wordCount} words</span>
+          <span>•</span>
+          <span style={{ color: '#34d399' }}>A4 1-Page Bound</span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span>Press <kbd className="kbd-shortcut">⌘T</kbd> AI Tailor</span>
+          <span>•</span>
+          <span><kbd className="kbd-shortcut">⌘L</kbd> Linter</span>
+          <span>•</span>
+          <span><kbd className="kbd-shortcut">⌘U</kbd> Tests</span>
+          <span>•</span>
+          <span><kbd className="kbd-shortcut">⌘S</kbd> Compile</span>
+          <span>•</span>
+          <span><kbd className="kbd-shortcut">Esc</kbd> Close</span>
+        </div>
+      </footer>
 
       {/* AI Tailoring Drawer */}
       {isAiDrawerOpen && (

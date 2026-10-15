@@ -84,15 +84,40 @@ export const AiTailorDrawer: React.FC<AiTailorDrawerProps> = ({
           </div>
         </div>
 
-        {/* ATS Score Box */}
-        <div className="ats-score-box">
-          <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>
-            ATS Match Index
+        {/* Moonshot Circular ATS Gauge */}
+        <div className="ats-score-box" style={{ padding: '16px 12px 14px 12px' }}>
+          <div className="score-gauge-container">
+            <svg className="score-gauge-svg" viewBox="0 0 120 120">
+              <defs>
+                <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#8b5cf6" />
+                  <stop offset="50%" stopColor="#ec4899" />
+                  <stop offset="100%" stopColor="#06b6d4" />
+                </linearGradient>
+              </defs>
+              <circle cx="60" cy="60" r="48" className="gauge-track" />
+              <circle
+                cx="60"
+                cy="60"
+                r="48"
+                className="gauge-fill"
+                strokeDasharray="301.6"
+                strokeDashoffset={301.6 - (analysis.matchScore / 100) * 301.6}
+              />
+            </svg>
+            <div className="score-gauge-center">
+              <div style={{ fontSize: '1.9rem', fontWeight: 800, color: '#fff', lineHeight: 1 }}>
+                {analysis.matchScore}%
+              </div>
+              <div style={{ fontSize: '0.62rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginTop: 3 }}>
+                ATS Match
+              </div>
+            </div>
           </div>
-          <div className="score-number">{analysis.matchScore}%</div>
-          <div style={{ fontSize: '0.78rem', color: analysis.matchScore >= 80 ? '#34d399' : '#fbbf24', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-            <TrendingUp size={14} />
-            <span>{analysis.matchScore >= 80 ? 'Strong Candidate Alignment' : 'Tailoring Recommended'}</span>
+
+          <div style={{ fontSize: '0.76rem', color: analysis.matchScore >= 80 ? '#34d399' : '#fbbf24', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+            <TrendingUp size={13} />
+            <span>{analysis.matchScore >= 80 ? 'Optimal Candidate Match' : 'Calibration Recommended'}</span>
           </div>
         </div>
 

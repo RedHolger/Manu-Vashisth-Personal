@@ -129,6 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             {itemCount}
           </span>
+          <kbd className="kbd-shortcut" style={{ marginLeft: 6 }}>1</kbd>
         </button>
 
         <button
@@ -137,6 +138,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <ShieldCheck size={14} />
           <span>ACID Transaction Lab</span>
+          <kbd className="kbd-shortcut" style={{ marginLeft: 6 }}>2</kbd>
         </button>
 
         <button
@@ -145,6 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <Database size={14} />
           <span>Dual-Dialect SQL Studio</span>
+          <kbd className="kbd-shortcut" style={{ marginLeft: 6 }}>3</kbd>
         </button>
 
         <button
@@ -164,6 +167,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             9/9 Pass
           </span>
+          <kbd className="kbd-shortcut" style={{ marginLeft: 6 }}>4</kbd>
         </button>
       </nav>
     </header>

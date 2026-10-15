@@ -117,31 +117,35 @@ export const Navbar: React.FC<NavbarProps> = ({
           }}
         >
           <Sparkles size={14} className="text-pink-400" />
-          <span>ATS Score: <strong>{atsScore}%</strong></span>
+          <span>ATS: <strong>{atsScore}%</strong></span>
         </button>
 
         {/* AI Tailor Primary Action */}
-        <button className="btn-pill btn-ai-tailor" onClick={onOpenAiTailor}>
+        <button className="btn-pill btn-ai-tailor" onClick={onOpenAiTailor} title="Tailor Resume to Target Job (⌘T)">
           <Sparkles size={14} />
-          <span>Tailor to Job</span>
+          <span>Tailor</span>
+          <kbd className="kbd-shortcut" style={{ background: 'rgba(0,0,0,0.25)', borderColor: 'rgba(255,255,255,0.2)' }}>⌘T</kbd>
         </button>
 
         {/* ChkTeX Linter */}
-        <button className="btn-pill" onClick={onOpenLinter} title="ChkTeX & ATS Format Linter">
+        <button className="btn-pill" onClick={onOpenLinter} title="ChkTeX & ATS Format Linter (⌘L)">
           <FileCode size={14} />
           <span>Linter</span>
+          <kbd className="kbd-shortcut">⌘L</kbd>
         </button>
 
         {/* Tests */}
-        <button className="btn-pill" onClick={onOpenTests} title="Automated Verification Suite">
+        <button className="btn-pill" onClick={onOpenTests} title="Automated Verification Suite (⌘U)">
           <ShieldCheck size={14} color="#34d399" />
           <span>5/5 Tests</span>
+          <kbd className="kbd-shortcut">⌘U</kbd>
         </button>
 
         {/* Download PDF */}
-        <button className="btn-pill" onClick={onExport} title="Export clean formatted resume">
+        <button className="btn-pill" onClick={onExport} title="Export clean formatted resume (⌘P)">
           <Download size={14} />
           <span>Export</span>
+          <kbd className="kbd-shortcut">⌘P</kbd>
         </button>
 
         {/* GitHub link */}
