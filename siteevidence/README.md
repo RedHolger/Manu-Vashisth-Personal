@@ -1,21 +1,28 @@
-# SiteEvidence Demo — RFI/inspection tracker (role 38)
+# SiteEvidence
 
-Synthetic construction-paperwork tracker: revisions, owners, due dates,
-evidence links, weekly gaps, handover pack. No site, no surveying, no civil
-competence — stated everywhere.
+A document-coordination tool for RFIs and inspections. Each record has an owner, revision, due date and evidence links. The tracker identifies overdue items, missing evidence and revision mismatches, then collects them into a weekly report and handover package.
 
-## Setup
+The example records describe a fictional construction project. They exercise the paperwork workflow without representing an actual site inspection.
 
+## Backend and handover report
+
+Use Python 3 with FastAPI installed:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 handover.py
 ```
-python -m unittest discover -s tests -v   # 8 tests (.venv-builds: fastapi)
-python handover.py                        # -> results/handover.{json,html}
-cd ui && npm install && npm run build     # tsc + vite
+
+The report is written to `results/handover.json` and `results/handover.html`. Domain logic is in `backend/store.py`, with FastAPI routes in `backend/api.py`.
+
+## Frontend
+
+From `ui/`, with Node.js installed:
+
+```bash
+npm ci
+npm run build
+npm run dev
 ```
 
-TS tests: `node --experimental-strip-types --test "tests/*.test.ts"` (3 tests).
-
-## Layout
-
-- `SPEC.md`, `backend/store.py` (domain), `backend/api.py` (FastAPI).
-- `ui/` (React list/badges/weekly), `handover.py`.
-- `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+The development UI uses port 5177. Run its helper tests with Node 22 using `node --experimental-strip-types --test tests/*.test.ts`. See [SPEC.md](SPEC.md) for record rules and [EVIDENCE.md](EVIDENCE.md) for saved checks.

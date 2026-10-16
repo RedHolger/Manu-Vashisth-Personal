@@ -1,17 +1,18 @@
-# ReconciliationDesk — invoice/payment reconciliation lab (role 29)
+# ReconciliationDesk
 
-Hand-calculated fixtures, Decimal half-up FX, exception aging, static
-working-capital dashboard. Educational; no advice, no bank systems.
+An invoice/payment reconciliation exercise with partial payments, duplicates, overpayments and foreign-exchange allocation. Money calculations use `Decimal` with half-up rounding, and the expected totals are worked out by hand in the fixture definitions.
 
-## Setup (.venv-builds or system python3; stdlib only)
+The report groups exceptions by age and ties allocated and outstanding amounts back to the input ledger. The goal is to make a mismatch explainable rather than hide it inside a final total.
 
+## Run the checks
+
+Use Python 3; no additional packages are required.
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 report.py
 ```
-python -m unittest discover -s tests -v   # 6 tests
-python report.py                           # -> results/report.json + report.html
-```
 
-## Layout
+Outputs are `results/report.json` and `results/report.html`. `src/ledger.py` contains allocation, FX and aging logic. [SPEC.md](SPEC.md) defines the business rules and hand calculations.
 
-- `SPEC.md` (business definitions + hand calcs), `datasets/fixtures.json`.
-- `src/ledger.py` (sqlite store, Decimal FX, allocator, aging, report).
-- `report.py`, `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+All ledger entries are synthetic. This is a reproducible accounting-data exercise, not a connection to a bank or live treasury system.

@@ -1,17 +1,18 @@
-# EngineeringEvidence Demo — traceability tool (role 28)
+# EngineeringEvidence
 
-Software-only requirements/revision/review/test traceability for a FICTIONAL
-cabin mod. Not certification, not EASA competence — stated in every artifact.
+A requirements-traceability tool built around a fictional aircraft cabin modification. It links requirements, revisions, reviews and test evidence, then identifies orphan requirements, conflicting records and missing evidence.
 
-## Setup (stdlib + pdflatex)
+The output is a review package that lets a reader follow a requirement back to its supporting records. It is a software demonstration, not an aircraft certification package.
 
+## Build the review package
+
+Requirements: Python 3 and `pdflatex` on PATH.
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 review_package.py
 ```
-python -m unittest discover -s tests -v   # 6 tests (builds the PDF too)
-python review_package.py                   # -> results/review.{json,tex,pdf}
-```
 
-## Layout
+The script writes `results/review.json`, `results/review.tex` and `results/review.pdf`. The tests also exercise PDF generation.
 
-- `SPEC.md` (seeded defects), `src/trace.py`, `review_package.py`.
-- `tests/test_trace.py`, `results/review.pdf`.
-- `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+`src/trace.py` contains the checks. [SPEC.md](SPEC.md) describes the deliberately seeded defects, and [EVIDENCE.md](EVIDENCE.md) records the saved test results.

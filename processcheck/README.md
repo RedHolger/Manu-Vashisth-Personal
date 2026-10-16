@@ -1,18 +1,18 @@
-# ProcessCheck Lab — batch-quality analysis (role 30)
+# ProcessCheck
 
-X-bar/R charts, capability vs fictional spec limits, corrective-action log.
-Teaching fixture; no GMP/regulatory validation anywhere.
+Batch-quality analysis using X-bar/R control charts and capability estimates. The synthetic batches include seeded shifts, letting the checks compare flagged batches with known changes in the input.
 
-## Setup (.venv-builds: numpy)
+The report keeps validation errors, chart signals, specification limits and corrective actions together. This makes a flagged batch traceable back to its measurements and recorded action.
 
+## Generate the report
+
+Use Python 3 with NumPy installed:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 report.py
 ```
-python -m unittest discover -s tests -v   # 6 tests
-python src/generate.py                    # regenerates frozen datasets/
-python report.py                           # -> results/report.{json,html}
-```
 
-## Layout
+Outputs are `results/report.json` and `results/report.html`. The frozen inputs live in `datasets/`; `src/generate.py` can recreate them when intentionally changing the experiment.
 
-- `SPEC.md` (methods, constants, expectations).
-- `src/generate.py`, `src/charts.py`, `datasets/` (batches.csv frozen, actions.json).
-- `report.py`, `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+`src/charts.py` contains the calculations. [SPEC.md](SPEC.md) documents the chart constants and assumptions. Specification limits are fictional, and the results have not been validated for a manufacturing or regulated process.

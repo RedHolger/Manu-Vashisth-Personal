@@ -1,21 +1,18 @@
-# DiscoveryEval — lexical/dense/hybrid/rerank comparison (role 08)
+# DiscoveryEval
 
-Frozen synthetic catalog (60 products) + 24 queries with qrels (18 standard,
-6 cold-start). No downloads, no services. See LIMITATIONS.md.
+A retrieval experiment on a frozen catalogue of 60 synthetic products and 24 labelled queries. It compares lexical search, hashed-dense search, a hybrid method and reranking using recall, NDCG and MRR.
 
-## Setup (.venv-builds: numpy)
+Six queries form a separate cold-start slice. Keeping that slice visible exposed a weakness that an overall average would hide. Bootstrap intervals show how uncertain the comparisons are on this small dataset.
 
+## Run the comparison
+
+Install NumPy in your Python 3 environment, then run:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 measure.py
 ```
-python -m unittest discover -s tests -v
-python measure.py   # -> results/measure.json
-```
 
-`src/generate.py` built the frozen `datasets/` (seed 11, overlap contracts
-asserted); rerun only to verify, not to modify.
+Results go to `results/measure.json`. Retrieval methods live in `src/retrieve.py`; scoring and bootstrap code are in `src/metrics.py`.
 
-## Layout
-
-- `SPEC.md`, `PROVENANCE.md`.
-- `src/retrieve.py` (4 methods), `src/metrics.py` (recall/NDCG/MRR/bootstrap).
-- `datasets/` (catalog/queries/qrels, frozen), `measure.py`.
-- `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+The inputs and relevance labels in `datasets/` are frozen. `src/generate.py` recreates them with seed 11, but regeneration is not required to run the evaluation. The dense baseline uses hashing, not a pretrained neural embedding model. See [LIMITATIONS.md](LIMITATIONS.md) before interpreting the scores.

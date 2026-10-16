@@ -1,19 +1,18 @@
-# PricingNotebook — synthetic frequency/severity GLMs (role 35)
+# PricingNotebook
 
-Known-truth insurance data, from-scratch IRLS, out-of-time validation.
-Educational; no exams, pricing approval, or advice.
+A frequency/severity modelling exercise where the generating parameters are known. The dataset is synthetic, which makes it possible to check whether fitting recovers the intended effects before interpreting the predictions.
 
-## Setup (.venv-builds: numpy)
+The implementation uses Poisson IRLS with exposure offsets for claim frequency and least squares on log severity. Evaluation includes calibration, an out-of-time split and bootstrap uncertainty.
 
+## Fit and evaluate
+
+Use Python 3 with NumPy installed. From this directory:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 fit.py
 ```
-python -m unittest discover -s tests -v   # 7 tests
-python src/generate.py                    # regenerates frozen datasets/
-python fit.py                             # -> results/fit.json
-```
 
-## Layout
+The report is saved to `results/fit.json`. `datasets/policies.csv` and `datasets/truth.json` hold the frozen inputs and generating parameters. `src/generate.py` can recreate them, but is not needed for a normal run.
 
-- `SPEC.md` (design + truth), `INTERPRETATION.md` (effects + assumptions).
-- `src/generate.py`, `src/glm.py` (Poisson IRLS + log OLS), `fit.py`.
-- `datasets/` (policies.csv frozen, truth.json), `tests/test_glm.py`.
-- `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+Read [INTERPRETATION.md](INTERPRETATION.md) for the effects and assumptions, and [SPEC.md](SPEC.md) for the experiment design. This is a statistical modelling exercise, not a pricing model approved for operational use.

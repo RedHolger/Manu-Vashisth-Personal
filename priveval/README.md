@@ -1,20 +1,18 @@
-# GenAI Privacy Evaluation — canary-leakage harness (role 33)
+# PrivacyEval
 
-Self-contained baseline-vs-controls test: does authorization stop canary
-leakage? sqlite3 + stdlib only. No P05 code copied (see PROVENANCE.md).
+A small retrieval harness for checking whether access controls prevent synthetic secrets from appearing in answers. It runs the same frozen cases against an unprotected baseline and a tenant-scoped, re-authorized path.
 
-## Setup
+The dataset contains 12 attack cases and eight benign queries. Separate checks cover stale caches and revoked access, so a previously valid result cannot silently remain authorized.
 
+## Run the evaluation
+
+Python 3's standard library is sufficient:
+
+```bash
+python3 measure.py
+python3 -m unittest discover -s tests -v
 ```
-python measure.py                          # frozen eval -> results/measure.json
-python -m unittest discover -s tests -v    # 8 tests (runs measure.py once)
-```
 
-## Layout
+The report is written to `results/measure.json`. `src/store.py` manages tenants, versions and revocation; `src/retrieval.py` implements a small BM25 retriever; `src/answer.py` produces extractive answers.
 
-- `SPEC.md` — store, pipeline, datasets, metrics, expected direction.
-- `PROVENANCE.md` — P05 alignment without code reuse.
-- `src/store.py` — tenants, versions, revocation, synthetic canaries.
-- `src/retrieval.py` — minimal BM25. `src/answer.py` — extractive pipeline.
-- `datasets/attacks.json` (12) + `datasets/benign.json` (8), frozen.
-- `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+[SPEC.md](SPEC.md) defines the cases and metrics. [PROVENANCE.md](PROVENANCE.md) records the relationship to the separate EvidenceRAG project. The harness measures authorization behavior on synthetic canaries; it does not test an external LLM or establish a differential-privacy guarantee.

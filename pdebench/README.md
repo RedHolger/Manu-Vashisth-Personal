@@ -1,22 +1,25 @@
-# PDEBench — finite-difference baselines (1D heat, 2D Poisson)
+# PDEBench
 
-Educational solver lab supporting role 36. Pure Python + numpy; deterministic;
-no trained models, no production-CFD claims.
+Finite-difference solvers for the 1D heat equation and 2D Poisson equation, with a separate physics-informed neural network comparison. Known analytic and manufactured solutions make it possible to measure error instead of judging a solver by its plots.
 
-## Setup
+The heat solver uses an explicit FTCS scheme and rejects unstable time steps. The Poisson solver uses Jacobi iteration with a residual stopping condition. Measurements record convergence, runtime and memory use.
 
-```
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+## Run the finite-difference baseline
+
+From this directory, using Python 3:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python measure.py
 ```
 
-## Layout
+Read `results/measurements.json` for the convergence tables. The solver implementations are in `src/heat1d.py` and `src/poisson2d.py`.
 
-- `SPEC.md` — problems, thresholds, hand-calculated fixtures, scope limits.
-- `src/heat1d.py` — FTCS explicit 1D heat vs closed-form sine solution; CFL violation raises.
-- `src/poisson2d.py` — Jacobi 2D Poisson vs manufactured sine solution; residual stop.
-- `tests/test_solvers.py` — 9 tests: fixtures, 2nd-order convergence, boundaries, negatives.
-- `measure.py` → `results/measurements.json` — convergence tables, residuals, wall time, peak memory.
-- `EVIDENCE.md` — commands, exit codes, environment, measured outputs.
-- `LIMITATIONS.md` — skipped checks and claim boundaries.
+## PINN comparison
+
+With PyTorch installed in the same environment, run `python src/pinn.py`. It trains a seeded MLP on the heat-equation residual and boundary/initial conditions, then writes `results/pinn.json`.
+
+The saved comparison favors finite differences on this smooth problem. That is a result for this setup, not a general ranking of numerical methods. [SPEC.md](SPEC.md) defines the problems; [EVIDENCE.md](EVIDENCE.md) records the runs.

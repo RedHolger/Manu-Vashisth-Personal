@@ -1,17 +1,18 @@
-# CommerceFunnel Lab — e-commerce funnel + fulfilment (role 16)
+# CommerceFunnel
 
-Synthetic events, deduped ingest, funnel/cohort metrics with uncertainty, and
-a PROPOSED (never run) experiment. No real shop data, no uplift claims.
+A small event-analysis pipeline for a fictional shop. It follows the path from product views to purchases, then checks substitutions and on-time fulfilment. Every rate includes its denominator so a tiny sample cannot disappear behind a percentage.
 
-## Setup (stdlib only)
+The input has 26 event rows, including a replay. Ingestion removes duplicates before calculating funnels, weekly cohorts and uncertainty intervals.
 
+## Generate the report
+
+Python 3's standard library is sufficient. From this directory:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 report.py
 ```
-python -m unittest discover -s tests -v   # 5 tests
-python report.py                           # -> results/report.json + report.html
-```
 
-## Layout
+Read `results/report.json` for the calculations and `results/report.html` for the report. Metric definitions and hand calculations are in [SPEC.md](SPEC.md); the implementation is in `src/funnel.py`.
 
-- `SPEC.md` (metrics, hand calcs), `PROVENANCE.md` (P08 checked, distinct).
-- `src/funnel.py`, `datasets/events.json` (26 rows, 1 replay), `experiment.md`.
-- `report.py`, `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+[experiment.md](experiment.md) proposes a follow-up experiment with primary and guardrail metrics. It has not been run. All input events are synthetic, so the report describes the fixture rather than a shop's actual conversion rate.

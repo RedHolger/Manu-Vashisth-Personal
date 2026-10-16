@@ -1,26 +1,34 @@
-# OpsConsole — job/incident investigation dashboard (role 21)
+# OpsConsole
 
-Synthetic job-history + incident workflow UI over isolated adapters.
-No live services (see LIMITATIONS.md).
+A dashboard for investigating background jobs and incidents. It shows job history, paginated records and audit events, with role-scoped retry and cancel actions. Version checks reject stale changes, while idempotent requests make retries predictable.
 
-## Setup
+The backend uses isolated, seeded adapters. That keeps investigations repeatable without connecting the UI to operational services.
 
-Backend (stdlib only):
+## Run locally
+
+Start the standard-library Python API from `backend/`:
+
+```bash
+python3 server.py 8471
 ```
-cd backend && python server.py 8471   # API on 127.0.0.1:8471
-```
-Frontend (needs npm once):
-```
-cd frontend && npm install && npm run build   # tsc + vite -> dist/
-npm run dev                                   # serves UI, proxies /api
-```
-Tests: `python -m unittest discover -s tests -v` (7 API tests);
-`node --experimental-strip-types --test "tests/*.test.ts"` in frontend (7 UI-logic tests).
-Demo: `python demo_investigation.py` (7-op transcript -> results/demo.json).
 
-## Layout
+In another terminal, run from `frontend/`:
 
-- `SPEC.md`, `PROVENANCE.md`.
-- `backend/adapters.py` (seeded stores), `backend/server.py` (REST API).
-- `frontend/src/` (React+TS app), `frontend/tests/` (auth/paging unit tests).
-- `demo_investigation.py`, `REQUIREMENTS.md`, `EVIDENCE.md`, `LIMITATIONS.md`.
+```bash
+npm ci
+npm run build
+npm run dev
+```
+
+Vite serves the UI on port 5174 and proxies `/api` to the backend.
+
+From the project root:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 demo_investigation.py
+```
+
+The scripted investigation writes `results/demo.json`. Frontend logic tests can be run from `frontend/` with Node 22 and `node --experimental-strip-types --test tests/*.test.ts`.
+
+See `backend/adapters.py` for the seeded stores, [SPEC.md](SPEC.md) for action semantics and [EVIDENCE.md](EVIDENCE.md) for saved checks.
